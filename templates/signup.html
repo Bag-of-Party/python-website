@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %} Bag of Party {% endblock %}
+{% block content %}
+    <form id="signup_form" method="POST">
+        <div>
+            <label>Party Name: </label>
+            <input type="text" name="party_name" />
+        </div>
+        <div>
+            <label>Generated URL: </label>
+            <span id="generated_url">bagof.party/a_generated_url/1a2b</span>
+        </div>
+        <div>
+            <label>User Email: </label>
+            <input type="text" name="user_email" />
+        </div>
+        <div>
+            <label>Party Password: </label>
+            <input type="text" name="party_password" />
+        </div>
+        <div>
+            <input class="cta" type="submit" value="Sign up?">
+        </div>
+    </form>
+{% endblock %}

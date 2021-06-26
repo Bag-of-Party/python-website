@@ -1,0 +1,100 @@
+html {
+    font-family: sans-serif; 
+}
+
+a, a:visited{
+    color: rebeccapurple;
+
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+input {
+    font-family: sans-serif;
+}
+
+#footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#footer p {
+    justify-content: center;
+}
+
+#footer img {
+    width: 3rem;
+}
+
+#contents {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#contents p {
+    max-width: 50rem;
+}
+
+.cta, a.cta:visited {
+    border: 2px solid black;
+    border-radius: 7px;
+    padding: .3rem;
+    text-decoration: none;
+    filter: drop-shadow(4px 4px 4px gray);
+    background: rebeccapurple;
+    color: white;
+    font-size: 22px;
+}
+
+.cta:hover {
+    filter: drop-shadow(4px 4px 4px rebeccapurple);
+
+}
+
+#signup_form {
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#signup_form div {
+    display: flex;
+    flex-direction: row;
+    margin: .1rem
+}
+
+#signup_form label {
+    width: 10rem;
+    display: block;
+    text-align: right;
+    padding: .3rem;
+}
+
+#signup_form input {
+    width: 20rem;
+    border: 2px solid black
+    border-radius: 7px;
+}
+
+#generated_url {
+    display: block;
+    width: 20rem;
+    padding: .3rem;
+}
+
+#signup_form input.cta {
+    margin-top: 2rem;
+    width: auto;
+}
+
