@@ -4,11 +4,12 @@
     <form id="signup_form" method="POST">
         <div>
             <label>Party Name: </label>
-            <input type="text" name="party_name" />
+            <input type="text" name="party_name" id="user_input" onchange="showInput()" />
         </div>
         <div>
             <label>Generated URL: </label>
-            <span id="generated_url">bagof.party/a_generated_url/1a2b</span>
+            <span name="url"  id="generated_url"></span>
+            <!-- <span id="generated_url" name="url" >bagof.party/a_generated_url/1a2b</span> -->
         </div>
         <div>
             <label>User Email: </label>
@@ -21,5 +22,10 @@
         <div>
             <input class="cta" type="submit" value="Sign up?">
         </div>
+    </form>
+    <form id="url_display">
+        <table class="url_line" id="table_show">
+            <tr><td>Url Test</td><td id="display_url"></td></tr>
+        </table>
     </form>
 {% endblock %}
