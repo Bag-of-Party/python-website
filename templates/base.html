@@ -8,8 +8,30 @@
     <link rel="stylesheet" href="/static/css/main.css" />
     <script language="JavaScript">
       function showInput() {
-          document.getElementById('generated_url').innerHTML = 
-                      document.getElementById("user_input").value;
+
+          // document.getElementById("user_input").addEventListener("change", editUrl)
+
+          // function editUrl() {
+          //   var inPut = document.getElementById("user_input");
+          //   inPut.toLowerCase().replace(/""/g, "-")
+          // }
+          function letter() {
+            var randLetter = String.fromCharCode(97+Math.floor(Math.random() * 26))
+            return randLetter
+          }
+
+          function number() {
+            randNumber = Math.floor(Math.random() * 10)
+            return randNumber
+          }
+          // number = Math.floor(Math.random())
+          // letter = String.fromCharCode(97+Math.floor(Math.random() * 26))
+
+          input = document.getElementById("user_input").value;
+
+          console.log('input', input.toLowerCase().replace(/ /g, "-"))
+          document.getElementById('generated_url').innerHTML = "https://Bagof.party/" + number() + letter() + number() + letter() + "/" + input.toLowerCase().replace(/ /g, "-") 
+          // console.log('output', url)
       }
     </script>
     <title>    
