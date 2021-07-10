@@ -1,10 +1,28 @@
 {% extends "base.html" %}
 {% block title %} Bag of Party {% endblock %}
+{% block scripts %}
+    <script language="JavaScript">
+        function showInput() {
+            function letter() {
+            var randLetter = String.fromCharCode(97+Math.floor(Math.random() * 26))
+            return randLetter
+            }
+            function number() {
+            randNumber = Math.floor(Math.random() * 10)
+            return randNumber
+            }
+            input = document.getElementById("user_input").value;
+            console.log('input', input.toLowerCase().replace(/ /g, "-"))
+            document.getElementById('generated_url').innerHTML = 
+                "https://bagof.party/" + number() + letter() + number() + letter() + "/" + input.toLowerCase().replace(/ /g, "-") 
+        }
+    </script>
+{% endblock %}
 {% block content %}
     <form id="signup_form" method="POST">
         <div>
             <label>Party Name: </label>
-            <input type="text" name="party_name" id="user_input" onchange="showInput()" />
+            <input type="text" name="party_name" id="user_input" oninput="showInput()" />
         </div>
         <div>
             <label>Generated URL: </label>
@@ -22,10 +40,5 @@
         <div>
             <input class="cta" type="submit" value="Sign up?">
         </div>
-    </form>
-    <form id="url_display">
-        <table class="url_line" id="table_show">
-            <tr><td>Url Test</td><td id="display_url"></td></tr>
-        </table>
     </form>
 {% endblock %}
