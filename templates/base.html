@@ -6,22 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/static/images/favicon.ico" type="icon" />
     <link rel="stylesheet" href="/static/css/main.css" />
-    <script language="JavaScript">
-      function showInput() {
-          function letter() {
-            var randLetter = String.fromCharCode(97+Math.floor(Math.random() * 26))
-            return randLetter
-          }
-          function number() {
-            randNumber = Math.floor(Math.random() * 10)
-            return randNumber
-          }
-          input = document.getElementById("user_input").value;
-          console.log('input', input.toLowerCase().replace(/ /g, "-"))
-          document.getElementById('generated_url').innerHTML = 
-              "https://bagof.party/" + number() + letter() + number() + letter() + "/" + input.toLowerCase().replace(/ /g, "-") 
-      }
-    </script>
+        {% block scripts %}
+        {% endblock %}
     <title>    
         {% block title %}
         {% endblock %}
