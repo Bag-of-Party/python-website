@@ -12,8 +12,10 @@
             return randNumber;
             }
             input = document.getElementById("user_input").value;
-            var url = number() + letter() + number() + letter() + "/" + input.toLowerCase().replace(/ /g, "-");
-            document.getElementById('generated_url').innerHTML = "https://bagof.party/" + url;
+            var prefix = "https://bagof.party/" + number() + letter() + number() + letter() + "/";
+            lowerInput = input.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+            var url = prefix + lowerInput;
+            document.getElementById('generated_url').innerHTML = url;
             document.getElementById('generated_url_field').value = url;
         }
     </script>

@@ -13,7 +13,14 @@ html - css - jquery: For rendering window
 ![wireframe](images/ReadmeWireframe/Wireframe.pdf)
 
 ## Set up below
-setup and notes below.
+setup and notes below. How to run on a local server once cloned
+1. Create a local enviorment.
+-	$ python3 -m venv nameofenviroment
+2. Start local enviorment so you can start the server on request.
+- $ . nameofenviroment/bin/activate
+3. Fire up local host server.
+- $ python nameofprogram.py
+4. Go to browser and localhost:5000
 
 ### docker setup
 docker run -p 2345:5432 -e POSTGRES_PASSWORD=mysecretpassword -d postgres
