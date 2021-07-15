@@ -15,16 +15,9 @@ def signup():
     if request.method == 'POST':
         party_name = request.form['party_name']
         user_email = request.form['user_email']
-        print(party_name, user_email)
-        party_name = re.sub(r'[^a-z0-9]+', '-', party_name.lower()) 
-        random_prefix = ''.join([
-            random.choice(string.ascii_letters), 
-            str(random.choice(range(0,9))), 
-            random.choice(string.ascii_letters), 
-            str(random.choice(range(0,9)))
-        ])
-        slug = f"{random_prefix}/{party_name}"
-        return redirect(f'/{slug}', code=303)
+        generated_url = request.form['generated_url']
+        print(generated_url)
+        return redirect(f'/{generated_url}', code=303)
     return render_template('signup.html', page_class="signup") 
     
         

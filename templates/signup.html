@@ -4,17 +4,17 @@
     <script language="JavaScript">
         function showInput() {
             function letter() {
-            var randLetter = String.fromCharCode(97+Math.floor(Math.random() * 26))
-            return randLetter
+            var randLetter = String.fromCharCode(97+Math.floor(Math.random() * 26));
+            return randLetter;
             }
             function number() {
-            randNumber = Math.floor(Math.random() * 10)
-            return randNumber
+            randNumber = Math.floor(Math.random() * 10);
+            return randNumber;
             }
             input = document.getElementById("user_input").value;
-            console.log('input', input.toLowerCase().replace(/ /g, "-"))
-            document.getElementById('generated_url').innerHTML = 
-                "https://bagof.party/" + number() + letter() + number() + letter() + "/" + input.toLowerCase().replace(/ /g, "-") 
+            var url = number() + letter() + number() + letter() + "/" + input.toLowerCase().replace(/ /g, "-");
+            document.getElementById('generated_url').innerHTML = "https://bagof.party/" + url;
+            document.getElementById('generated_url_field').value = url;
         }
     </script>
 {% endblock %}
@@ -27,7 +27,6 @@
         <div>
             <label>Generated URL: </label>
             <span name="url"  id="generated_url"></span>
-            <!-- <span id="generated_url" name="url" >bagof.party/a_generated_url/1a2b</span> -->
             <input type="hidden" id="generated_url_field" name="generated_url" />
         </div>
         <div>
