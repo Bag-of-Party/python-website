@@ -27,6 +27,8 @@ docker run -p 2345:5432 -e POSTGRES_PASSWORD=mysecretpassword -d postgres
 
 docker kill potgres
 
+psql -h 127.0.0.1 -U postgres -p 2345
+
 
 
 create table parties (
