@@ -28,53 +28,12 @@ def signup():
 
         conn = psycopg2.connect("dbname=postgres user=postgres password=mysecretpassword port=2345 host=127.0.0.1")
         cur = conn.cursor()
-        # cur.execute("CREATE TABLE test (id serial PRIMARY KEY, party_name varchar, generated_url varchar, user_email varchar, user_password varchar);")
         cur.execute("INSERT into parties (id, name, url, email, password) VALUES (%s, %s, %s, %s, %s)", (str(uniqid), str(party_name), str(generated_url), str(user_email), str(user_password)))
-        # (party_name, generated_url, user_email, user_password)
-        # ("TESTNAME", "WWW.TEST.COM", "TEST@TEST.COM", "TESTPWORD")
-
         conn.commit()
         cur.close()
         conn.close()
 
         return redirect(f'/{generated_url}', code=303)
-        
-        # try: 
-        #     connection = psycpg2.connect(
-        #             host = "lukeboat",
-        #             database ="bagofparty_local",
-        #             user = "postgres",
-        #             password = "mysecretpassword"
-        #         )
-
-        #     cursor = connection.cursor()
-
-        #     postgres_insert_query = """INSERT INTO parties (id, party_name, generated_url, user_email, user_password), VALUES (%s, %s, %s, %s, %s)"""
-        #     records_to_insert = (party_name, generated_url, user_email, user_password)
-        #     cursor.execute(postgres_insert_query, records_to_insert)
-
-        #     connection.commit()
-        #     count = cursor.rowcount
-        #     print(count, "INSERTED INFO")
-
-        # except (Exception, psycopg2.Error) as error:
-        #     print("Failed to insert record into mobile table", error)
-
-        # finally:
-        #     if connection:
-        #         cursor.close()
-        #         connection.close()
-        #         print("Closed connections")
-
-
-
-        # table = ( "INSERT INTO parties (id, party_name, generated_url, user_email, user_password), VALUES (%s, %s, %s, %s, %s)",
-        #     (str[party_name], str[generated_url], str[user_email], str[user_password])
-        # )
-        # db.execute_query(table)
-        # app.logger.info('Adding info')
-
-        # return ""
 
     return render_template('signup.html', page_class="signup") 
 
