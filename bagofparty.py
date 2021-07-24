@@ -1,7 +1,13 @@
 from flask import Flask, render_template, request, redirect
+import psycopg2 
+from psycopg2 import Error
+# from databse_connection import db
 import re
 import random
 import string
+import uuid
+
+uniqid = uuid.uuid4()
 
 app = Flask(__name__)
 
@@ -13,22 +19,27 @@ def home():
 @app.route("/signup", methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
+        app.logger.info('Post')
         party_name = request.form['party_name']
+        generated_url = request.form['generated_url']
         user_email = request.form['user_email']
-        print(party_name, user_email)
-        party_name = re.sub(r'[^a-z0-9]+', '-', party_name.lower()) 
-        random_prefix = ''.join([
-            random.choice(string.ascii_letters), 
-            str(random.choice(range(0,9))), 
-            random.choice(string.ascii_letters), 
-            str(random.choice(range(0,9)))
-        ])
-        slug = f"{random_prefix}/{party_name}"
-        return redirect(f'/{slug}', code=303)
+        user_password = request.form['party_password']
+        print(generated_url, party_name, user_email, user_password)
+
+        conn = psycopg2.connect("dbname=postgres user=postgres password=mysecretpassword port=2345 host=127.0.0.1")
+        cur = conn.cursor()
+        cur.execute("INSERT into parties (id, name, url, email, password) VALUES (%s, %s, %s, %s, %s)", (str(uniqid), str(party_name), str(generated_url), str(user_email), str(user_password)))
+        conn.commit()
+        cur.close()
+        conn.close()
+
+        return redirect(f'/{generated_url}', code=303)
+
     return render_template('signup.html', page_class="signup") 
+
     
         
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
 
