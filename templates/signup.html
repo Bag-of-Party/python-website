@@ -12,11 +12,11 @@
             return randNumber;
             }
             input = document.getElementById("user_input").value;
-            var prefix = "https://bagof.party/" + number() + letter() + number() + letter() + "/";
-            lowerInput = input.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-            var url = prefix + lowerInput;
-            document.getElementById('generated_url').innerHTML = url;
-            document.getElementById('generated_url_field').value = url;
+            var  prefix = number() + letter() + number() + letter() 
+            var baseUrl = "https://bagof.party/"
+            var slug = input.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+            document.getElementById('generated_url').innerHTML = baseUrl + '/' + prefix + '/' + slug;
+            document.getElementById('generated_url_field').value = prefix + '/' + slug;
         }
     </script>
 {% endblock %}

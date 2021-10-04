@@ -37,7 +37,18 @@ def signup():
 
     return render_template('signup.html', page_class="signup") 
 
-    
+
+
+@app.route("/<slug>/<party_name>")
+def party(slug, party_name):
+    url = slug + party_name
+    conn = psycopg2.connect("dbname=postgres user=postgres password=mysecretpassword port=2345 host=127.0.0.1")
+    cur = conn.cursor()
+    cur.execute("select * from parties where url = %s", (url,))
+    print("Selecting all rows from parties row where the url given matches the url in selected the row")
+    records = cur.fetchall()
+
+    return render_template('partypage.html', page_class="partypage")    
         
 
 if __name__ == "__main__":
