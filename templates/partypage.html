@@ -2,7 +2,13 @@
 {% block title %} Bag of Party {% endblock %}
 {% block content %} partypage 
     <img src="/static/images/bag_of_party_logo.png" />
-    <h1>Name Of Party</h1>
+    {% for item in data %}
+    <tr>
+        <td>{{item[0]}}</td>
+        <td>{{item[1]}}</td>
+        <td>{{item[2]}}</td>
+    </tr>
+    {% endfor %}
     <br />
     <h3>Items lsited below</h3>
     <br />
