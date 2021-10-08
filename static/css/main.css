@@ -159,22 +159,26 @@ input {
 }
 
 .item_box_input {
+    margin-top: 1rem;
     border-style: solid;
     border-color: rebeccapurple;
-    width: 28rem;
+    width: 28.5rem;
     border-radius: 5px;
     padding: 0.5rem;
 }
 
-.item_box_inputContainer {
-
+.item_box_grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    font-size: 1rem;
 }
 
-.item_box_itemTextInput input {
-    width: 20rem;
+.item_box_inputContainer input {
+    width: 10rem;
 }
-.item_box_itemTextInput textarea {
+.item_box_inputContainer textarea {
     width: 15rem;
+    height: 3rem;
 }
 
 .item_box_cta {
