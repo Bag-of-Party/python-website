@@ -1,23 +1,31 @@
 {% extends "base.html" %}
 {% block title %} Bag of Party {% endblock %}
-{% block content %} partypage 
+{% block content %}
     <img src="/static/images/bag_of_party_logo.png" />
     {% for item in data %}
-    <tr>
-        <td>{{item[0]}}</td>
-        <td>{{item[1]}}</td>
-        <td>{{item[2]}}</td>
-    </tr>
+        <h1>Welcome {{item[1]}}</h1>
     {% endfor %}
     <br />
-    <h3>Items lsited below</h3>
+    <h3>Please view and add Items below</h3>
     <br />
     <form id="add_item" method="POST">
-        <div>
-            <input type="text" name="item" id="item"/>
-        </div>
-        <div>
-
+        <div class="itemInput">
+            <span class="inputContainer">
+                <div>
+                    <label>Item Name</label>
+                    <input class="itemTextInput" maxlength="20" type="text" name="add_item"/>
+                </div>
+            </span>
+            <span class="inputContainer">
+                <div>
+                    <label>Item Info</label>
+                    <textarea class="itemTextInput" rows="10" cols="20" maxlength="200" name="add_item_info"></textarea>
+                </div>
+            </span>
+            <span class="inputContainer">
+                <input class="cta" type="submit" maxlength="20" value="Add Item">
+            </span>
         </div>
     </form>
+
 {% endblock %}

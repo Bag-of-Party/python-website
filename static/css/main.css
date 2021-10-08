@@ -98,3 +98,18 @@ input {
     width: auto;
 }
 
+.itemInput span {
+    display: inline;
+    /* padding-bottom: 2rem; */
+}
+
+.itemTextInput {
+    border-radius: 5px;
+    width: 20rem;
+    height: 2rem;
+    font-size: 1rem;
+}
+
+.inputContainer div {
+    padding-bottom: 2rem;
+}
