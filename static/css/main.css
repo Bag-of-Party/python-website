@@ -113,3 +113,9 @@ input {
 .inputContainer div {
     padding-bottom: 2rem;
 }
+
+.item_box {
+    border-radius: 1px solid rebeccapurple;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}

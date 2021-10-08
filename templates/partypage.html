@@ -28,4 +28,13 @@
         </div>
     </form>
 
+    <div>
+        {% for item in page_items %}
+        <div class="item_box">
+            <span>Item name {{ item[2] }}</span>
+            <span>Item Info {{ item[3] }}</span>
+        </div>
+        {% endfor %}
+    </div>
+
 {% endblock %}

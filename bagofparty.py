@@ -62,10 +62,15 @@ def party(slug, party_name):
         print(pageId)
         session["pageId"] = pageId
 
+        db_cur.execute("SELECT * FROM items where party_id = %s", (pageId,))
+        page_items = db_cur.fetchall()
+        print('All Items')
+        print(page_items)
+
         db_cur.close()
         db_conn.close()
         # session["data"] = partyData
-        return render_template('partypage.html', data=data)   
+        return render_template('partypage.html', data=data, page_items=page_items)   
     else:
         # request.method == 'POST':
         if "pageId" in session:
