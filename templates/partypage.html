@@ -32,34 +32,36 @@
         </div>
     </form>
 
-    <div>
+    <div class="items_grid">
         {% for item in page_items %}
         <div class="item_box">
             <div class="item_box_name">Item name: <span>{{ item[2] }}</span></div>
             <div class="item_box_info">Item Info: <span>{{ item[3] }}</span></div>
-            <form class="item_box_input" method="POST">
-                <div class="item_box_grid">
-                    <span class="item_box_inputContainer">
-                        <div>
-                            <label>Item Name</label>
-                        </div>
-                        <div>
-                            <input class="item_box_itemTextInput" placeholder="Enter Item Name" maxlength="25" type="text" name="add_item"/>
-                        </div>
-                        <span class="inputContainer">
-                            <input class="item_box_cta" type="submit" maxlength="20" value="Add Item">
+            <div class="item_box_form">
+                <form class="item_box_input" method="POST">
+                    <div class="item_box_grid">
+                        <span class="item_box_inputContainer">
+                            <div>
+                                <label>Item Name</label>
+                            </div>
+                            <div>
+                                <input class="item_box_itemTextInput" placeholder="Enter Item Name" maxlength="25" type="text" name="add_item"/>
+                            </div>
+                            <span class="inputContainer">
+                                <input class="item_box_cta" type="submit" maxlength="20" value="Add Item">
+                            </span>
                         </span>
-                    </span>
-                    <span class="item_box_inputContainer">
-                        <div>
-                            <label>Item Info</label>
-                        </div>
-                        <div>
-                            <textarea class="item_box_itemTextInput" placeholder="Enter Description" rows="3" cols="20" maxlength="200" name="add_item_info"></textarea>
-                        </div>
-                    </span>
-                </div>
-            </form>
+                        <span class="item_box_inputContainer">
+                            <div>
+                                <label>Item Info</label>
+                            </div>
+                            <div>
+                                <textarea class="item_box_itemTextInput" placeholder="Enter Description" rows="3" cols="20" maxlength="200" name="add_item_info"></textarea>
+                            </div>
+                        </span>
+                    </div>
+                </form>
+            </div>
         </div>
         {% endfor %}
     </div>

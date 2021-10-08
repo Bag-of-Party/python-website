@@ -129,6 +129,11 @@ input {
     height: 3rem;
 }
 
+.items_grid {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
 .item_box {
     border-style: solid;
     border-color: rebeccapurple;
@@ -138,12 +143,27 @@ input {
     width: 30rem;
     padding: 1rem;
     margin: 1rem;
+    display: grid;
 }
+
+/* .item_box_form {
+    align-self: end;
+} */
+
+.item_box_form {
+    align-self: end;
+}
+
+/* .item_box_form:last-child {
+    display: flex;                 
+    align-items: flex-end;
+} */
 
 .item_box_name {
     font-size: 1.5rem;
     border-bottom: solid;
     border-color: rebeccapurple;
+    padding-bottom: 1rem;
 }
 .item_box_name span {
     font-weight: bold;
@@ -157,6 +177,7 @@ input {
 .item_box_info span {
     font-weight: bold;
 }
+
 
 .item_box_input {
     margin-top: 1rem;
