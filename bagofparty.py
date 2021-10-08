@@ -8,6 +8,7 @@ import string
 import uuid
 
 uniqid = uuid.uuid4()
+uniqid2 = uuid.uuid4()
 
 app = Flask(__name__)
 
@@ -54,6 +55,7 @@ def party(slug, party_name):
         data = db_cur.fetchall()
         print("DATA BELOW")
         print(data)
+        session["data"] = data
 
         for x in data:
             item = data[0]
@@ -66,7 +68,8 @@ def party(slug, party_name):
         page_items = db_cur.fetchall()
         print('All Items')
         print(page_items)
-
+        session["page_items"] = page_items
+        session["data"] = data
         db_cur.close()
         db_conn.close()
         # session["data"] = partyData
@@ -81,19 +84,20 @@ def party(slug, party_name):
             print('inside button')
             print(newItem)
             print(url)
+            data = session["data"]
             pageId = session["pageId"]
+            page_items = session["page_items"]
             print(pageId)
-        # print(data)
             conn = psycopg2.connect("dbname=postgres user=postgres password=mysecretpassword port=2345 host=127.0.0.1")
             cur = conn.cursor()
-            cur.execute("INSERT into items (id, party_id, name, info, container_id) VALUES (%s, %s, %s, %s, %s)",(str(uniqid), pageId, str(newItem), str(itemInfo), str(uniqid)))
-    # cur.execute("INSERT into parties (id, name, url, email, password) VALUES (%s, %s, %s, %s, %s)", (str(uniqid), str(party_name), str(generated_url), str(user_email), str(user_password)))
+            cur.execute("INSERT into items (id, party_id, name, info, container_id) VALUES (%s, %s, %s, %s, %s)",(str(uniqid), pageId, str(newItem), str(itemInfo), str(uniqid2)))
             conn.commit()
             cur.close()
             conn.close() 
-        return render_template('partypage.html',)
+        return render_template('partypage.html', data=data, page_items=page_items)
         
 
 if __name__ == "__main__":
     app.run(debug=True)
+    app.config['TEMPLATES_AUTO_RELOAD'] = True
 

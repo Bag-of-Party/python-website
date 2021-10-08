@@ -83,7 +83,7 @@ input {
 
 #signup_form input {
     width: 20rem;
-    border: 2px solid black
+    border: 2px solid black;
     border-radius: 7px;
 }
 
@@ -103,19 +103,87 @@ input {
     /* padding-bottom: 2rem; */
 }
 
+.itemInput {
+    border-style: solid;
+    border-color: rebeccapurple;
+    width: 30rem;
+    border-radius: 5px;
+    padding: 1rem;
+}
+
 .itemTextInput {
     border-radius: 5px;
-    width: 20rem;
+    width: 29rem;
     height: 2rem;
     font-size: 1rem;
 }
 
 .inputContainer div {
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
+    font-weight: bold;
+    font-size: large;
+}
+
+.inputContainer textarea {
+    width: 29rem;
+    height: 3rem;
 }
 
 .item_box {
-    border-radius: 1px solid rebeccapurple;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    border-style: solid;
+    border-color: rebeccapurple;
+    border-radius: 5px;
+    /* padding-top: 1rem;
+    padding-bottom: 1rem; */
+    width: 30rem;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.item_box_name {
+    font-size: 1.5rem;
+    border-bottom: solid;
+    border-color: rebeccapurple;
+}
+.item_box_name span {
+    font-weight: bold;
+}
+
+.item_box_info {
+    font-size: 1.3rem;
+    /* border-bottom: solid;
+    border-color: rebeccapurple; */
+}
+.item_box_info span {
+    font-weight: bold;
+}
+
+.item_box_input {
+    border-style: solid;
+    border-color: rebeccapurple;
+    width: 28rem;
+    border-radius: 5px;
+    padding: 0.5rem;
+}
+
+.item_box_inputContainer {
+
+}
+
+.item_box_itemTextInput input {
+    width: 20rem;
+}
+.item_box_itemTextInput textarea {
+    width: 15rem;
+}
+
+.item_box_cta {
+    border: 2px solid black;
+    border-radius: 7px;
+    padding: .3rem;
+    text-decoration: none;
+    filter: drop-shadow(4px 4px 4px gray);
+    background: rebeccapurple;
+    color: white;
+    font-size: 12px;
 }
