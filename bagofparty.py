@@ -1,14 +1,12 @@
 from flask import Flask, render_template, request, redirect, session
 import psycopg2 
+import psycopg2.extras
 from psycopg2 import Error
 # from databse_connection import db
 import re
 import random
 import string
 import uuid
-
-uniqid = uuid.uuid4()
-uniqid2 = uuid.uuid4()
 
 app = Flask(__name__)
 
@@ -21,6 +19,8 @@ def home():
 
 @app.route("/signup", methods=['GET', 'POST'])
 def signup():
+    uniqid = uuid.uuid4()
+    uniqid2 = uuid.uuid4()
     if request.method == 'POST':
         app.logger.info('Post')
         party_name = request.form['party_name']
@@ -44,60 +44,52 @@ def signup():
 
 @app.route("/<slug>/<party_name>", methods=['GET', 'POST'])
 def party(slug, party_name):
-    if request.method == 'GET':
-        url = slug + "/" + party_name
+    uniqid = uuid.uuid4()
+    uniqid2 = uuid.uuid4()
+    print("ARGSSSSSS")
+    print(request.args)
+
+    url = slug + "/" + party_name
+    print(url)
+    db_conn = psycopg2.connect("dbname=postgres user=postgres password=mysecretpassword port=2345 host=127.0.0.1")
+    db_cur = db_conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    # string = ("SELECT * FROM parties where url = %s", (url,))
+    db_cur.execute("SELECT * FROM parties where url = %s", (url,))
+    print("Selecting all rows from parties row where the url given matches the url in selected the row")
+    data = db_cur.fetchone()
+
+    pageId = data["id"]
+    print('pageId')
+    print(pageId)
+
+    if request.method == 'POST':
+        # request.method == 'POST':
+        # if "pageId" in session:
+        app.logger.info('Post')
+        newItem = request.form['add_item']
+        itemInfo = request.form['add_item_info']
+        print('inside button')
+        print(newItem)
         print(url)
-        db_conn = psycopg2.connect("dbname=postgres user=postgres password=mysecretpassword port=2345 host=127.0.0.1")
-        db_cur = db_conn.cursor()
-        # string = ("SELECT * FROM parties where url = %s", (url,))
-        db_cur.execute("SELECT * FROM parties where url = %s", (url,))
-        print("Selecting all rows from parties row where the url given matches the url in selected the row")
-        data = db_cur.fetchall()
-        print("DATA BELOW")
-        print(data)
-        session["data"] = data
-
-        for x in data:
-            item = data[0]
-        pageId = item[0]
-        print('pageId')
         print(pageId)
-        session["pageId"] = pageId
-
-        db_cur.execute("SELECT * FROM items where party_id = %s", (pageId,))
-        page_items = db_cur.fetchall()
-        print('All Items')
-        print(page_items)
-        session["page_items"] = page_items
-        session["data"] = data
+        db_cur.execute("INSERT into items (id, party_id, name, info, container_id) VALUES (%s, %s, %s, %s, %s)",(str(uniqid), pageId, str(newItem), str(itemInfo), str(uniqid2)))
+        db_conn.commit()
         db_cur.close()
         db_conn.close()
-        # session["data"] = partyData
-        return render_template('partypage.html', data=data, page_items=page_items)   
-    else:
-        # request.method == 'POST':
-        if "pageId" in session:
-            url = slug + "/" + party_name
-            app.logger.info('Post')
-            newItem = request.form['add_item']
-            itemInfo = request.form['add_item_info']
-            print('inside button')
-            print(newItem)
-            print(url)
-            data = session["data"]
-            pageId = session["pageId"]
-            page_items = session["page_items"]
-            print(pageId)
-            conn = psycopg2.connect("dbname=postgres user=postgres password=mysecretpassword port=2345 host=127.0.0.1")
-            cur = conn.cursor()
-            cur.execute("INSERT into items (id, party_id, name, info, container_id) VALUES (%s, %s, %s, %s, %s)",(str(uniqid), pageId, str(newItem), str(itemInfo), str(uniqid2)))
-            conn.commit()
-            cur.close()
-            conn.close() 
-        return render_template('partypage.html', data=data, page_items=page_items)
+        return redirect(f'/{url}', code=303)
+
+    db_cur.execute("SELECT * FROM items where party_id = %s", (pageId,))
+    page_items = db_cur.fetchall()
+    print('All Items')
+    print(page_items)
+    
+    db_cur.close()
+    db_conn.close()
+    # session["data"] = partyData
+    return render_template('partypage.html', data=data, page_items=page_items)
         
 
 if __name__ == "__main__":
-    app.run(debug=True)
     app.config['TEMPLATES_AUTO_RELOAD'] = True
+    app.run(debug=True)
 

@@ -163,10 +163,14 @@ input {
     font-size: 1.5rem;
     border-bottom: solid;
     border-color: rebeccapurple;
-    padding-bottom: 1rem;
+    padding-bottom: 0.5rem;
 }
 .item_box_name span {
     font-weight: bold;
+}
+.item_box_name img {
+    height: 1.5rem;
+    cursor: pointer;
 }
 
 .item_box_info {

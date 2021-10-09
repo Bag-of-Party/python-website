@@ -2,9 +2,7 @@
 {% block title %} Bag of Party {% endblock %}
 {% block content %}
     <img src="/static/images/bag_of_party_logo.png" />
-    {% for item in data %}
-        <h1>Welcome {{item[1]}}</h1>
-    {% endfor %}
+        <h1>Welcome {{data.name}}</h1>
     <br />
     <h3>Please view and add Items below</h3>
     <br />
@@ -35,8 +33,8 @@
     <div class="items_grid">
         {% for item in page_items %}
         <div class="item_box">
-            <div class="item_box_name">Item name: <span>{{ item[2] }}</span></div>
-            <div class="item_box_info">Item Info: <span>{{ item[3] }}</span></div>
+            <div class="item_box_name">Item name: <span>{{ item.name }}</span><a href="?delete={{ item.id }}"><img alt="bin" src="/static/images/icons/bin.png" /></a></div>
+            <div class="item_box_info">Item Info: <span>{{ item.info}}</span></div>
             <div class="item_box_form">
                 <form class="item_box_input" method="POST">
                     <div class="item_box_grid">
