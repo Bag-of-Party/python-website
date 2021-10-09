@@ -46,8 +46,7 @@ def signup():
 def party(slug, party_name):
     uniqid = uuid.uuid4()
     uniqid2 = uuid.uuid4()
-    print("ARGSSSSSS")
-    print(request.args)
+    url_request = request.args
 
     url = slug + "/" + party_name
     print(url)
@@ -59,8 +58,12 @@ def party(slug, party_name):
     data = db_cur.fetchone()
 
     pageId = data["id"]
-    print('pageId')
-    print(pageId)
+
+    if "delete" in request.args:
+        item_id = url_request["delete"]
+        db_cur.execute("DELETE from items where id = %s", (item_id,))
+        db_conn.commit()
+        return redirect(f'/{url}', code=303)
 
     if request.method == 'POST':
         # request.method == 'POST':
@@ -72,7 +75,8 @@ def party(slug, party_name):
         print(newItem)
         print(url)
         print(pageId)
-        db_cur.execute("INSERT into items (id, party_id, name, info, container_id) VALUES (%s, %s, %s, %s, %s)",(str(uniqid), pageId, str(newItem), str(itemInfo), str(uniqid2)))
+        container_id = request.form.get("container_id")
+        db_cur.execute("INSERT into items (id, party_id, name, info, container_id) VALUES (%s, %s, %s, %s, %s)",(str(uniqid), pageId, str(newItem), str(itemInfo), container_id))
         db_conn.commit()
         db_cur.close()
         db_conn.close()
@@ -82,7 +86,22 @@ def party(slug, party_name):
     page_items = db_cur.fetchall()
     print('All Items')
     print(page_items)
+
+    items_by_id = {}
+    items_by_container_id  = {}
+
+    for item in page_items:
+        items_by_id[item['id']] = item
+        if item['container_id'] not in items_by_container_id:
+            items_by_container_id[item['container_id']] = []
+        items_by_container_id[item['container_id']].append(item['id'])
+    print('ITEMS BY ID')
+    print(items_by_id)
+    print("ITEMS BY CONTAINER")
+    print(items_by_container_id)
     
+    # for item in items_by_container_id[None]:
+
     db_cur.close()
     db_conn.close()
     # session["data"] = partyData

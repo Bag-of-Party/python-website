@@ -34,12 +34,14 @@
         {% for item in page_items %}
         <div class="item_box">
             <div class="item_box_name">Item name: <span>{{ item.name }}</span><a href="?delete={{ item.id }}"><img alt="bin" src="/static/images/icons/bin.png" /></a></div>
-            <div class="item_box_info">Item Info: <span>{{ item.info}}</span></div>
+            <div class="item_box_info">Item Info: <span>{{ item.info }}</span></div>
+            <!-- <div class="item_box_info">Item Info: <span>{{ item.container_id}}</span></div> -->
             <div class="item_box_form">
                 <form class="item_box_input" method="POST">
                     <div class="item_box_grid">
                         <span class="item_box_inputContainer">
                             <div>
+                                <input type="hidden" name="container_id" value="{{ item.id }}" />
                                 <label>Item Name</label>
                             </div>
                             <div>
