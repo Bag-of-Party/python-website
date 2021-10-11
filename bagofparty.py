@@ -87,20 +87,24 @@ def party(slug, party_name):
     print('All Items')
     print(page_items)
 
-    items_by_id = {}
-    items_by_container_id  = {}
+    # items_by_id = {}
+    # items_by_container_id  = {}
 
-    for item in page_items:
-        items_by_id[item['id']] = item
-        if item['container_id'] not in items_by_container_id:
-            items_by_container_id[item['container_id']] = []
-        items_by_container_id[item['container_id']].append(item['id'])
-    print('ITEMS BY ID')
-    print(items_by_id)
-    print("ITEMS BY CONTAINER")
-    print(items_by_container_id)
+    # for item in page_items:
+    #     items_by_id[item['id']] = item
+    #     if item['container_id'] not in items_by_container_id:
+    #         items_by_container_id[item['container_id']] = []
+    #     items_by_container_id[item['container_id']].append(item['id'])
+    # print('ITEMS BY ID')
+    # print(items_by_id)
+    # print("ITEMS BY CONTAINER")
+    # print(items_by_container_id)
     
+    # # for item in items_by_container_id[None]:
+    # items = []
     # for item in items_by_container_id[None]:
+    #     for child in items_by_container_id[item['id']]:
+    #         item['children'].append(items_by_id[child])
 
     db_cur.close()
     db_conn.close()
