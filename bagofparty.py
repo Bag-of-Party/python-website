@@ -84,22 +84,64 @@ def party(slug, party_name):
 
     db_cur.execute("SELECT * FROM items where party_id = %s", (pageId,))
     page_items = db_cur.fetchall()
-    print('All Items')
-    print(page_items)
 
-    # items_by_id = {}
-    # items_by_container_id  = {}
+    # print('All Items')
+    # print(page_items)
+
+    with_container_id = {}
+    without_container_id = {}
+
+    test = []
+
+    for item in page_items:
+        if item['container_id'] != None:
+            # print(item['name'])
+            with_container_id[item['id']] = item
+        else:
+            without_container_id[item['id']] = item
+    print('with_container_id')
+    print(with_container_id)
+    print('without_container_id')
+    print(without_container_id)
+
+
+
+    # for item in with_container_id:
+    #     for container in without_container_id:
+    #         if item[4] == container[4]:
+    #             group.append(container,item)
+
+    # print('*******')
+    # print(group)
+    
+
+    # for item in with_container_id:
+    #     print(item[4])
+
+    items_by_id = {}
+    items_by_container_id  = {}
+    final = {}
 
     # for item in page_items:
     #     items_by_id[item['id']] = item
-    #     if item['container_id'] not in items_by_container_id:
-    #         items_by_container_id[item['container_id']] = []
-    #     items_by_container_id[item['container_id']].append(item['id'])
+        # if item['container_id'] not in items_by_container_id:
+        #     items_by_container_id[item['container_id']] = []
+        # items_by_container_id[item['container_id']].append(item['id'])
+
     # print('ITEMS BY ID')
-    # print(items_by_id)
+    # # print(items_by_id)
     # print("ITEMS BY CONTAINER")
     # print(items_by_container_id)
     
+    # print(items_by_id['id'])
+    # for item in items_by_id.keys():
+    #     for thing in with_container_id:
+    #         if thing[4] == item:
+    #             final[item] = thing
+
+    # print('******')
+    # print(final)
+
     # # for item in items_by_container_id[None]:
     # items = []
     # for item in items_by_container_id[None]:
