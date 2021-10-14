@@ -85,25 +85,51 @@ def party(slug, party_name):
     db_cur.execute("SELECT * FROM items where party_id = %s", (pageId,))
     page_items = db_cur.fetchall()
 
-    # print('All Items')
-    # print(page_items)
+    print('All Items')
+    print(page_items)
 
-    with_container_id = {}
+    # with_container_id = {}
     without_container_id = {}
 
-    test = []
+
+    for item in page_items:
+        if item['container_id'] == None:
+            without_container_id[item['id']] = item
+
+    with_container_id = []
+    # without_container_id = []
+
 
     for item in page_items:
         if item['container_id'] != None:
-            # print(item['name'])
-            with_container_id[item['id']] = item
-        else:
-            without_container_id[item['id']] = item
+            with_container_id.append(item)
+
+    for item in with_container_id:
+        for k,v in without_container_id.items():
+            if item[4] == k:
+                without_container_id[k].append(item)
+        # if item[4] in without_container_id.keys():
+        #     print("TRUE")
+
+    # for item in with_container_id:
+    #     if item[4] in without_container_id.keys():
+    #         print("TRUE")
+
+    # for k,v in without_container_id:
+    #     for item in with_container_id:
+    #         if item[4] == k:
+    #             v.update(item)
+        
+
     print('with_container_id')
     print(with_container_id)
     print('without_container_id')
     print(without_container_id)
 
+    
+    # for key, val in with_container_id.items():
+    #     if key in without_container_id.items():
+    #         print("TURE")
 
 
     # for item in with_container_id:
