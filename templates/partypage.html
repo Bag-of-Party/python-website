@@ -31,10 +31,10 @@
     </form>
 
     <div class="items_grid">
-        {% for k,v in sub_data %}
+        {% for i in sub_data %}
         <div class="item_box">
-            <div class="item_box_name">Item name: <span>{{ v[0:4:][2] }}</span><a href="?delete={{ k }}"><img alt="bin" src="/static/images/icons/bin.png" /></a></div>
-            <div class="item_box_info">Item Info: <span>{{ v[0:4:][3] }}</span></div>
+            <div class="item_box_name">Item name: <span>{{ i[2] }}</span><a href="?delete={{ k }}"><img alt="bin" src="/static/images/icons/bin.png" /></a></div>
+            <div class="item_box_info">Item Info: <span>{{ i[3] }}</span></div>
             <div class="item_box_form">
                 <form class="item_box_input" method="POST">
                     <div class="item_box_grid">
@@ -60,40 +60,38 @@
                         </span>
                     </div>
                 </form>
-                <!-- {% if v[-1] != None %} -->
-                    {% for i in v %}
-                    <div class="item_box">
-                        <div class="item_box_name">Item name: <span>{{ i[2] }}</span><a href="?delete={{ k }}"><img alt="bin" src="/static/images/icons/bin.png" /></a></div>
-                        <div class="item_box_info">Item Info: <span>{{ i[3] }}</span></div>
-                        <div class="item_box_form">
-                            <form class="item_box_input" method="POST">
-                                <div class="item_box_grid">
-                                    <span class="item_box_inputContainer">
+                    {% if i[5] != None %}
+                    <div class="sub_item_box">
+                        <div class="sub_item_box_name">Item name: <span>{{ i[5] }}</span><a href="?delete={{ k }}"><img alt="bin" src="/static/images/icons/bin.png" /></a></div>
+                        <div class="sub_item_box_info">Item Info: <span>{{ i[5] }}</span></div>
+                        <div class="sub_item_box_form">
+                            <form class="sub_item_box_input" method="POST">
+                                <div class="sub_item_box_grid">
+                                    <span class="sub_item_box_inputContainer">
                                         <div>
                                             <input type="hidden" name="container_id" value="{{ k }}" />
                                             <label>Item Name</label>
                                         </div>
                                         <div>
-                                            <input class="item_box_itemTextInput" placeholder="Enter Item Name" maxlength="25" type="text" name="add_item"/>
+                                            <input class="sub_item_box_itemTextInput" placeholder="Enter Item Name" maxlength="25" type="text" name="add_item"/>
                                         </div>
-                                        <span class="inputContainer">
+                                        <span class="sub_inputContainer">
                                             <input class="item_box_cta" type="submit" maxlength="20" value="Add Item">
                                         </span>
                                     </span>
-                                    <span class="item_box_inputContainer">
+                                    <span class="sub_item_box_inputContainer">
                                         <div>
                                             <label>Item Info</label>
                                         </div>
                                         <div>
-                                            <textarea class="item_box_itemTextInput" placeholder="Enter Description" rows="3" cols="20" maxlength="200" name="add_item_info"></textarea>
+                                            <textarea class="sub_item_box_itemTextInput" placeholder="Enter Description" rows="3" cols="20" maxlength="200" name="add_item_info"></textarea>
                                         </div>
                                     </span>
                                 </div>
                             </form>
                         </div>
                     </div>
-                    {% endfor %}
-                <!-- {% endif %} -->
+                    {% endif %}
             </div>
         </div>
         {% endfor %}

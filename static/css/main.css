@@ -216,3 +216,88 @@ input {
     color: white;
     font-size: 12px;
 }
+
+
+
+.sub_item_box {
+    border-style: solid;
+    border-color: rebeccapurple;
+    border-radius: 5px;
+    /* padding-top: 1rem;
+    padding-bottom: 1rem; */
+    width: 25rem;
+    padding: 1rem;
+    margin: 1rem;
+    display: grid;
+}
+
+/* .sub_item_box_form {
+    align-self: end;
+} */
+
+.sub_item_box_form {
+    align-self: end;
+}
+
+/* .sub_item_box_form:last-child {
+    display: flex;                 
+    align-sub_items: flex-end;
+} */
+
+.sub_item_box_name {
+    font-size: 1.5rem;
+    border-bottom: solid;
+    border-color: rebeccapurple;
+    padding-bottom: 0.5rem;
+}
+.sub_item_box_name span {
+    font-weight: bold;
+}
+.sub_item_box_name img {
+    height: 1.5rem;
+    cursor: pointer;
+}
+
+.sub_item_box_info {
+    font-size: 1.3rem;
+    /* border-bottom: solid;
+    border-color: rebeccapurple; */
+}
+.sub_item_box_info span {
+    font-weight: bold;
+}
+
+
+.sub_item_box_input {
+    margin-top: 1rem;
+    border-style: solid;
+    border-color: rebeccapurple;
+    width: 23.5rem;
+    border-radius: 5px;
+    padding: 0.5rem;
+}
+
+.sub_item_box_grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    font-size: 1rem;
+}
+
+.sub_item_box_inputContainer input {
+    width: 8rem;
+}
+.sub_item_box_inputContainer textarea {
+    width: 10rem;
+    height: 3rem;
+}
+
+.sub_item_box_cta {
+    border: 2px solid black;
+    border-radius: 7px;
+    padding: .3rem;
+    text-decoration: none;
+    filter: drop-shadow(4px 4px 4px gray);
+    background: rebeccapurple;
+    color: white;
+    font-size: 12px;
+}

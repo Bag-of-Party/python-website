@@ -111,6 +111,13 @@ def party(slug, party_name):
     print(with_container_id)
     print('without_container_id')
     print(without_container_id)
+    print('without_container_id**********')
+    test = without_container_id.values()
+    
+    final = []
+    
+    for i in test:
+        final.append(i)
 
 
     print('SUB_DATA')
@@ -118,16 +125,27 @@ def party(slug, party_name):
     #     print('VALUE')
     #     print(v)
     #     final.append(v)
-    for k,v in without_container_id.items():
-        print('Container')
-        print(v[0:4:])
-        print('VALUEINSIDE')
-        print(v[:1:-1])
+
+
+    # for k,v in without_container_id.items():
+    #     print('Container')
+    #     outer = v[0:4:]
+    #     print('VALUEINSIDE')
+    #     inner = v[:1:-1]
+    #     outer.append(inner)
+    #     final.append(outer)
     # for k,v in without_container_id.items():
     #     print('Container')
     #     print(v[0:4:])
-    
-    sub_data = without_container_id
+
+    print('FINALLL')
+    print(final)
+    print('SUB FINAL')
+    print(final[2])
+
+    # print("INFOOO")
+    # print(info.outer)
+    # print(info.inner)
 
     print("FINAL")
     # print(final)
@@ -138,7 +156,7 @@ def party(slug, party_name):
     db_cur.close()
     db_conn.close()
     # session["data"] = partyData
-    return render_template('partypage.html', data=data, page_items=page_items, sub_data=without_container_id.items())
+    return render_template('partypage.html', data=data, page_items=page_items, sub_data=final)
         
 
 if __name__ == "__main__":
