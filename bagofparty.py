@@ -91,14 +91,12 @@ def party(slug, party_name):
     # with_container_id = {}
     without_container_id = {}
 
-
     for item in page_items:
         if item['container_id'] == None:
             without_container_id[item['id']] = item
 
     with_container_id = []
     # without_container_id = []
-
 
     for item in page_items:
         if item['container_id'] != None:
@@ -108,76 +106,39 @@ def party(slug, party_name):
         for k,v in without_container_id.items():
             if item[4] == k:
                 without_container_id[k].append(item)
-        # if item[4] in without_container_id.keys():
-        #     print("TRUE")
-
-    # for item in with_container_id:
-    #     if item[4] in without_container_id.keys():
-    #         print("TRUE")
-
-    # for k,v in without_container_id:
-    #     for item in with_container_id:
-    #         if item[4] == k:
-    #             v.update(item)
         
-
     print('with_container_id')
     print(with_container_id)
     print('without_container_id')
     print(without_container_id)
 
+
+    print('SUB_DATA')
+    # for k,v in without_container_id.items():
+    #     print('VALUE')
+    #     print(v)
+    #     final.append(v)
+    for k,v in without_container_id.items():
+        print('Container')
+        print(v[0:4:])
+        print('VALUEINSIDE')
+        print(v[:1:-1])
+    # for k,v in without_container_id.items():
+    #     print('Container')
+    #     print(v[0:4:])
     
-    # for key, val in with_container_id.items():
-    #     if key in without_container_id.items():
-    #         print("TURE")
+    sub_data = without_container_id
 
-
-    # for item in with_container_id:
-    #     for container in without_container_id:
-    #         if item[4] == container[4]:
-    #             group.append(container,item)
-
-    # print('*******')
-    # print(group)
-    
-
-    # for item in with_container_id:
-    #     print(item[4])
-
-    items_by_id = {}
-    items_by_container_id  = {}
-    final = {}
-
-    # for item in page_items:
-    #     items_by_id[item['id']] = item
-        # if item['container_id'] not in items_by_container_id:
-        #     items_by_container_id[item['container_id']] = []
-        # items_by_container_id[item['container_id']].append(item['id'])
-
-    # print('ITEMS BY ID')
-    # # print(items_by_id)
-    # print("ITEMS BY CONTAINER")
-    # print(items_by_container_id)
-    
-    # print(items_by_id['id'])
-    # for item in items_by_id.keys():
-    #     for thing in with_container_id:
-    #         if thing[4] == item:
-    #             final[item] = thing
-
-    # print('******')
+    print("FINAL")
     # print(final)
-
-    # # for item in items_by_container_id[None]:
-    # items = []
-    # for item in items_by_container_id[None]:
-    #     for child in items_by_container_id[item['id']]:
-    #         item['children'].append(items_by_id[child])
+    # for i in final:
+    #     print("iiiii")
+    #     print(i[4])
 
     db_cur.close()
     db_conn.close()
     # session["data"] = partyData
-    return render_template('partypage.html', data=data, page_items=page_items)
+    return render_template('partypage.html', data=data, page_items=page_items, sub_data=without_container_id.items())
         
 
 if __name__ == "__main__":
