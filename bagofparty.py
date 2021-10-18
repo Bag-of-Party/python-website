@@ -109,9 +109,35 @@ def party(slug, party_name):
         else:
             items_without_container_id.append(items_by_id[item['id']])
 
-    print('items_without_container_id')
-    print(items_without_container_id)
+    test = []
 
+    # for k, v in sorted(items_without_container_id, key=lambda k: len(items_without_container_id[k], reverse=True)):
+    #     # test[k] = {v}
+    #     test.append(k,v)
+
+
+    # def sort_by_values_len(dic):
+    #     dict_len= {key: len(value) for key, value in dic.contents()}
+    #     import operator
+    #     sorted_key_list = sorted(dict_len.contents(), key=operator.itemgetter(1), reverse=True)
+    #     sorted_dict = [{item[0]: dic[item [0]]} for item in sorted_key_list]
+    #     return sorted_dict
+
+    # print (sort_by_values_len(items_without_container_id))
+
+    # test = sorted(items_without_container_id.keys(), key=lambda s: len(items_without_container_id.get(s)))
+
+    for k in items_without_container_id:
+        print('test')
+        print(k)    
+        print(len(k['contents']))    
+        # print(v)    
+
+    print('TEST')
+    # print(items_without_container_id['contents'])
+    # print(test)
+    # print(items_without_container_id.sort(key=lambda item: item.contents))
+    
 
     # print("FINAL")
     # print(final)
