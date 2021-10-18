@@ -6,29 +6,31 @@
     <br />
     <h3>Please view and add Items below</h3>
     <br />
-    <form class="add_item" method="POST">
-        <div class="itemInput">
-            <span class="inputContainer">
-                <div>
-                    <label>Item Name</label>
-                </div>
-                <div>
-                    <input class="itemTextInput" placeholder="Enter Item Name" maxlength="20" type="text" name="add_item"/>
-                </div>
-            </span>
-            <span class="inputContainer">
-                <div>
-                    <label>Item Info</label>
-                </div>
-                <div>
-                    <textarea class="itemTextInput" placeholder="Enter Description" rows="10" cols="20" maxlength="200" name="add_item_info"></textarea>
-                </div>
-            </span>
-            <span class="inputContainer">
-                <input class="cta" type="submit" maxlength="20" value="Add Item">
-            </span>
-        </div>
-    </form>
+    <div class="inputOuterContainer">
+        <form class="add_item" method="POST">
+            <div class="itemInput">
+                <span class="inputContainer">
+                    <div>
+                        <label>Item Name</label>
+                    </div>
+                    <div>
+                        <input class="itemTextInput" placeholder="Enter Item Name" maxlength="20" type="text" name="add_item"/>
+                    </div>
+                </span>
+                <span class="inputContainer">
+                    <div>
+                        <label>Item Info</label>
+                    </div>
+                    <div>
+                        <textarea class="itemTextInput" placeholder="Enter Description" rows="10" cols="20" maxlength="200" name="add_item_info"></textarea>
+                    </div>
+                </span>
+                <span class="inputContainer">
+                    <input class="cta" type="submit" maxlength="20" value="Add Item">
+                </span>
+            </div>
+        </form>
+    </div>
 
     <div class="items_grid">
         {% for item in root_items %}
