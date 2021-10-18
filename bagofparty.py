@@ -109,6 +109,9 @@ def party(slug, party_name):
         else:
             items_without_container_id.append(items_by_id[item['id']])
 
+    print('items_without_container_id')
+    print(items_without_container_id)
+
 
     # print("FINAL")
     # print(final)
