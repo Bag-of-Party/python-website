@@ -85,51 +85,32 @@ def party(slug, party_name):
     db_cur.execute("SELECT * FROM items where party_id = %s", (pageId,))
     page_items = db_cur.fetchall()
 
-    print('All Items')
+    print('page_items')
     print(page_items)
 
-    # with_container_id = {}
-    without_container_id = {}
+
+    items_without_container_id = []
+
+    items_by_id = {}
 
     for item in page_items:
-        if item['container_id'] == None:
-            without_container_id[item['id']] = item
-
-    with_container_id = []
-    # without_container_id = []
+        items_by_id[item['id']] = {
+            'id': item['id'],
+            'party_id': item['party_id'],
+            'name': item['name'],
+            'info': item['info'],
+            'container_id': item['container_id'],
+            'contents': []
+        }
 
     for item in page_items:
-        if item['container_id'] != None:
-            with_container_id.append(item)
-
-    for item in with_container_id:
-        for k,v in without_container_id.items():
-            if item[4] == k:
-                without_container_id[k].append(item)
-        
-    print('with_container_id')
-    print(with_container_id)
-    print('without_container_id')
-    print(without_container_id)
+        if item['container_id']:
+            items_by_id[item['container_id']]['contents'].append(items_by_id[item['id']])
+        else:
+            items_without_container_id.append(items_by_id[item['id']])
 
 
-    print('SUB_DATA')
-    # for k,v in without_container_id.items():
-    #     print('VALUE')
-    #     print(v)
-    #     final.append(v)
-    for k,v in without_container_id.items():
-        print('Container')
-        print(v[0:4:])
-        print('VALUEINSIDE')
-        print(v[:1:-1])
-    # for k,v in without_container_id.items():
-    #     print('Container')
-    #     print(v[0:4:])
-    
-    sub_data = without_container_id
-
-    print("FINAL")
+    # print("FINAL")
     # print(final)
     # for i in final:
     #     print("iiiii")
@@ -138,7 +119,7 @@ def party(slug, party_name):
     db_cur.close()
     db_conn.close()
     # session["data"] = partyData
-    return render_template('partypage.html', data=data, page_items=page_items, sub_data=without_container_id.items())
+    return render_template('partypage.html', data=data, page_items=page_items, root_items=items_without_container_id )
         
 
 if __name__ == "__main__":
