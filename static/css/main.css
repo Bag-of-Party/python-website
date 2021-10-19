@@ -1,5 +1,5 @@
 * {
-    overflow: hidden;
+    overflow-x: hidden;
 }
 html {
     font-family: sans-serif; 
@@ -18,6 +18,10 @@ body {
 
 input {
     font-family: sans-serif;
+}
+
+.party_page_header div{
+    display: inline-block;
 }
 
 #footer {
@@ -47,6 +51,10 @@ input {
     max-width: 50rem;
 }
 
+.cta {
+    width: 10rem;
+}
+
 .cta, a.cta:visited {
     border: 2px solid black;
     border-radius: 7px;
@@ -60,7 +68,6 @@ input {
 
 .cta:hover {
     filter: drop-shadow(4px 4px 4px rebeccapurple);
-
 }
 
 #signup_form {
@@ -96,9 +103,14 @@ input {
     padding: .3rem;
 }
 
-#signup_form input.cta {
+/* #signup_form input.cta {
     margin-top: 2rem;
-    width: auto;
+    width: 12rem;
+} */
+
+.inputOuterContainer {
+    margin-bottom: 4rem;
+    margin-left: 4rem;
 }
 
 .itemInput span {
@@ -198,7 +210,7 @@ input {
     margin-top: 1rem;
     border-style: solid;
     border-color: rebeccapurple;
-    width: 28.5rem;
+    width: auto;
     border-radius: 5px;
     padding: 0.5rem;
 }
@@ -216,9 +228,12 @@ input {
 }
 
 .item_box_inputContainer input {
-    width: 12rem;
+    margin-right: 0.5rem;
+    display: block;
+    width: 15rem;
 }
 .item_box_inputContainer textarea {
+    display: block;
     width: 15rem;
     height: 3rem;
 }
@@ -228,12 +243,16 @@ input {
     border-radius: 7px;
     padding: .2rem;
     text-decoration: none;
-    /* filter: drop-shadow(4px 4px 4px gray); */
+    filter: drop-shadow(4px 4px 4px gray);
     background: rebeccapurple;
     color: white;
     font-size: 14px;
-    margin-top: 0.5rem;
-    margin-left: 0.25rem;
+    margin-top: 0.25rem;
+    /* margin-left: 0.25rem; */
+}
+
+.item_box_cta:hover {
+    filter: drop-shadow(4px 4px 4px rebeccapurple);
 }
 
 .deleteImg {
