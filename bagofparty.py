@@ -47,7 +47,8 @@ def party(slug, party_name):
     uniqid = uuid.uuid4()
     uniqid2 = uuid.uuid4()
     url_request = request.args
-
+    # delete_id = request.args.get('delete')
+    # delete_contents = request.args.get('another')
     url = slug + "/" + party_name
     print(url)
     db_conn = psycopg2.connect("dbname=postgres user=postgres password=mysecretpassword port=2345 host=127.0.0.1")
@@ -62,6 +63,7 @@ def party(slug, party_name):
     if "delete" in request.args:
         item_id = url_request["delete"]
         db_cur.execute("DELETE from items where id = %s", (item_id,))
+        db_cur.execute("DELETE from items where container_id = %s", (item_id,))
         db_conn.commit()
         return redirect(f'/{url}', code=303)
 
@@ -85,8 +87,8 @@ def party(slug, party_name):
     db_cur.execute("SELECT * FROM items where party_id = %s", (pageId,))
     page_items = db_cur.fetchall()
 
-    print('page_items')
-    print(page_items)
+    # print('page_items')
+    # print(page_items)
 
 
     items_without_container_id = []
@@ -109,39 +111,20 @@ def party(slug, party_name):
         else:
             items_without_container_id.append(items_by_id[item['id']])
 
-    # test = []
-    # for k, v in sorted(items_without_container_id, key=lambda k: len(k['contents'])):
-    #     test[k] = {v}
-    #     test.append(k,v)
-    # print('****')
-    # print(test)
-
-
-    # def sort_by_values_len(dic):
-    #     dict_len= {key: len(value) for key, value in dic.contents()}
-    #     import operator
-    #     sorted_key_list = sorted(dict_len.contents(), key=operator.itemgetter(1), reverse=True)
-    #     sorted_dict = [{item[0]: dic[item [0]]} for item in sorted_key_list]
-    #     return sorted_dict
-
-    # print (sort_by_values_len(items_without_container_id))
-
-    # test = sorted(items_without_container_id.keys(), key=lambda s: len(items_without_container_id.get(s)))
-
     for k in items_without_container_id:
-        print('test')
-        print(len(k['contents']))
+        # print('test')
+        # print(len(k['contents']))
         length = len(k['contents'])
         k.update({'length': length}) 
-        print(k)
-    print('********')
+        # print(k)
 
 
     sorted_list = sorted(items_without_container_id, key=lambda s: s['length'], reverse=True)
-    for i in sorted_list:
-        print("*")
-        print(i)  
-
+    
+    # test_id = request.form.get("container_id")
+    # test_contents = request.form.get("content_id")
+    # print(test_id)
+    # print(test_contents)
 
     db_cur.close()
     db_conn.close()

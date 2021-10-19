@@ -154,29 +154,19 @@ input {
     padding-left: 1rem;
     border-style: solid;
     border-width: 7px;
-
     border-color: rebeccapurple;
     border-radius: 5px;
     /* padding-top: 1rem;
     padding-bottom: 1rem; */
-    width: auto;
+    /* width: auto; */
     padding: 1rem;
     margin: 1rem;
-    display: grid;
+    /* display: grid; */
 }
-
-/* .item_box_form {
-    align-self: end;
-} */
 
 .item_box_form {
     align-self: end;
 }
-
-/* .item_box_form:last-child {
-    display: flex;                 
-    align-items: flex-end;
-} */
 
 .item_box_name {
     font-size: 1.5rem;
@@ -210,33 +200,31 @@ input {
     margin-top: 1rem;
     border-style: solid;
     border-color: rebeccapurple;
-    width: auto;
+    /* width: auto; */
     border-radius: 5px;
     padding: 0.5rem;
 }
 
 .item_box_grid {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto 2fr;
     font-size: 1rem;
 }
 
 .item_box_itemTextInput {
+    margin-right: 0.5rem;
     margin-top: 0.5rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
 }
 
-.item_box_inputContainer input {
-    margin-right: 0.5rem;
-    display: block;
-    width: 15rem;
+/* .item_box_inputContainer input {
+    max-width: 15rem;
 }
 .item_box_inputContainer textarea {
-    display: block;
-    width: 15rem;
+    max-width: 15rem;
     height: 3rem;
-}
+} */
 
 .item_box_cta {
     border: 2px solid black;
