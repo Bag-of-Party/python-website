@@ -109,11 +109,12 @@ def party(slug, party_name):
         else:
             items_without_container_id.append(items_by_id[item['id']])
 
-    test = []
-
-    # for k, v in sorted(items_without_container_id, key=lambda k: len(items_without_container_id[k], reverse=True)):
-    #     # test[k] = {v}
+    # test = []
+    # for k, v in sorted(items_without_container_id, key=lambda k: len(k['contents'])):
+    #     test[k] = {v}
     #     test.append(k,v)
+    # print('****')
+    # print(test)
 
 
     # def sort_by_values_len(dic):
@@ -129,8 +130,11 @@ def party(slug, party_name):
 
     for k in items_without_container_id:
         print('test')
-        print(k)    
-        print(len(k['contents']))    
+        print(len(k['contents']))
+        length = len(k['contents'])
+        k.update({'length': length}) 
+        print(k)
+    print(items_without_container_id)
         # print(v)    
 
     print('TEST')
