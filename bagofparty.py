@@ -134,25 +134,19 @@ def party(slug, party_name):
         length = len(k['contents'])
         k.update({'length': length}) 
         print(k)
-    print(items_without_container_id)
-        # print(v)    
+    print('********')
 
-    print('TEST')
-    # print(items_without_container_id['contents'])
-    # print(test)
-    # print(items_without_container_id.sort(key=lambda item: item.contents))
-    
 
-    # print("FINAL")
-    # print(final)
-    # for i in final:
-    #     print("iiiii")
-    #     print(i[4])
+    sorted_list = sorted(items_without_container_id, key=lambda s: s['length'], reverse=True)
+    for i in sorted_list:
+        print("*")
+        print(i)  
+
 
     db_cur.close()
     db_conn.close()
     # session["data"] = partyData
-    return render_template('partypage.html', data=data, page_items=page_items, root_items=items_without_container_id )
+    return render_template('partypage.html', data=data, page_items=page_items, root_items=sorted_list )
         
 
 if __name__ == "__main__":
