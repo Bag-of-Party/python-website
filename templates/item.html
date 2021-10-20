@@ -1,7 +1,6 @@
 <div class="item_box">
   <div>
-    <div class="item_box_name">Item name: <span class="itemText">{{ item.name }}</span><a href="?delete={{ item.id, item.contents}}" class="deleteImg"><img alt="bin" src="/static/images/icons/bin.png" /></a></div>
-    <!-- <div class="item_box_name">Item name: <span class="itemText">{{ item.name }}</span><a href="?delete={{ item.contents }}&another={{ item.id }}" class="deleteImg"><img alt="bin" src="/static/images/icons/bin.png" /></a></div> -->
+    <div class="item_box_name">Item name: <span class="itemText">{{ item.name }}</span><a href="?delete={{ item.id }}" class="deleteImg"><img alt="bin" src="/static/images/icons/bin.png" /></a></div>
     <div class="item_box_info">Item Info: <span class="itemText">{{ item.info }}</span></div>
   </div>
   <div class="item_box_form">
@@ -10,7 +9,6 @@
               <span class="item_box_inputContainer">
                   <div>
                       <input type="hidden" name="container_id" value="{{ item.id }}" />
-                      <!-- <input type="hidden" name="content_id" value="{{ item.contents }}" /> -->
                       <label>Item Name</label>
                   </div>
                   <div>

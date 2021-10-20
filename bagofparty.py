@@ -60,27 +60,16 @@ def party(slug, party_name):
     data = db_cur.fetchone()
 
     pageId = data["id"]
+    # print(page_items)
 
     if "delete" in request.args:
-        # item_id = url_request["delete"]
-        # item_contents = url_request["another"]
-        # test = json.loads(delete_contents)
-        print('********')   
-        print('********')
-        print(url_request)
-        # print(url_request)
-        print(type(url_request))
-        # for k in delete_contents['another']:
-        #     print(k)
-        # db_cur.execute("DELETE from items where id = %s", (item_id,))
+        item_id = url_request["delete"]
 
-        # db_cur.execute("DELETE from items where container_id = %s", (item_id,))
-        # db_conn.commit()
-        # return redirect(f'/{url}', code=303)
+        db_cur.execute("DELETE from items where id = %s", (item_id,))
+        db_conn.commit()
+        return redirect(f'/{url}', code=303)
 
     if request.method == 'POST':
-        # request.method == 'POST':
-        # if "pageId" in session:
         app.logger.info('Post')
         newItem = request.form['add_item']
         itemInfo = request.form['add_item_info']
@@ -97,10 +86,6 @@ def party(slug, party_name):
 
     db_cur.execute("SELECT * FROM items where party_id = %s", (pageId,))
     page_items = db_cur.fetchall()
-
-    # print('page_items')
-    # print(page_items)
-
 
     items_without_container_id = []
 
@@ -123,23 +108,14 @@ def party(slug, party_name):
             items_without_container_id.append(items_by_id[item['id']])
 
     for k in items_without_container_id:
-        # print('test')
-        # print(len(k['contents']))
         length = len(k['contents'])
         k.update({'length': length}) 
-        # print(k)
 
 
     sorted_list = sorted(items_without_container_id, key=lambda s: s['length'], reverse=True)
     
-    # test_id = request.form.get("container_id")
-    # test_contents = request.form.get("content_id")
-    # print(test_id)
-    # print(test_contents)
-
     db_cur.close()
     db_conn.close()
-    # session["data"] = partyData
     return render_template('partypage.html', data=data, page_items=page_items, root_items=sorted_list )
         
 
