@@ -52,6 +52,7 @@ input {
 }
 
 .cta {
+    text-align: center;
     width: 10rem;
 }
 
@@ -134,9 +135,11 @@ input {
 }
 
 .inputContainer div {
-    padding-bottom: 1rem;
+    padding-bottom: 0.5rem;
     font-weight: bold;
     font-size: large;
+    text-decoration-line: underline;
+    color: rebeccapurple;
 }
 
 .inputContainer textarea {
@@ -159,7 +162,9 @@ input {
     /* padding-top: 1rem;
     padding-bottom: 1rem; */
     /* width: auto; */
-    padding: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
     margin: 1rem;
     /* display: grid; */
 }
@@ -169,14 +174,27 @@ input {
 }
 
 .item_box_name {
+    vertical-align: baseline;
+    /* margin-top: 1rem; */
+    height: 2rem;
+    /* padding-top: 1rem; */
+    display: flex;
+    justify-content:space-between; 
+    /* padding-top: 0.5rem; */
     font-size: 1.5rem;
     border-bottom: solid;
     border-color: rebeccapurple;
-    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.3rem;
 }
+
 .item_box_name span {
     color: rebeccapurple;
     font-weight: bold;
+    vertical-align: sub;
+}
+.item_box_name span:first-child {
+    color: black;
 }
 .item_box_name img {
     height: 1.5rem;
@@ -244,10 +262,19 @@ input {
 }
 
 .deleteImg {
-    vertical-align: sub;
-    padding-left: 1rem;
+    /* vertical-align: sub; */
+    /* margin-left: 1rem; */
+    border-style: solid;
+    border-color: rebeccapurple;
+    border-radius: 5px;   
+    padding-top: 0.4rem;
+    padding-right: 0.2rem;
+    padding-left: 0.2rem;
+    /* margin-bottom: 1rem; */
+    /* overflow: visible; */
+}
+.deleteImg img {
+    /* padding-top: 5rem; */
+
 }
 
-/* .itemText {
-    color: rebeccapurple;
-} */
