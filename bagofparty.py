@@ -9,6 +9,16 @@ import string
 import uuid
 import json
 
+class User:
+    def __init__(self, group_id, name, password):
+        self.group_id = group_id
+        self.name = name
+        self.password = password
+
+        def __repr__(self):
+            return 
+
+
 app = Flask(__name__)
 
 app.secret_key = "hello"
@@ -44,19 +54,27 @@ def signup():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
+    # session.pop()
     if request.method == 'POST':
         app.logger.info('Post')
-        group_name = request.form['login_group_name']
-        password = request.form['login_password']
-        print(password, group_name)
+        group_name_input = request.form['login_group_name']
+        password_input = request.form['login_password']
+        print(password_input, group_name_input)
 
         db_conn = psycopg2.connect("dbname=postgres user=postgres password=mysecretpassword port=2345 host=127.0.0.1")
         cur = db_conn.cursor()
-        cur.execute("SELECT * from parties where name = %s", (group_name,)) 
+        cur.execute("SELECT * from parties where name = %s", (group_name_input,)) 
         data = cur.fetchone()
         print(data)       
-
-        # return render_template('login.html')
+        password = data[4]
+        session['group_id'] = data[0]
+        session['group_name'] = data[1]
+        session['group_url'] = data[2]
+        session['group_email'] = data[3]
+        session['group_password'] = data[4]
+        if password_input == password:
+            return redirect(f'/{data[2]}', code=303) 
+        return render_template('login.html')
 
 
     return render_template('login.html')
