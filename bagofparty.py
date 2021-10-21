@@ -37,9 +37,29 @@ def signup():
         cur.close()
         conn.close()
 
-        return redirect(f'/{generated_url}', code=303)
+        # return redirect(f'/{generated_url}', code=303)
+        return redirect(f'/login', code=303)
 
     return render_template('signup.html', page_class="signup") 
+
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        app.logger.info('Post')
+        group_name = request.form['login_group_name']
+        password = request.form['login_password']
+        print(password, group_name)
+
+        db_conn = psycopg2.connect("dbname=postgres user=postgres password=mysecretpassword port=2345 host=127.0.0.1")
+        cur = db_conn.cursor()
+        cur.execute("SELECT * from parties where name = %s", (group_name,)) 
+        data = cur.fetchone()
+        print(data)       
+
+        # return render_template('login.html')
+
+
+    return render_template('login.html')
 
 
 
@@ -48,23 +68,20 @@ def party(slug, party_name):
     uniqid = uuid.uuid4()
     uniqid2 = uuid.uuid4()
     url_request = request.args
-    # delete_id = request.args.get('delete')
-    # delete_contents = request.args.to_dict().all('another')
     url = slug + "/" + party_name
     print(url)
+
     db_conn = psycopg2.connect("dbname=postgres user=postgres password=mysecretpassword port=2345 host=127.0.0.1")
     db_cur = db_conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    # string = ("SELECT * FROM parties where url = %s", (url,))
     db_cur.execute("SELECT * FROM parties where url = %s", (url,))
     print("Selecting all rows from parties row where the url given matches the url in selected the row")
     data = db_cur.fetchone()
-
     pageId = data["id"]
-    # print(page_items)
+    # print('***********')
+    # print(data)
 
     if "delete" in request.args:
         item_id = url_request["delete"]
-
         db_cur.execute("DELETE from items where id = %s", (item_id,))
         db_conn.commit()
         return redirect(f'/{url}', code=303)
@@ -88,7 +105,6 @@ def party(slug, party_name):
     page_items = db_cur.fetchall()
 
     items_without_container_id = []
-
     items_by_id = {}
 
     for item in page_items:
@@ -116,6 +132,7 @@ def party(slug, party_name):
     
     db_cur.close()
     db_conn.close()
+
     return render_template('partypage.html', data=data, page_items=page_items, root_items=sorted_list )
         
 
