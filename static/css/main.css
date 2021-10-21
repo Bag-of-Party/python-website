@@ -52,6 +52,44 @@ input {
     max-width: 50rem;
 }
 
+.button {
+    overflow: visible;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+}
+.button div {
+    display: inline;
+    margin: 1rem;
+}
+
+.button a {
+    color: white;
+    padding: 2rem;
+    margin: 2rem;
+    text-decoration: none;
+    font-size: x-large;
+}
+
+.item_box_cta_login {
+    border: 2px solid black;
+    border-radius: 7px;
+    padding: .6rem;
+    padding-top: .8rem;
+    text-decoration: none;
+    filter: drop-shadow(4px 4px 4px gray);
+    background: rebeccapurple;
+    color: white;
+    font-size: 14px;
+    /* margin-top: 1rem; */
+}
+
+.item_box_cta_login:hover {
+    filter: drop-shadow(4px 4px 4px rebeccapurple);
+}
+
+
+
 .cta {
     text-align: center;
     width: 10rem;
@@ -72,8 +110,23 @@ input {
     filter: drop-shadow(4px 4px 4px rebeccapurple);
 }
 
+.signup_banner {
+    color: rebeccapurple;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.signup_form_containter {
+    margin-left: 4rem;
+    margin-bottom: 1rem;
+    border-style: solid;
+    border-color: rebeccapurple;
+    padding: 2rem;
+    border-radius: 7px;
+}
+
 .signup_form {
-    margin-top: 4rem;
+    margin-top: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -83,19 +136,27 @@ input {
 .signup_form div {
     display: flex;
     flex-direction: row;
-    margin: .1rem
+    margin: .3rem
 }
 
 .signup_form label {
     width: 10rem;
     display: block;
-    text-align: right;
+    text-align: left;
     padding: .3rem;
 }
 
 .signup_form input {
     width: 20rem;
-    border: 2px solid black;
+    border: 2px solid rebeccapurple;
+    padding: 0.5rem;
+    border-radius: 7px;
+}
+.signup_form span {
+    width: 20rem;
+    border: 2px solid rebeccapurple;
+    padding: 0.9rem;
+    /* margin-top: 0.4rem; */
     border-radius: 7px;
 }
 
