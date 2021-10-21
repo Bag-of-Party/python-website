@@ -25,6 +25,15 @@ input {
     text-align: center;
 }
 
+.party_page_header h1{
+    color: rebeccapurple;
+    font-weight: bold;
+}
+.party_page_header h3{
+    color: rebeccapurple;
+    font-size: x-large;
+}
+
 #footer {
     display: flex;
     flex-direction: column;
@@ -163,7 +172,9 @@ input {
 #generated_url {
     display: block;
     width: 20rem;
-    padding: .3rem;
+    height: 1rem;
+    padding: 0.5rem;
+    text-align: left;
 }
 
 /* #signup_form input.cta {
