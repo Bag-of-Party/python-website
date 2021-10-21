@@ -145,10 +145,11 @@ input {
 .signup_form div {
     display: flex;
     flex-direction: row;
-    margin: .3rem
+    margin: 0.3rem
 }
 
 .signup_form label {
+    color: rebeccapurple;
     width: 10rem;
     display: block;
     text-align: left;
@@ -176,11 +177,6 @@ input {
     padding: 0.5rem;
     text-align: left;
 }
-
-/* #signup_form input.cta {
-    margin-top: 2rem;
-    width: 12rem;
-} */
 
 .inputOuterContainer {
     margin-bottom: 4rem;
@@ -333,23 +329,9 @@ input {
 .padding {
     margin-left: 2rem;
     margin-bottom: 4rem;
-    height: 12rem;
     color: rebeccapurple;
 }
 
-/* .padding div {
-    color: rebeccapurple;
-    font-size: x-large;
-    margin-bottom: 1rem;
-} */
-/* .padding label {
-    font-size: large;
-    color: rebeccapurple;
-}
-.padding input {
-    color: rebeccapurple;
-    padding: 0.5rem;
-}  */
 
 #password_label {
     font-size: large;
@@ -360,6 +342,8 @@ input {
     padding: .3rem;
     vertical-align: text-bottom;
 }
+
+
 .password_form {
     margin-top: 4rem;
     display: flex;
@@ -374,13 +358,12 @@ input {
     display: flex;
     flex-direction: row;
     margin: 0.2rem;
+    font-size: large;
 }
-.password_form div:first-child {
-    display: flex;
-    flex-direction: row;
+
+#login_title {
     font-size: x-large;
-    margin-bottom: 0.5rem;
-    /* margin: .1rem */
+    margin-bottom: 2rem;
 }
 
 .password_form label {
@@ -392,8 +375,9 @@ input {
 
 .password_form input {
     width: 20rem;
-    border: 2px solid black;
+    border: 2px solid rebeccapurple;
     border-radius: 7px;
+    padding: 0.5rem;
 }
 .password_form div {
     padding-bottom: 1rem;
@@ -406,7 +390,11 @@ input {
     background-color: rebeccapurple;
 } */
 .password_check_form {
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 #password_button {
