@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, redirect, session
 import psycopg2 
 import psycopg2.extras
 from psycopg2 import Error
-# from databse_connection import db
 import re
 import random
 import string
@@ -52,7 +51,6 @@ def party(slug, party_name):
     print(url)
     db_conn = psycopg2.connect("dbname=postgres user=postgres password=mysecretpassword port=2345 host=127.0.0.1")
     db_cur = db_conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    # string = ("SELECT * FROM parties where url = %s", (url,))
     db_cur.execute("SELECT * FROM parties where url = %s", (url,))
     print("Selecting all rows from parties row where the url given matches the url in selected the row")
     data = db_cur.fetchone()
@@ -66,8 +64,6 @@ def party(slug, party_name):
         return redirect(f'/{url}', code=303)
 
     if request.method == 'POST':
-        # request.method == 'POST':
-        # if "pageId" in session:
         app.logger.info('Post')
         newItem = request.form['add_item']
         itemInfo = request.form['add_item_info']
@@ -109,19 +105,10 @@ def party(slug, party_name):
         else:
             items_without_container_id.append(items_by_id[item['id']])
 
-    print('items_without_container_id')
-    print(items_without_container_id)
-
-
-    # print("FINAL")
-    # print(final)
-    # for i in final:
-    #     print("iiiii")
-    #     print(i[4])
+    items_without_container_id.sort(key=lambda s: len(s['contents']), reverse=True)
 
     db_cur.close()
     db_conn.close()
-    # session["data"] = partyData
     return render_template('partypage.html', data=data, page_items=page_items, root_items=items_without_container_id )
         
 
