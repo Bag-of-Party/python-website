@@ -47,8 +47,6 @@ def party(slug, party_name):
     uniqid = uuid.uuid4()
     uniqid2 = uuid.uuid4()
     url_request = request.args
-    # delete_id = request.args.get('delete')
-    # delete_contents = request.args.to_dict().all('another')
     url = slug + "/" + party_name
     print(url)
     db_conn = psycopg2.connect("dbname=postgres user=postgres password=mysecretpassword port=2345 host=127.0.0.1")
@@ -58,7 +56,6 @@ def party(slug, party_name):
     data = db_cur.fetchone()
 
     pageId = data["id"]
-    # print(page_items)
 
     if "delete" in request.args:
         item_id = url_request["delete"]

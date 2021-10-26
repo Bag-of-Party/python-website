@@ -104,11 +104,6 @@ input {
     padding: .3rem;
 }
 
-/* #signup_form input.cta {
-    margin-top: 2rem;
-    width: 12rem;
-} */
-
 .inputOuterContainer {
     margin-bottom: 4rem;
     margin-left: 4rem;
@@ -116,7 +111,6 @@ input {
 
 .itemInput span {
     display: inline;
-    /* padding-bottom: 2rem; */
 }
 
 .itemInput {
@@ -188,6 +182,7 @@ input {
 .item_box_name span:first-child {
     color: black;
 }
+
 .item_box_name img {
     height: 1.5rem;
     cursor: pointer;
@@ -219,22 +214,13 @@ input {
 }
 
 .item_box_itemTextInput_name {
-    /* display: block; */
-    /* flex-grow: initial; */
     width: 90%;
-    /* overflow: hidden; */
-    /* resize: both; */
-    /* margin-right: 0.5rem; */
     margin-top: 0.5rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
 }
 .item_box_itemTextInput_info {
-    /* display: block; */
     width: 96%;
-    /* overflow: hidden; */
-    /* resize: both; */
-    /* margin-right: 0.5rem; */
     margin-top: 0.5rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
@@ -250,7 +236,6 @@ input {
     color: white;
     font-size: 14px;
     margin-top: 0.25rem;
-    /* margin-left: 0.25rem; */
 }
 
 .item_box_cta:hover {
@@ -264,16 +249,6 @@ input {
     padding-top: 0.3rem;
     padding-right: 0.2rem;
     padding-left: 0.2rem;
-    /* margin-top: 1rem; */
-    /* padding-bottom: 0.2rem; */
-}
-.deleteImg img {
-    /* padding-top: 5rem; */
-
 }
 
-.item_box_inputContainer {
-    /* margin-right: 1rem; */
-    /* padding-right: 1rem; */
-}
 
