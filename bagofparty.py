@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, redirect, session
 import psycopg2 
 import psycopg2.extras
 from psycopg2 import Error
-# from databse_connection import db
 import re
 import random
 import string
@@ -54,7 +53,6 @@ def party(slug, party_name):
     print(url)
     db_conn = psycopg2.connect("dbname=postgres user=postgres password=mysecretpassword port=2345 host=127.0.0.1")
     db_cur = db_conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    # string = ("SELECT * FROM parties where url = %s", (url,))
     db_cur.execute("SELECT * FROM parties where url = %s", (url,))
     print("Selecting all rows from parties row where the url given matches the url in selected the row")
     data = db_cur.fetchone()
@@ -107,16 +105,11 @@ def party(slug, party_name):
         else:
             items_without_container_id.append(items_by_id[item['id']])
 
-    for k in items_without_container_id:
-        length = len(k['contents'])
-        k.update({'length': length}) 
+    items_without_container_id.sort(key=lambda s: len(s['contents']), reverse=True)
 
-
-    sorted_list = sorted(items_without_container_id, key=lambda s: s['length'], reverse=True)
-    
     db_cur.close()
     db_conn.close()
-    return render_template('partypage.html', data=data, page_items=page_items, root_items=sorted_list )
+    return render_template('partypage.html', data=data, page_items=page_items, root_items=items_without_container_id )
         
 
 if __name__ == "__main__":
