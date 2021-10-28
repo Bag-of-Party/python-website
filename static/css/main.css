@@ -20,6 +20,10 @@ input {
     font-family: sans-serif;
 }
 
+.party_page_header div{
+    display: inline-block;
+}
+
 #footer {
     display: flex;
     flex-direction: column;
@@ -47,6 +51,11 @@ input {
     max-width: 50rem;
 }
 
+.cta {
+    text-align: center;
+    width: 10rem;
+}
+
 .cta, a.cta:visited {
     border: 2px solid black;
     border-radius: 7px;
@@ -60,7 +69,6 @@ input {
 
 .cta:hover {
     filter: drop-shadow(4px 4px 4px rebeccapurple);
-
 }
 
 #signup_form {
@@ -96,14 +104,13 @@ input {
     padding: .3rem;
 }
 
-#signup_form input.cta {
-    margin-top: 2rem;
-    width: auto;
+.inputOuterContainer {
+    margin-bottom: 4rem;
+    margin-left: 4rem;
 }
 
 .itemInput span {
     display: inline;
-    /* padding-bottom: 2rem; */
 }
 
 .itemInput {
@@ -122,9 +129,11 @@ input {
 }
 
 .inputContainer div {
-    padding-bottom: 1rem;
+    padding-bottom: 0.5rem;
     font-weight: bold;
     font-size: large;
+    text-decoration-line: underline;
+    color: rebeccapurple;
 }
 
 .inputContainer textarea {
@@ -142,40 +151,38 @@ input {
     padding-left: 1rem;
     border-style: solid;
     border-width: 7px;
-
     border-color: rebeccapurple;
     border-radius: 5px;
-    /* padding-top: 1rem;
-    padding-bottom: 1rem; */
-    width: auto;
-    padding: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
     margin: 1rem;
-    display: grid;
 }
-
-/* .item_box_form {
-    align-self: end;
-} */
 
 .item_box_form {
     align-self: end;
 }
 
-/* .item_box_form:last-child {
-    display: flex;                 
-    align-items: flex-end;
-} */
-
 .item_box_name {
+    vertical-align: baseline;
+    height: 2rem;
+    display: flex;
+    justify-content:space-between; 
     font-size: 1.5rem;
     border-bottom: solid;
     border-color: rebeccapurple;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.4rem;
 }
+
 .item_box_name span {
     color: rebeccapurple;
     font-weight: bold;
+    vertical-align: sub;
 }
+.item_box_name span:first-child {
+    color: black;
+}
+
 .item_box_name img {
     height: 1.5rem;
     cursor: pointer;
@@ -184,8 +191,6 @@ input {
 .item_box_info {
     font-size: 1.3rem;
     padding-top: 0.5rem;
-    /* border-bottom: solid;
-    border-color: rebeccapurple; */
 }
 .item_box_info span {
     font-weight: bold;
@@ -198,29 +203,27 @@ input {
     margin-top: 1rem;
     border-style: solid;
     border-color: rebeccapurple;
-    width: 28.5rem;
     border-radius: 5px;
     padding: 0.5rem;
 }
 
 .item_box_grid {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 2fr 3fr;
     font-size: 1rem;
 }
 
-.item_box_itemTextInput {
+.item_box_itemTextInput_name {
+    width: 90%;
     margin-top: 0.5rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
 }
-
-.item_box_inputContainer input {
-    width: 12rem;
-}
-.item_box_inputContainer textarea {
-    width: 15rem;
-    height: 3rem;
+.item_box_itemTextInput_info {
+    width: 96%;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 
 .item_box_cta {
@@ -228,19 +231,24 @@ input {
     border-radius: 7px;
     padding: .2rem;
     text-decoration: none;
-    /* filter: drop-shadow(4px 4px 4px gray); */
+    filter: drop-shadow(4px 4px 4px gray);
     background: rebeccapurple;
     color: white;
     font-size: 14px;
-    margin-top: 0.5rem;
-    margin-left: 0.25rem;
+    margin-top: 0.25rem;
+}
+
+.item_box_cta:hover {
+    filter: drop-shadow(4px 4px 4px rebeccapurple);
 }
 
 .deleteImg {
-    vertical-align: sub;
-    padding-left: 1rem;
+    border-style: solid;
+    border-color: rebeccapurple;
+    border-radius: 5px;   
+    padding-top: 0.3rem;
+    padding-right: 0.2rem;
+    padding-left: 0.2rem;
 }
 
-/* .itemText {
-    color: rebeccapurple;
-} */
+

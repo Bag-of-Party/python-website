@@ -6,6 +6,7 @@ import re
 import random
 import string
 import uuid
+import json
 
 app = Flask(__name__)
 
@@ -46,7 +47,6 @@ def party(slug, party_name):
     uniqid = uuid.uuid4()
     uniqid2 = uuid.uuid4()
     url_request = request.args
-
     url = slug + "/" + party_name
     print(url)
     db_conn = psycopg2.connect("dbname=postgres user=postgres password=mysecretpassword port=2345 host=127.0.0.1")
@@ -59,6 +59,7 @@ def party(slug, party_name):
 
     if "delete" in request.args:
         item_id = url_request["delete"]
+
         db_cur.execute("DELETE from items where id = %s", (item_id,))
         db_conn.commit()
         return redirect(f'/{url}', code=303)
@@ -80,10 +81,6 @@ def party(slug, party_name):
 
     db_cur.execute("SELECT * FROM items where party_id = %s", (pageId,))
     page_items = db_cur.fetchall()
-
-    print('page_items')
-    print(page_items)
-
 
     items_without_container_id = []
 

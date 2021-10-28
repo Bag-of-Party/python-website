@@ -1,6 +1,9 @@
 <div class="item_box">
   <div>
-    <div class="item_box_name">Item name: <span class="itemText">{{ item.name }}</span><a href="?delete={{ item.id }}" class="deleteImg"><img alt="bin" src="/static/images/icons/bin.png" /></a></div>
+    <div class="item_box_name">
+      <div><span>Item name: </span><span class="itemText">{{ item.name }}</span></div>
+      <div><a href="?delete={{ item.id }}" class="deleteImg"><img alt="bin" src="/static/images/icons/bin.png" /></a></div>
+    </div>
     <div class="item_box_info">Item Info: <span class="itemText">{{ item.info }}</span></div>
   </div>
   <div class="item_box_form">
@@ -12,7 +15,7 @@
                       <label>Item Name</label>
                   </div>
                   <div>
-                      <input class="item_box_itemTextInput" placeholder="Enter Item Name" maxlength="25" type="text" name="add_item"/>
+                      <input class="item_box_itemTextInput_name" placeholder="Enter Item Name" maxlength="25" type="text" name="add_item"/>
                   </div>
                   <span class="inputContainer">
                       <input class="item_box_cta" type="submit" maxlength="20" value="Add Item">
@@ -23,7 +26,7 @@
                       <label>Item Info</label>
                   </div>
                   <div>
-                      <textarea class="item_box_itemTextInput" placeholder="Enter Description" rows="3" cols="20" maxlength="200" name="add_item_info"></textarea>
+                      <textarea class="item_box_itemTextInput_info" placeholder="Enter Description" rows="3" cols="20" maxlength="200" name="add_item_info"></textarea>
                   </div>
               </span>
           </div>
