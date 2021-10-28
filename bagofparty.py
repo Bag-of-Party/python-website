@@ -40,8 +40,6 @@ def signup():
 
     return render_template('signup.html', page_class="signup") 
 
-
-
 @app.route("/<slug>/<party_name>", methods=['GET', 'POST'])
 def party(slug, party_name):
     uniqid = uuid.uuid4()
