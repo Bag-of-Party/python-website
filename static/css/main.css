@@ -166,11 +166,6 @@ input {
     padding: .3rem;
 }
 
-/* #signup_form input.cta {
-    margin-top: 2rem;
-    width: 12rem;
-} */
-
 .inputOuterContainer {
     margin-bottom: 4rem;
     margin-left: 4rem;
@@ -178,7 +173,6 @@ input {
 
 .itemInput span {
     display: inline;
-    /* padding-bottom: 2rem; */
 }
 
 .itemInput {
@@ -250,6 +244,7 @@ input {
 .item_box_name span:first-child {
     color: black;
 }
+
 .item_box_name img {
     height: 1.5rem;
     cursor: pointer;

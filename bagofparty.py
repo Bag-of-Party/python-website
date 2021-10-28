@@ -9,16 +9,6 @@ import string
 import uuid
 import json
 
-class User:
-    def __init__(self, group_id, name, password):
-        self.group_id = group_id
-        self.name = name
-        self.password = password
-
-        def __repr__(self):
-            return 
-
-
 app = Flask(__name__)
 
 app.secret_key = "hello"
