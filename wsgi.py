@@ -1,4 +1,5 @@
-from bagofparty import create_app
+from app.bagofparty import app
 
 
-app  = create_app()
+if __name__ == "__bagofparty__":
+    app.run()
