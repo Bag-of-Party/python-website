@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, redirect, session
 import psycopg2 
 import psycopg2.extras
 from psycopg2 import Error
-# from databse_connection import db
 import re
 import random
 import string
