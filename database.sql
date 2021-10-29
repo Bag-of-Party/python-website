@@ -4,7 +4,7 @@ CREATE TABLE parties (
   url text NOT NULL,
   email text,
   password text
-)
+);
 
 CREATE TABLE items (
   id uuid NOT NULL PRIMARY KEY,
@@ -13,9 +13,10 @@ CREATE TABLE items (
   info text,
   container_id uuid,
   CONSTRAINT fk_party_id
-    FOREIGN KEY(party_id)
-      REFERENCES parties(id)
-)
+    FOREIGN KEY(container_id)
+      REFERENCES items(id)
+      ON DELETE CASCADE
+);
 
 INSERT INTO parties VALUES 
 ( gen_random_uuid(), 'Held land', 'www.helo.com', null, null ),
