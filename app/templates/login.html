@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %} Bag of Party {% endblock %}
+{% block content %}
+    <div class="party_page_header">
+        <div>
+            <img src="/static/images/bag_of_party_logo.png" />
+                <h1>Welcome </h1>
+            <br />
+            <h3>Please view and add Items below</h3>
+            <br />
+        </div>
+        <div class="password_form padding">
+            <div>
+                <!-- <form class="password_check_form" method="POST">
+                    <div>
+                        <label id="password_label">Group Name:</label>
+                        <input type="text" name="login_group_name" placeholder="Group Name" />
+                    </div>
+                    <div>
+                        <label id="password_label">Password:</label>
+                        <input type="text" name="login_password" placeholder="Passowrd" />
+                    </div>
+                    <div class="inputContainer">
+                      <input class="cta" type="submit" maxlength="20" value="Log-In">
+                    </div>
+                </form> -->
+                <form class="signup_form" method="POST">
+                  <div id="login_title">Please Log-In With Your Password Below</div>
+                  <div>
+                      <label>Party Name: </label>
+                      <input type="text" name="login_group_name" id="user_input" oninput="showInput()" />
+                  </div>
+                  <div>
+                      <label>Party Password: </label>
+                      <input type="text" name="login_password" />
+                  </div>
+                  <div>
+                      <input class="cta" type="submit" value="Log in?">
+                  </div>
+              </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
