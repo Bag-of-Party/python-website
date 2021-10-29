@@ -48,6 +48,7 @@ def login():
     session.pop('group_name', None)
     session.pop('group_url', None)
     session.pop('group_password', None)
+
     if request.method == 'POST':
         app.logger.info('Post')
         group_name_input = request.form['login_group_name']
