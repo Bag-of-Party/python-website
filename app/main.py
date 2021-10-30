@@ -140,7 +140,6 @@ def party(slug, party_name):
             length = len(k['contents'])
             k.update({'length': length}) 
 
-
         sorted_list = sorted(items_without_container_id, key=lambda s: s['length'], reverse=True)
         
         db_cur.close()
