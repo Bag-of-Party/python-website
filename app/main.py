@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, session
 import psycopg2 
 import psycopg2.extras
 from psycopg2 import Error
-# from databse_connection import db
+import os
 import re
 import random
 import string
@@ -10,6 +10,9 @@ import uuid
 import json
 
 app = Flask(__name__)
+
+DATABASE_URL = os.environ.get("DATABASE_URL", "dbname=postgres user=postgres password=mysecretpassword port=2345 host=127.0.0.1")
+
 
 app.secret_key = "hello"
 
@@ -30,7 +33,7 @@ def signup():
         user_password = request.form['party_password']
         print(generated_url, party_name, user_email, user_password)
 
-        conn = psycopg2.connect("dbname=postgres user=postgres password=mysecretpassword port=2345 host=127.0.0.1")
+        conn = psycopg2.connect(DATABASE_URL)
         cur = conn.cursor()
         cur.execute("INSERT into parties (id, name, url, email, password) VALUES (%s, %s, %s, %s, %s)", (str(uniqid), str(party_name), str(generated_url), str(user_email), str(user_password)))
         conn.commit()
@@ -55,7 +58,7 @@ def login():
         password_input = request.form['login_password']
         print(password_input, group_name_input)
 
-        db_conn = psycopg2.connect("dbname=postgres user=postgres password=mysecretpassword port=2345 host=127.0.0.1")
+        db_conn = psycopg2.connect(DATABASE_URL)
         cur = db_conn.cursor()
         cur.execute("SELECT * from parties where name = %s", (group_name_input,)) 
         data = cur.fetchone()
@@ -84,7 +87,7 @@ def party(slug, party_name):
         url = slug + "/" + party_name
         print(url)
 
-        db_conn = psycopg2.connect("dbname=postgres user=postgres password=mysecretpassword port=2345 host=127.0.0.1")
+        db_conn = psycopg2.connect(DATABASE_URL)
         db_cur = db_conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
         db_cur.execute("SELECT * FROM parties where url = %s", (url,))
         print("Selecting all rows from parties row where the url given matches the url in selected the row")
