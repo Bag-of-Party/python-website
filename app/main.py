@@ -151,6 +151,16 @@ def party(slug, party_name):
         return render_template('partypage.html', data=data, page_items=page_items, root_items=sorted_list )
     return render_template('login.html')
 
+
+@app.route("/contact")
+def contact():
+    return render_template('contact.html', page_class="contact")
+    
+@app.route("/terms")
+def terms():
+    return render_template('terms.html', page_class="terms")
+
+
 if __name__ == "__main__":
     app.config['TEMPLATES_AUTO_RELOAD'] = True
     app.run(debug=True)

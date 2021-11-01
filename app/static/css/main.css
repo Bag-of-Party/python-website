@@ -16,6 +16,39 @@ body {
     flex-direction: column;
 }
 
+.homePageTextTitle {
+    color: rebeccapurple;
+    width: 100%;
+}
+
+.homePageTextTop {
+    color: rebeccapurple;
+    font-size: xx-large;
+    margin-bottom: 0.5rem;
+    /* width: 80%; */
+}
+.homePageTextBottom {
+    color: rebeccapurple;
+    width: 100%;
+    margin-bottom: 1rem;
+    font-size: x-large;
+}
+.homePageTextBottomLink {
+    color: black;
+    font-size: x-large;
+}
+.homePageTextBottomLink a:visited {
+    color: black;
+    font-size: x-large;
+}
+
+.homePageTextBottomExtra {
+    color: rebeccapurple;
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+    font-size: x-large;
+}
+
 input {
     font-family: sans-serif;
 }
@@ -34,22 +67,31 @@ input {
     font-size: x-large;
 }
 
-#footer {
+.termsList li {
+    color: rebeccapurple;
+    font-size: large;
+    margin-left: 10px;
+    list-style-type: circle;
+    overflow-x: visible;
+}
+
+.footer {
+    margin-top: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-#footer p {
+.footer p {
     justify-content: center;
 }
 
-#footer img {
+.footer img {
     width: 3rem;
 }
 
-#contents {
+.contents {
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -57,7 +99,7 @@ input {
     justify-content: center;
 }
 
-#contents p {
+.contents p {
     max-width: 50rem;
 }
 
@@ -74,7 +116,7 @@ input {
 
 .button a {
     color: white;
-    padding: 2rem;
+    /* padding: 2rem; */
     margin: 2rem;
     text-decoration: none;
     font-size: x-large;
