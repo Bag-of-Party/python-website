@@ -269,12 +269,12 @@ input {
     /* overflow-x: unset; */
     height: auto;
     padding-right: 1rem;
-    padding-left: 1rem;
+    /* padding-left: 1rem; */
     border-style: solid;
     border-width: 7px;
     border-color: rebeccapurple;
     border-radius: 5px;
-    padding-left: 1rem;
+    /* padding-left: 1rem; */
     padding-right: 1rem;
     /* padding-bottom: 1rem; */
     margin-bottom: 1rem;
@@ -292,6 +292,7 @@ input {
     column-gap: 2rem;
     justify-content:space-between; 
     font-size: 1.5rem;
+    padding-left: 1rem;
     /* border-bottom: solid;
     border-color: rebeccapurple; */
     /* padding-bottom: 0.4rem; */
@@ -590,4 +591,40 @@ input {
 
 .password_button:hover {
     filter: drop-shadow(4px 4px 4px rebeccapurple);
+}
+
+
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    position: relative;
+}
+
+li {
+    list-style-type: none;
+    border-left: 2px solid #000;
+    margin-left: 2em;
+}
+
+li section {
+    padding-left: 1em;
+    position: relative;
+}
+
+li section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -2px;
+    bottom: 75%;
+    width: 0.75em;
+    border: 2px solid #000;
+    border-top: 0 none transparent;
+    border-right: 0 none transparent;
+}
+
+ul > li:last-child {
+    border-left: 2px solid transparent;
 }

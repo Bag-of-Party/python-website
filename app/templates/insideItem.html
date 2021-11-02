@@ -35,5 +35,14 @@
     </form>
   </div>
 </div>
+<ul>
+  {% for item in item.contents %}
+  <li>
+    <section>
+      {% include 'insideItem.html' %}
+    </section>
+  </li>
+  {% endfor %}
+</ul>
   <!-- <div class="item_box_info">Item Info: <span class="itemText">{{ item.info }}</span></div> -->
 <!-- </div> -->

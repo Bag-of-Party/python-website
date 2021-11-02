@@ -1,69 +1,48 @@
 <div class="item_box">
-  <div>
-    <div class="item_box_name">
-        <div>Item name: <span class="itemText">{{ item.name }}</span> - </div>
-        <div class="item_box_info">Item Info: <span class="itemText">{{ item.info }}</span> </div>
-        <div>
-            - <a href="?delete={{ item.id }}" class="deleteImg"><img alt="bin" src="/static/images/icons/bin.png" /></a>
-            <a href="?delete={{ item.id }}" class="deleteImg">Edit</a>
-            <!-- <a href="?delete={{ item.id }}" class="deleteImg"><img alt="bin" src="/static/images/icons/bin.png" /></a> -->
-        </div>
-        <div class="item_form_input">
-            <form class="item_box_input" method="POST">
-                <div class="item_box_grid">
-                    <span class="item_box_inputContainer">
-                        <div>
-                            <input type="hidden" name="container_id" value="{{ item.id }}" />
-                            <!-- <label>Item Name</label> -->
-                        </div>
-                        <div>
-                            <input class="item_box_itemTextInput_name" placeholder="Item Name" maxlength="25" type="text" name="add_item"/>
-                        </div>
-                        <span class="inputContainer">
-                            <input class="item_box_cta" type="submit" maxlength="20" value="Add Item">
-                        </span>
-                    </span>
-                    <span class="item_box_inputContainer">
-                        <div>
-                            <!-- <label>Item Info</label> -->
-                        </div>
-                        <div>
-                            <textarea class="item_box_itemTextInput_info" placeholder="Info / Description" rows="3" cols="20" maxlength="200" name="add_item_info"></textarea>
-                        </div>
-                    </span>
-                </div>
-            </form>
-        </div>
-    </div>
-    <!-- <div class="item_box_info">Item Info: <span class="itemText">{{ item.info }}</span></div> -->
-  </div>
-  
-    <!-- <form class="item_box_input" method="POST">
-        <div class="item_box_grid">
-            <span class="item_box_inputContainer">
+    <ul class="tree">
+        <!-- <li> -->
+
+            <div class="item_box_name">
+                <div>Item name: <span class="itemText">{{ item.name }}</span> - </div>
+                <div class="item_box_info">Item Info: <span class="itemText">{{ item.info }}</span> </div>
                 <div>
-                    <input type="hidden" name="container_id" value="{{ item.id }}" />
-                    <label>Item Name</label>
+                    - <a href="?delete={{ item.id }}" class="deleteImg"><img alt="bin" src="/static/images/icons/bin.png" /></a>
+                    <a href="?delete={{ item.id }}" class="deleteImg">Edit</a>
                 </div>
-                <div>
-                    <input class="item_box_itemTextInput_name" placeholder="Enter Item Name" maxlength="25" type="text" name="add_item"/>
+                <div class="item_form_input">
+                    <form class="item_box_input" method="POST">
+                        <div class="item_box_grid">
+                            <span class="item_box_inputContainer">
+                                <div>
+                                    <input type="hidden" name="container_id" value="{{ item.id }}" />
+                                </div>
+                                <div>
+                                    <input class="item_box_itemTextInput_name" placeholder="Item Name" maxlength="25" type="text" name="add_item"/>
+                                </div>
+                                <span class="inputContainer">
+                                    <input class="item_box_cta" type="submit" maxlength="20" value="Add Item">
+                                </span>
+                            </span>
+                            <span class="item_box_inputContainer">
+                                <div>
+                                    <textarea class="item_box_itemTextInput_info" placeholder="Info / Description" rows="3" cols="20" maxlength="200" name="add_item_info"></textarea>
+                                </div>
+                            </span>
+                        </div>
+                    </form>
                 </div>
-                <span class="inputContainer">
-                    <input class="item_box_cta" type="submit" maxlength="20" value="Add Item">
-                </span>
-            </span>
-            <span class="item_box_inputContainer">
-                <div>
-                    <label>Item Info</label>
-                </div>
-                <div>
-                    <textarea class="item_box_itemTextInput_info" placeholder="Enter Description" rows="3" cols="20" maxlength="200" name="add_item_info"></textarea>
-                </div>
-            </span>
-        </div>
-    </form> -->
-    {% for item in item.contents %}
-    {% include 'insideItem.html' %}
-    {% endfor %}
+            </div>
+
+            <!-- <ul> -->
+                {% for item in item.contents %}
+                <li>
+                    <section>
+                        {% include 'insideItem.html' %}
+                    </section>
+                {% endfor %}
+                </li>
+            </ul>
+        </li>
+    </ul>
 
 </div>
