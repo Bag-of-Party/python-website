@@ -1,13 +1,14 @@
 <div class="item_box">
     <ul class="tree">
-        <!-- <li> -->
-
             <div class="item_box_name">
                 <div>
-                    <span class="itemText">{{ item.name }}</span>
-                    <div>
-                        <a href="?delete={{ item.id }}" class="deleteImg"><img alt="bin" src="/static/images/icons/bin.png" /></a>
-                        <!-- <a href="?delete={{ item.id }}" class="deleteImg">Edit</a> -->
+                    <div class="itemText">
+                        <div>
+                            {{ item.name }}
+                        </div>
+                        <div>
+                            <a href="?delete={{ item.id }}" class="deleteImg"><img alt="bin" src="/static/images/icons/bin.png" /></a>
+                        </div>
                     </div>
                 </div>
                 <div class="item_box_info"><span class="itemText">{{ item.info }}</span> </div>
@@ -34,8 +35,6 @@
                     </form>
                 </div>
             </div>
-
-            <!-- <ul> -->
                 {% for item in item.contents %}
                 <li>
                     <section>
