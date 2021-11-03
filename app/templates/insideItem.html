@@ -1,13 +1,15 @@
 <!-- <div class="item_box_inside_item"> -->
 <!-- <img alt="tree" src="../static/images/icons/tree.png" /> -->
 <div class="item_box_name_inside">
-  <div>Item name: <span class="itemText">{{ item.name }}</span> - </div>
-  <div class="item_box_info">Item Info: <span class="itemText">{{ item.info }}</span> </div>
   <div>
-      - <a href="?delete={{ item.id }}" class="delete_img_indide"><img alt="bin" src="/static/images/icons/bin.png" /></a>
-      <a href="?delete={{ item.id }}" class="delete_img_indide">Edit</a>
-      <!-- <a href="?delete={{ item.id }}" class="delete_img_indide"><img alt="bin" src="/static/images/icons/bin.png" /></a> -->
+      <span class="itemText">{{ item.name }}</span>
+      <div>
+        <a href="?delete={{ item.id }}" class="delete_img_indide"><img alt="bin" src="/static/images/icons/bin.png" /></a>
+        <!-- <a href="?delete={{ item.id }}" class="delete_img_indide">Edit</a> -->
+        <!-- <a href="?delete={{ item.id }}" class="delete_img_indide"><img alt="bin" src="/static/images/icons/bin.png" /></a> -->
+      </div>
   </div>
+  <div class="item_box_info"><span class="itemText">{{ item.info }}</span></div>
   <div class="item_form_input">
     <form class="item_box_input" method="POST">
         <div class="item_box_grid">

@@ -3,12 +3,14 @@
         <!-- <li> -->
 
             <div class="item_box_name">
-                <div>Item name: <span class="itemText">{{ item.name }}</span> - </div>
-                <div class="item_box_info">Item Info: <span class="itemText">{{ item.info }}</span> </div>
                 <div>
-                    - <a href="?delete={{ item.id }}" class="deleteImg"><img alt="bin" src="/static/images/icons/bin.png" /></a>
-                    <a href="?delete={{ item.id }}" class="deleteImg">Edit</a>
+                    <span class="itemText">{{ item.name }}</span>
+                    <div>
+                        <a href="?delete={{ item.id }}" class="deleteImg"><img alt="bin" src="/static/images/icons/bin.png" /></a>
+                        <!-- <a href="?delete={{ item.id }}" class="deleteImg">Edit</a> -->
+                    </div>
                 </div>
+                <div class="item_box_info"><span class="itemText">{{ item.info }}</span> </div>
                 <div class="item_form_input">
                     <form class="item_box_input" method="POST">
                         <div class="item_box_grid">

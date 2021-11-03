@@ -275,7 +275,7 @@ input {
     border-color: rebeccapurple;
     border-radius: 5px;
     /* padding-left: 1rem; */
-    padding-right: 1rem;
+    padding: 0.5rem;
     /* padding-bottom: 1rem; */
     margin-bottom: 1rem;
 }
@@ -288,7 +288,7 @@ input {
     vertical-align: baseline;
     /* height: 5rem; */
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: auto auto auto;
     column-gap: 2rem;
     justify-content:space-between; 
     font-size: 1.5rem;
@@ -329,7 +329,7 @@ input {
 
 
 .item_box_input {
-    margin-top: 0.2rem;
+    /* margin-top: 0.2rem; */
     border-style: solid;
     border-color: rebeccapurple;
     border-radius: 5px;
@@ -339,7 +339,7 @@ input {
 
 .item_box_grid {
     display: grid;
-    grid-template-columns: 2fr 3fr;
+    grid-template-columns: 2fr 2fr;
     font-size: 1rem;
 }
 
@@ -360,8 +360,8 @@ input {
     border: 1px solid black;
     border-radius: 7px;
     padding: .1rem;
-    padding-right: 2.5rem;
-    padding-left: 2.5rem;
+    padding-right: 0.2rem;
+    padding-left: 0.2rem;
     text-decoration: none;
     filter: drop-shadow(2px 2px 2px gray);
     background: rebeccapurple;
@@ -379,14 +379,16 @@ input {
 }
 
 .item_box_name_inside {
-    padding-left: 5rem;
+    /* padding-left: 5rem; */
     /* vertical-align: baseline; */
     /* height: auto; */
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: 1fr 2fr minmax(2fr, 10%);
     /* column-gap: 2rem; */
     /* justify-content:space-between;  */
-    font-size: 1.5rem;
+    font-size: 1rem;
+    margin-top: 0.4rem;
+    margin-bottom: 0.2rem;
     /* border-bottom: solid;
     border-color: rebeccapurple; */
     /* padding-bottom: 0.4rem; */
@@ -398,9 +400,9 @@ input {
 }
 
 .deleteImg {
-    border-style: solid;
+    /* border-style: solid;
     border-color: rebeccapurple;
-    border-radius: 5px;   
+    border-radius: 5px;    */
     padding-top: 0.3rem;
     padding-right: 0.2rem;
     padding-left: 0.2rem;
@@ -600,28 +602,32 @@ ul {
     margin: 0;
     list-style-type: none;
     position: relative;
+    overflow-x: unset;
 }
 
 li {
     list-style-type: none;
     border-left: 2px solid #000;
-    margin-left: 2em;
+    /* margin-left: 1em; */
+    overflow-x: unset;
 }
 
 li section {
     padding-left: 1em;
     position: relative;
+    top: -0.5rem;
+    /* overflow-x: unset; */
 }
 
 li section::before {
     content: '';
     position: absolute;
-    top: 0;
+    top: 0.6rem;
     left: -2px;
-    bottom: 75%;
+    /* bottom: 50%; */
     width: 0.75em;
-    border: 2px solid #000;
-    border-top: 0 none transparent;
+    border: 4px solid #000;
+    /* border-top: 0 none transparent; */
     border-right: 0 none transparent;
 }
 
