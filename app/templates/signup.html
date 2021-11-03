@@ -25,9 +25,49 @@
         <div>
             <img src="/static/images/bag_of_party_logo.png" />
                 <h1>Welcome</h1>
+                <h1>Sign Up Below</h1>
             <br />
         </div>
-        <div class="signup_form_containter">
+        <div class="password_form">
+            <div>
+                <form class="signup_form" method="POST">
+                  <div id="login_title">Please Sign-up Below</div>
+                  <!-- <div>
+                      <label>Party Name: </label>
+                      <input type="text" name="login_group_name" id="user_input" oninput="showInput()" />
+                  </div>
+                  <div>
+                      <label>Party Password: </label>
+                      <input type="text" name="login_password" />
+                  </div>
+                  <div>
+                      <input class="cta" type="submit" value="Log in?">
+                  </div> -->
+                  
+                <div>
+                    <label>Party Name: </label>
+                    <input type="text" name="party_name" id="user_input" oninput="showInput()" />
+                </div>
+                <div>
+                    <label>Generated URL: </label>
+                    <span name="url"  id="generated_url"></span>
+                    <input type="hidden" id="generated_url_field" name="generated_url" />
+                </div>
+                <div>
+                    <label>User Email: </label>
+                    <input type="text" name="user_email" />
+                </div>
+                <div>
+                    <label>Party Password: </label>
+                    <input type="text" name="party_password" />
+                </div>
+                <div>
+                    <input class="cta" type="submit" value="Sign up?">
+                </div>
+              </form>
+            </div>
+        </div>
+        <!-- <div class="signup_form_containter">
             <div>
                 <span class="signup_banner">Enter Details below</span>
             </div>
@@ -53,6 +93,6 @@
                     <input class="cta" type="submit" value="Sign up?">
                 </div>
             </form>
-        </div>
+        </div> -->
     </div>
 {% endblock %}

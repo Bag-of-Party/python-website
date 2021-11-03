@@ -53,8 +53,8 @@ input {
     font-family: sans-serif;
 }
 
-.party_page_header div{
-    display: inline-block;
+.party_page_header {
+    /* display: inline-block; */
     text-align: center;
 }
 
@@ -63,6 +63,9 @@ input {
     font-weight: bold;
 }
 .party_page_header h3{
+    /* padding-right: auto;
+    padding-left: auto; */
+    width: 100%;
     color: rebeccapurple;
     font-size: x-large;
 }
@@ -112,7 +115,7 @@ input {
 }
 .button div {
     display: inline;
-    margin: 1rem;
+    /* margin: 0.5rem; */
 }
 
 .button a {
@@ -169,7 +172,10 @@ input {
 }
 
 .signup_form_containter {
-    margin-left: 4rem;
+    /* margin-left: 4rem; */
+    /* display: flex;
+    flex-direction: column; */
+    /* width: 100%; */
     margin-bottom: 1rem;
     border-style: solid;
     border-color: rebeccapurple;
@@ -186,6 +192,7 @@ input {
 }
 
 .signup_form div {
+    /* width: 100%; */
     display: flex;
     flex-direction: row;
     margin: 0.3rem
@@ -200,13 +207,13 @@ input {
 }
 
 .signup_form input {
-    width: 20rem;
+    width: 100%;
     border: 2px solid rebeccapurple;
     padding: 0.5rem;
     border-radius: 7px;
 }
 .signup_form span {
-    width: 20rem;
+    width: 100%;
     border: 2px solid rebeccapurple;
     padding: 0.9rem;
     /* margin-top: 0.4rem; */
@@ -215,15 +222,15 @@ input {
 
 #generated_url {
     display: block;
-    width: 20rem;
+    width: 100%;
     height: 1rem;
     padding: 0.5rem;
     text-align: left;
 }
 
 .inputOuterContainer {
-    margin-bottom: 4rem;
-    margin-left: 4rem;
+    margin-bottom: 2rem;
+    /* margin-left: 4rem; */
 }
 
 .itemInput span {
@@ -233,16 +240,25 @@ input {
 .itemInput {
     border-style: solid;
     border-color: rebeccapurple;
-    width: 30rem;
+    /* width: 100%; */
     border-radius: 5px;
     padding: 1rem;
 }
 
 .itemTextInput {
     border-radius: 5px;
-    width: 29rem;
+    width: 98%;
     height: 2rem;
     font-size: 1rem;
+}
+
+.itemText {
+    /* bottom: 50%; */
+    /* vertical-align: middle; */
+    /* display: inline; */
+    /* padding-bottom: 1rem; */
+    display: flex;
+    /* align-items: baseline; */
 }
 
 .inputContainer div {
@@ -254,7 +270,7 @@ input {
 }
 
 .inputContainer textarea {
-    width: 29rem;
+    width: 98%;
     height: 3rem;
 }
 
@@ -288,14 +304,14 @@ input {
     vertical-align: baseline;
     /* height: 5rem; */
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto minmax(2fr, 10%);
     column-gap: 2rem;
     justify-content:space-between; 
     font-size: 1.5rem;
     padding-left: 1rem;
     /* border-bottom: solid;
     border-color: rebeccapurple; */
-    /* padding-bottom: 0.4rem; */
+    padding-bottom: 0.2rem;
 }
 
 .item_form_input {
@@ -329,6 +345,7 @@ input {
 
 
 .item_box_input {
+    height:3rem;
     /* margin-top: 0.2rem; */
     border-style: solid;
     border-color: rebeccapurple;
@@ -353,6 +370,7 @@ input {
     width: 96%;
     margin-top: 0.2rem;
     padding-top: 0.2rem;
+    height: 2rem;
     /* padding-bottom: 0.2rem; */
 }
 
@@ -395,8 +413,9 @@ input {
 }
 
 .delete_img_indide img {
-    vertical-align: sub;
-    height: 1.5rem;
+    vertical-align: top;
+    height: 1.2rem;
+    top: 10%;
 }
 
 .deleteImg {
@@ -407,11 +426,12 @@ input {
     padding-right: 0.2rem;
     padding-left: 0.2rem;
 }
-.delete_img_indide {
+/* .delete_img_indide {
+    height: 1.2rem;
     padding-top: 0.3rem;
     padding-right: 0.2rem;
     padding-left: 0.2rem;
-}
+} */
 
 .padding {
     margin-left: 2rem;
@@ -430,7 +450,8 @@ input {
 }
 
 
-.password_form {
+/* .password_form {
+    width: 100%;
     margin-top: 4rem;
     display: flex;
     flex-direction: column;
@@ -438,9 +459,10 @@ input {
     border-color: rebeccapurple;
     border-radius: 10px;
     padding: 2rem;
-}
+} */
 
 .password_form div {
+    width: 100%;
     display: flex;
     flex-direction: row;
     margin: 0.2rem;
@@ -448,19 +470,21 @@ input {
 }
 
 #login_title {
+    font-weight: bold;
+    color: rebeccapurple;
     font-size: x-large;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .password_form label {
-    width: 10rem;
+    width: 100%;
     display: block;
     text-align: left;
     padding: .3rem;
 }
 
 .password_form input {
-    width: 20rem;
+    width: 100%;
     border: 2px solid rebeccapurple;
     border-radius: 7px;
     padding: 0.5rem;
@@ -519,26 +543,26 @@ input {
 
 
 .password_form {
-    margin-top: 4rem;
+    /* margin-top: 4rem; */
     display: flex;
     flex-direction: column;
     border-style: solid;
     border-color: rebeccapurple;
     border-radius: 10px;
-    padding: 2rem;
+    padding: 0.5rem 1rem 0.5rem 0.5rem;
 }
 
-.password_form div {
+/* .password_form div {
     display: flex;
     flex-direction: row;
     margin: 0.2rem;
     font-size: large;
-}
+} */
 
-#login_title {
+/* #login_title {
     font-size: x-large;
     margin-bottom: 2rem;
-}
+} */
 
 .password_form label {
     width: 10rem;
@@ -547,12 +571,12 @@ input {
     padding: .3rem;
 }
 
-.password_form input {
+/* .password_form input {
     width: 20rem;
     border: 2px solid rebeccapurple;
     border-radius: 7px;
     padding: 0.5rem;
-}
+} */
 .password_form div {
     padding-bottom: 1rem;
 }
@@ -622,8 +646,9 @@ li section {
 li section::before {
     content: '';
     position: absolute;
-    top: 0.6rem;
+    top: 0.5rem;
     left: -2px;
+    /* right: 90%; */
     /* bottom: 50%; */
     width: 0.75em;
     border: 4px solid #000;
