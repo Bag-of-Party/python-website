@@ -75,7 +75,7 @@ input {
 }
 
 .footer {
-    margin-top: auto;
+    margin-top: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -173,11 +173,12 @@ input {
 }
 
 .signup_form {
-    margin-top: 2rem;
-    display: flex;
+    margin-top: 1rem;
+    /* display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
+    /* flex: 0 1 1000px; */
 }
 
 .signup_form div {
@@ -239,6 +240,10 @@ input {
     color: rebeccapurple;
     font-weight: bold;
     display: flex;
+}
+
+.itemText {
+    text-transform: capitalize;
 }
 
 .inputContainer div {
@@ -392,7 +397,7 @@ input {
 }
 
 .password_form div {
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     flex-direction: row;
     margin: 0.2rem;
@@ -400,14 +405,18 @@ input {
 }
 
 #login_title {
+    
     font-weight: bold;
     color: rebeccapurple;
     font-size: x-large;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
+    /* flex: 0 1 500px; */
+    /* width: 50rem; */
+    /* flex: 1 1 500rem; */
 }
 
 .password_form label {
-    width: 100%;
+    width: 65%;
     display: block;
     text-align: left;
     padding: .3rem;
@@ -423,13 +432,13 @@ input {
     padding-bottom: 1rem;
 }
 
-.password_check_form {
+/* .password_check_form {
     padding-bottom: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
+} */
 
 #password_button {
     color: white;
@@ -467,23 +476,23 @@ input {
 
 .password_form {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     border-style: solid;
     border-color: rebeccapurple;
     border-radius: 10px;
     padding: 0.5rem 1rem 0.5rem 0.5rem;
 }
 
-.password_form label {
+/* .password_form label {
     width: 10rem;
     display: block;
     text-align: left;
     padding: .3rem;
-}
+} */
 
-.password_form div {
+/* .password_form div {
     padding-bottom: 1rem;
-}
+} */
 
 .password_check_form {
     padding-bottom: 1rem;
