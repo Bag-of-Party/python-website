@@ -49,7 +49,6 @@ def signup():
         cur.execute("INSERT into parties (id, name, url, email, password) VALUES (%s, %s, %s, %s, %s)", (str(uniqid), str(party_name), str(generated_url), str(user_email), str(user_password)))
         conn.commit()
         cur.close()
-        conn.close()
 
         # return redirect(f'/{generated_url}', code=303)
         return redirect(f'/login', code=303)
@@ -69,7 +68,7 @@ def login():
         password_input = request.form['login_password']
         print(password_input, group_name_input)
 
-        db_conn = psycopg2.connect(DATABASE_URL)
+        db_conn = get_db()
         cur = db_conn.cursor()
         cur.execute("SELECT * from parties where name = %s", (group_name_input,)) 
         data = cur.fetchone()
@@ -98,7 +97,7 @@ def party(slug, party_name):
         url = slug + "/" + party_name
         print(url)
 
-        db_conn = psycopg2.connect(DATABASE_URL)
+        db_conn = get_db()
         db_cur = db_conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
         db_cur.execute("SELECT * FROM parties where url = %s", (url,))
         print("Selecting all rows from parties row where the url given matches the url in selected the row")
@@ -125,7 +124,6 @@ def party(slug, party_name):
             db_cur.execute("INSERT into items (id, party_id, name, info, container_id) VALUES (%s, %s, %s, %s, %s)",(str(uniqid), pageId, str(newItem), str(itemInfo), container_id))
             db_conn.commit()
             db_cur.close()
-            db_conn.close()
             return redirect(f'/{url}', code=303)
 
         db_cur.execute("SELECT * FROM items where party_id = %s", (pageId,))
@@ -157,7 +155,6 @@ def party(slug, party_name):
         sorted_list = sorted(items_without_container_id, key=lambda s: s['length'], reverse=True)
         
         db_cur.close()
-        db_conn.close()
 
         return render_template('partypage.html', data=data, page_items=page_items, root_items=sorted_list )
     return render_template('login.html')
