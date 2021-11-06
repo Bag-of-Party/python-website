@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, g
 import psycopg2 
 import psycopg2.extras
 from psycopg2 import Error
@@ -13,8 +13,20 @@ app = Flask(__name__)
 
 DATABASE_URL = os.environ.get("DATABASE_URL", "dbname=postgres user=postgres password=mysecretpassword port=2345 host=127.0.0.1")
 
+def get_db():
+    if 'db' not in g:
+        g.db = psycopg2.connect(DATABASE_URL)
+
+    return g.db
 
 app.secret_key = "hello"
+
+@app.teardown_appcontext
+def teardown_db(exception):
+    db = g.pop('db', None)
+
+    if db is not None:
+        db.close()
 
 @app.route("/")
 def home():
@@ -32,8 +44,7 @@ def signup():
         user_email = request.form['user_email']
         user_password = request.form['party_password']
         print(generated_url, party_name, user_email, user_password)
-
-        conn = psycopg2.connect(DATABASE_URL)
+        conn = get_db()
         cur = conn.cursor()
         cur.execute("INSERT into parties (id, name, url, email, password) VALUES (%s, %s, %s, %s, %s)", (str(uniqid), str(party_name), str(generated_url), str(user_email), str(user_password)))
         conn.commit()
