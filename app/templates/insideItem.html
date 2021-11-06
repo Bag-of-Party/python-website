@@ -1,0 +1,46 @@
+<div class="item_box_name_inside">
+  <div>
+      <div class="itemText">
+        <div>
+          {{ item.name }}
+        </div>
+        <div>
+          <a href="?delete={{ item.id }}" class="delete_img_indide"><img alt="bin" src="/static/images/icons/bin.png" /></a>
+        </div>
+      </div>
+  </div>
+  <div class="item_box_info"><span class="itemText">{{ item.info }}</span></div>
+  <div class="item_form_input">
+    <form class="item_box_input" method="POST">
+        <div class="item_box_grid">
+            <span class="item_box_inputContainer">
+                <div>
+                    <input type="hidden" name="container_id" value="{{ item.id }}" />
+                </div>
+                <div>
+                    <input class="item_box_itemTextInput_name" placeholder="Item Name" maxlength="25" type="text" name="add_item"/>
+                </div>
+                <span class="inputContainer">
+                    <input class="item_box_cta" type="submit" maxlength="20" value="Add Item">
+                </span>
+            </span>
+            <span class="item_box_inputContainer">
+                <div>
+                </div>
+                <div>
+                    <textarea class="item_box_itemTextInput_info" placeholder="Info / Description" rows="3" cols="20" maxlength="200" name="add_item_info"></textarea>
+                </div>
+            </span>
+        </div>
+    </form>
+  </div>
+</div>
+<ul>
+  {% for item in item.contents %}
+  <li>
+    <section>
+      {% include 'insideItem.html' %}
+    </section>
+  </li>
+  {% endfor %}
+</ul>
