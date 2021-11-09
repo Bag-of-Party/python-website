@@ -93,10 +93,19 @@ input {
 }
 
 .items_grid {
-    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+    align-content: flex-end;
+    /* max-width: 50rem; */
+    /* min-width: 40rem; */
+    /* width: -moz-max-content; */
+    /* width: max-content; */
+    /* height: auto;
     display: grid;
     grid-template-columns: auto auto;
-    column-gap: 1rem;
+    column-gap: 1rem; */
 }
 
 .contents {
@@ -268,6 +277,7 @@ input {
 }
 
 .item_box {
+    max-width: 50rem;
     height: auto;
     padding-right: 1rem;
     border-style: solid;
@@ -276,6 +286,7 @@ input {
     border-radius: 5px;
     padding: 0.5rem;
     margin-bottom: 1rem;
+    margin-right: 1rem;
 }
 
 .item_box_form {
