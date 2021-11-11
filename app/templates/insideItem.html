@@ -1,6 +1,6 @@
 <div class="item_box_name_inside">
   <div>
-      <div class="itemText">
+      <div class="item_text">
         <div>
           {{ item.name }}
         </div>
@@ -9,26 +9,26 @@
         </div>
       </div>
   </div>
-  <div class="item_box_info"><span class="itemText">{{ item.info }}</span></div>
+  <div class="item_box_info"><span class="item_text">{{ item.info }}</span></div>
   <div class="item_form_input">
     <form class="item_box_input" method="POST">
         <div class="item_box_grid">
-            <span class="item_box_inputContainer">
+            <span class="item_box_input_container">
                 <div>
                     <input type="hidden" name="container_id" value="{{ item.id }}" />
                 </div>
                 <div>
-                    <input class="item_box_itemTextInput_name" placeholder="Item Name" maxlength="25" type="text" name="add_item"/>
+                    <input class="item_box_item_text_input_name" placeholder="Item Name" maxlength="25" type="text" name="add_item"/>
                 </div>
-                <span class="inputContainer">
+                <span class="input_container">
                     <input class="item_box_cta" type="submit" maxlength="20" value="Add Item">
                 </span>
             </span>
-            <span class="item_box_inputContainer">
+            <span class="item_box_input_container">
                 <div>
                 </div>
                 <div>
-                    <textarea class="item_box_itemTextInput_info" placeholder="Info / Description" rows="3" cols="20" maxlength="200" name="add_item_info"></textarea>
+                    <textarea class="item_box_item_text_input_info" placeholder="Info / Description" rows="3" cols="20" maxlength="200" name="add_item_info"></textarea>
                 </div>
             </span>
         </div>

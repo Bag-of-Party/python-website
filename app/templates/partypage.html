@@ -9,36 +9,38 @@
             <h1>Please view and add Items</h3>
             <br />
         </div>
-        <div class="inputOuterContainer">
+        <div class="input_outer_container">
             <form class="add_item" method="POST">
-                <div class="itemInput">
-                    <span class="inputContainer">
+                <div class="item_input">
+                    <span class="input_container">
                         <div>
                             <label>Name or Type of Object</label>
                         </div>
                         <div>
-                            <input class="itemTextInput" placeholder="Enter Item Name" maxlength="20" type="text" name="add_item"/>
+                            <input class="item_text_input" placeholder="Enter Item Name" maxlength="20" type="text" name="add_item"/>
                         </div>
                     </span>
-                    <span class="inputContainer">
+                    <span class="input_container">
                         <div>
                             <label>Description or Info on Object</label>
                         </div>
                         <div>
-                            <textarea class="itemTextInput" placeholder="Enter Description" rows="10" cols="20" maxlength="200" name="add_item_info"></textarea>
+                            <textarea class="item_text_input" placeholder="Enter Description" rows="10" cols="20" maxlength="200" name="add_item_info"></textarea>
                         </div>
                     </span>
-                    <span class="inputContainer">
+                    <span class="input_container">
                         <input class="cta" type="submit" maxlength="20" value="Add Item">
                     </span>
                 </div>
             </form>
         </div>
     </div>
-    <div class="items_grid">
-        {% for item in root_items %}
-            {% include 'item.html' %}
-        {% endfor %}
+    <div class="items_container">
+        <div class="items_grid">
+            {% for item in root_items %}
+                {% include 'item.html' %}
+            {% endfor %}
+        </div>
     </div>
 
 {% endblock %}
