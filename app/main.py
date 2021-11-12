@@ -73,7 +73,6 @@ def login():
             return redirect(f'/{data[2]}', code=303) 
         return render_template('login.html')
 
-
     return render_template('login.html')
 
 
