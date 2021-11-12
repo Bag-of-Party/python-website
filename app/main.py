@@ -40,7 +40,6 @@ def signup():
         cur.close()
         conn.close()
 
-        # return redirect(f'/{generated_url}', code=303)
         return redirect(f'/login', code=303)
 
     return render_template('signup.html', page_class="signup") 
@@ -73,6 +72,7 @@ def login():
             return redirect(f'/{data[2]}', code=303) 
         return render_template('login.html')
 
+
     return render_template('login.html')
 
 
@@ -92,8 +92,6 @@ def party(slug, party_name):
         print("Selecting all rows from parties row where the url given matches the url in selected the row")
         data = db_cur.fetchone()
         pageId = data["id"]
-        # print('***********')
-        # print(data)
 
         if "delete" in request.args:
             item_id = url_request["delete"]
