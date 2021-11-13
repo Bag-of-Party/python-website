@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request, redirect, session
+import cryptography
+from cryptography.fernet import Fernet
 import psycopg2 
 import psycopg2.extras
 from psycopg2 import Error
@@ -8,13 +10,43 @@ import random
 import string
 import uuid
 import json
+import hashlib
 
 app = Flask(__name__)
 
 DATABASE_URL = os.environ.get("DATABASE_URL", "dbname=postgres user=postgres password=mysecretpassword port=2345 host=127.0.0.1")
 
-
 app.secret_key = "hello"
+
+def generate_key():
+    key = Fernet.generate_key()
+    with open("secret.key", "wb") as key_file:
+        key_file.write(key)
+
+def load_key():
+    return open("secret.key", "rb").read()
+
+def encrypt_message(message):
+    key = load_key()
+    encoded_message = message.encode('utf-16')
+    f = Fernet(key)
+    print("fkey decript1")
+    print(f)
+    encrypted_message = f.encrypt(encoded_message)
+
+    print(encrypted_message)
+    return encrypted_message
+
+def decrypt_message(encrypted_message):
+    key = load_key()
+    f = Fernet(key)
+    print("fkey decript")
+    print(f)
+    decrypted_message = f.decrypt(encrypted_message)
+    decrypted_message_decoded = decrypted_message.decode('utf-16')
+
+    print(decrypted_message.decode())
+    return decrypted_message_decoded
 
 @app.route("/")
 def home():
@@ -32,6 +64,11 @@ def signup():
         user_email = request.form['user_email']
         user_password = request.form['party_password']
         print(generated_url, party_name, user_email, user_password)
+
+        user_password = encrypt_message(user_password)
+
+        print("test")
+        print(user_password)
 
         conn = psycopg2.connect(DATABASE_URL)
         cur = conn.cursor()
@@ -53,13 +90,13 @@ def login():
 
     if request.method == 'POST':
         app.logger.info('Post')
-        group_name_input = request.form['login_group_name']
+        group_name_input = request.form['login_group_email']
         password_input = request.form['login_password']
         print(password_input, group_name_input)
 
         db_conn = psycopg2.connect(DATABASE_URL)
         cur = db_conn.cursor()
-        cur.execute("SELECT * from parties where name = %s", (group_name_input,)) 
+        cur.execute("SELECT * from parties where email = %s", (group_name_input,)) 
         data = cur.fetchone()
         print(data)       
         password = data[4]
@@ -68,6 +105,17 @@ def login():
         session['group_url'] = data[2]
         session['group_email'] = data[3]
         session['group_password'] = data[4]
+
+        test_password = encrypt_message(password)
+        print("TESTPASSWORD")
+        print(test_password)
+
+
+        # test = decrypt_message(password)
+
+        # print("password")
+        # print(test)
+
         if password_input == password:
             return redirect(f'/{data[2]}', code=303) 
         return render_template('login.html')
