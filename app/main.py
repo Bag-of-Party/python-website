@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, request, redirect, session
 from flask_bcrypt import Bcrypt
 import psycopg2 
@@ -17,6 +18,13 @@ bcrypt = Bcrypt(app)
 DATABASE_URL = os.environ.get("DATABASE_URL", "dbname=postgres user=postgres password=mysecretpassword port=2345 host=127.0.0.1")
 
 app.secret_key = "hello"
+
+@app.teardown_appcontext
+def teardown_db(exception):
+    db = g.pop('db', None)
+
+    if db is not None:
+        db.close()
 
 @app.route("/")
 def home():
@@ -41,7 +49,6 @@ def signup():
         cur.execute("INSERT into parties (id, name, url, email, password) VALUES (%s, %s, %s, %s, %s)", (str(uniqid), str(party_name), str(generated_url), str(user_email), str(hash_password)))
         conn.commit()
         cur.close()
-        conn.close()
 
         session['group_id'] = uniqid
         print("session['group_id']")
@@ -63,7 +70,7 @@ def login():
         group_name_input = request.form['login_group_email']
         password_input = request.form['login_password']
 
-        db_conn = psycopg2.connect(DATABASE_URL)
+        db_conn = get_db()
         cur = db_conn.cursor()
         cur.execute("SELECT * from parties where email = %s", (group_name_input,)) 
         data = cur.fetchone()
@@ -78,10 +85,7 @@ def login():
             return redirect(f'/{data[2]}', code=303) 
         return render_template('login.html')
 
-
     return render_template('login.html')
-
-
 
 @app.route("/<slug>/<party_name>", methods=['GET', 'POST'])
 def party(slug, party_name):
@@ -93,7 +97,7 @@ def party(slug, party_name):
         url_request = request.args
         url = slug + "/" + party_name
 
-        db_conn = psycopg2.connect(DATABASE_URL)
+        db_conn = get_db()
         db_cur = db_conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
         db_cur.execute("SELECT * FROM parties where id = %s", (str(session['group_id']),))
         data = db_cur.fetchone()
@@ -117,7 +121,6 @@ def party(slug, party_name):
             db_cur.execute("INSERT into items (id, party_id, name, info, container_id) VALUES (%s, %s, %s, %s, %s)",(str(uniqid), pageId, str(newItem), str(itemInfo), container_id))
             db_conn.commit()
             db_cur.close()
-            db_conn.close()
             return redirect(f'/{url}', code=303)
 
         db_cur.execute("SELECT * FROM items where party_id = %s", (pageId,))
@@ -149,7 +152,6 @@ def party(slug, party_name):
         sorted_list = sorted(items_without_container_id, key=lambda s: s['length'], reverse=True)
         
         db_cur.close()
-        db_conn.close()
 
         return render_template('partypage.html', data=data, page_items=page_items, root_items=sorted_list )
     return render_template('login.html')
