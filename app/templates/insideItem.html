@@ -1,41 +1,41 @@
 <div class="item_box_name_inside">
   <div>
       <div class="item_text">
-        <div>
+        <div class="item_text_title">
           {{ item.name }}
         </div>
         <div>
           <a href="?delete={{ item.id }}" class="delete_img_indide"><img alt="bin" src="/static/images/icons/bin.png" /></a>
         </div>
+        <div class="container" style="width:auto;">   
+          <div>  
+               <a data-target="#myModal" role="button" class="btn btn-warning" data-toggle="modal"><span class="glyphicon glyphicon-hand-up"></span>Add Item</a>
+          </div>  
+        </div>  
+        <br />                    
+        <div id="myModal" class="modal fade">  
+          <div class="modal-dialog">  
+              <div class="modal-content">  
+                  <div class="modal-header">  
+                      <button type="button" class="close" data-dismiss="modal">×</button>  
+                      <h4 class="modal-title">Add Items infromation Below</h4>  
+                  </div>  
+                  <div class="modal-body"> 
+                      <input type="hidden" name="container_id" value="{{ item.id }}" />
+                      <label>Item Name</label>  
+                      <input type="text" name="itemName" id="itemName" class="form-control" />  
+                      <br />  
+                      <label>Item Info</label>  
+                      <input type="text-area" name="infoDetails" id="infoDetails" class="form-control" />  
+                      <br />  
+                      <button type="button" name="login_button" id="login_button" class="btn btn-warning">Add Item</button>  
+                  </div>  
+              </div>  
+          </div>  
+        </div> 
       </div>
   </div>
   <div class="item_box_info"><span class="item_text">{{ item.info }}</span></div>
-  <div class="container" style="width:auto;">   
-    <div>  
-         <a data-target="#myModal" role="button" class="btn btn-warning" data-toggle="modal"><span class="glyphicon glyphicon-hand-up"></span>Add Item</a>
-    </div>  
-</div>  
-<br />                    
-<div id="myModal" class="modal fade">  
-    <div class="modal-dialog">  
-        <div class="modal-content">  
-            <div class="modal-header">  
-                <button type="button" class="close" data-dismiss="modal">×</button>  
-                <h4 class="modal-title">Add Items infromation Below</h4>  
-            </div>  
-            <div class="modal-body"> 
-                <input type="hidden" name="container_id" value="{{ item.id }}" />
-                <label>Item Name</label>  
-                <input type="text" name="itemName" id="itemName" class="form-control" />  
-                <br />  
-                <label>Item Info</label>  
-                <input type="text-area" name="infoDetails" id="infoDetails" class="form-control" />  
-                <br />  
-                <button type="button" name="login_button" id="login_button" class="btn btn-warning">Add Item</button>  
-            </div>  
-        </div>  
-    </div>  
-</div>  
 </div>
 <ul>
   {% for item in item.contents %}
