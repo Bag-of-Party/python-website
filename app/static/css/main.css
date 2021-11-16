@@ -7,6 +7,14 @@ a, a:visited{
 
 }
 
+.item_text_title {
+    width: 10rem;
+}
+
+.image_banner {
+    margin-right: 4rem;
+}
+
 body {
     display: flex;
     min-height: 100vh;
@@ -132,6 +140,12 @@ input {
     text-decoration: none;
     font-size: x-large;
 }
+.button span {
+    color: white;
+    /* margin: 2rem; */
+    text-decoration: none;
+    font-size: large;
+}
 
 .item_box_cta_login {
     border: 2px solid black;
@@ -145,10 +159,10 @@ input {
     font-size: 14px;
 }
 
+
 .item_box_cta_login:hover {
     filter: drop-shadow(4px 4px 4px rebeccapurple);
 }
-
 
 .cta {
     text-align: center;
@@ -163,7 +177,7 @@ input {
     filter: drop-shadow(4px 4px 4px gray);
     background: rebeccapurple;
     color: white;
-    font-size: 22px;
+    font-size: x-large;
 }
 
 .cta:hover {
@@ -312,7 +326,7 @@ input {
 }
 .item_box_info span {
     border-top: solid 1px rebeccapurple;
-    padding-top: 0.2rem;
+    padding-top: 0.3rem;
     font-weight: bold;
     color: rebeccapurple;
 
@@ -325,7 +339,7 @@ input {
     border-color: rebeccapurple;
     border-radius: 5px;
     padding-left: 0.1rem;
-    padding-right: 0.1rem;
+    /* padding-right: 0.1rem; */
 }
 
 .item_box_grid {
@@ -348,17 +362,20 @@ input {
 }
 
 .item_box_cta {
-    border: 1px solid black;
-    border-radius: 7px;
+    border: 1px solid rebeccapurple;
+    border-radius: 5px 0px 0px 5px;
     padding: .1rem;
-    padding-right: 0.5rem;
-    padding-left: 0.5rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
     text-decoration: none;
-    filter: drop-shadow(2px 2px 2px gray);
+    margin-left: 0.8rem;
+    /* filter: drop-shadow(2px 2px 2px gray); */
     background: rebeccapurple;
     color: white;
-    font-size: 10px;
-    margin-top: 0.4rem;
+    font-size: 12px;
+    /* margin-top: 0.4rem; */
 }
 
 .item_box_cta:hover {
@@ -370,8 +387,11 @@ input {
 }
 
 .item_box_name_inside {
+    border: solid 1px rebeccapurple;
+    border-radius: 7px;
+    padding: 0rem 0.5rem 0.5rem 0.5rem;
     display: grid;
-    grid-template-columns: 1fr 2fr minmax(2fr, 10%);
+    grid-template-columns: 1fr 2fr minmax(3fr, 10%);
     font-size: 1rem;
     margin-top: 0.4rem;
     margin-bottom: 0.2rem;
@@ -405,7 +425,7 @@ input {
 }
 
 .password_form div {
-    padding-bottom: 1rem;
+    /* padding-bottom: 1rem; */
     flex-direction: row;
     margin: 0.2rem;
     font-size: large;
@@ -463,22 +483,33 @@ input {
     padding: .3rem;
     vertical-align: text-bottom;
 }
+.center {
+    margin: -4rem;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
 
 .signup_form_container {
-    margin-top: 1rem;
+    margin-top: 2rem;
     margin-left: 1rem;
-    height: 26rem;
+    /* height: 26rem; */
     display: flex;
     border-style: solid;
     border-color: rebeccapurple;
     border-radius: 10px;
     padding: 0.5rem 1rem 0.5rem 0.5rem; 
+    color: rebeccapurple;
+}
+.signup_form_container span {
+    margin-left: 2rem;
 }
 
 .password_form {
     margin-top: 5rem;
     margin-left: 1rem;
-    height: 16rem;
+    height: auto;
     display: flex;
     border-style: solid;
     border-color: rebeccapurple;
@@ -531,6 +562,7 @@ li {
     list-style-type: none;
     border-left: 2px solid #000;
     overflow-x: unset;
+    margin-top: 1rem;
 }
 
 li section {
@@ -643,12 +675,14 @@ ul > li:last-child {
         font-weight: bold;
     }
     
-    .signup_form_containter {
-        margin-bottom: 1rem;
+    .signup_form_container {
+        margin-left: 0rem;
+        height: 29rem;
+        display: flex;
         border-style: solid;
         border-color: rebeccapurple;
-        padding: 2rem;
-        border-radius: 7px;
+        border-radius: 10px;
+        padding: 0.5rem 0.5rem 0.5rem 0.5rem; 
     }
     
     .signup_form {
@@ -740,7 +774,7 @@ ul > li:last-child {
         border-color: rebeccapurple;
         border-radius: 5px;
         padding: 0.5rem;
-        margin-bottom: 1rem;
+        margin: 0rem;
     }
     
     .item_box_form {
@@ -754,7 +788,6 @@ ul > li:last-child {
         column-gap: 2rem;
         justify-content:space-between; 
         font-size: 1.5rem;
-        padding-left: 1rem;
         padding-bottom: 0.2rem;
     }
     
@@ -783,9 +816,7 @@ ul > li:last-child {
     
     }
     
-    
     .item_box_input {
-        height:3rem;
         border-style: solid;
         border-color: rebeccapurple;
         border-radius: 5px;
@@ -869,6 +900,15 @@ ul > li:last-child {
         vertical-align: text-bottom;
     }
     
+    .password_form {
+        height: 16rem;
+        display: flex;
+        border-style: solid;
+        border-color: rebeccapurple;
+        border-radius: 10px;
+        padding: 0.5rem 1rem 0.5rem 0.5rem;
+    }
+
     .password_form div {
         display: flex;
         flex-direction: row;
