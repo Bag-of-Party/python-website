@@ -6,6 +6,9 @@ a, a:visited{
     color: rebeccapurple;
 }
 
+.modal-content {
+    color: black;
+}
 
 body {
     display: flex;

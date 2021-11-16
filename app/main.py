@@ -103,8 +103,6 @@ def party(slug, party_name):
         print("Selecting all rows from parties row where the url given matches the url in selected the row")
         data = db_cur.fetchone()
         pageId = data["id"]
-        # print('***********')
-        # print(data)
 
         if "delete" in request.args:
             item_id = url_request["delete"]
@@ -112,19 +110,19 @@ def party(slug, party_name):
             db_conn.commit()
             return redirect(f'/{url}', code=303)
 
-        if request.method == 'POST':
-            app.logger.info('Post')
-            newItem = request.form['add_item']
-            itemInfo = request.form['add_item_info']
-            print('inside button')
-            print(newItem)
-            print(url)
-            print(pageId)
-            container_id = request.form.get("container_id")
-            db_cur.execute("INSERT into items (id, party_id, name, info, container_id) VALUES (%s, %s, %s, %s, %s)",(str(uniqid), pageId, str(newItem), str(itemInfo), container_id))
-            db_conn.commit()
-            db_cur.close()
-            return redirect(f'/{url}', code=303)
+        # if request.method == 'POST':
+        #     app.logger.info('Post')
+        #     newItem = request.form['add_item']
+        #     itemInfo = request.form['add_item_info']
+        #     print('inside button')
+        #     print(newItem)
+        #     print(url)
+        #     print(pageId)
+        #     container_id = request.form.get("container_id")
+        #     db_cur.execute("INSERT into items (id, party_id, name, info, container_id) VALUES (%s, %s, %s, %s, %s)",(str(uniqid), pageId, str(newItem), str(itemInfo), container_id))
+        #     db_conn.commit()
+        #     db_cur.close()
+        #     return redirect(f'/{url}', code=303)
 
         db_cur.execute("SELECT * FROM items where party_id = %s", (pageId,))
         page_items = db_cur.fetchall()
@@ -158,6 +156,38 @@ def party(slug, party_name):
 
         return render_template('partypage.html', data=data, page_items=page_items, root_items=sorted_list )
     return render_template('login.html')
+
+@app.route("/action",methods=["POST","GET"])
+def action():
+    uniqid = uuid.uuid4()
+    db_conn = get_db()
+    db_cur = db_conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    if request.method == 'POST':
+        app.logger.info('Post')
+        name = request.form['itemName']
+        info = request.form['infoDetails']
+        container = request.form.get('container_id')
+        print(name)
+        print(info)
+        print(session['group_id'])
+        print(session['group_name'])
+        print(session['group_url'] )
+        print(session['group_email'])
+        print(session['group_password'])
+        url = session['group_url']
+
+        # container_id = request.form.get("container_id")
+
+        print("container_id")
+        print(container)
+        db_cur.execute("INSERT into items (id, party_id, name, info, container_id) VALUES (%s, %s, %s, %s, %s)",(str(uniqid), session['group_id'], str(name), str(info), container_id))
+        db_conn.commit()
+        db_cur.close()
+        
+        # name = None
+        # info = None
+
+        return redirect(f'/{url}', code=303)
 
 
 @app.route("/contact")
