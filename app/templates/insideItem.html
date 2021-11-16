@@ -10,30 +10,32 @@
       </div>
   </div>
   <div class="item_box_info"><span class="item_text">{{ item.info }}</span></div>
-  <div class="item_form_input">
-    <form class="item_box_input" method="POST">
-        <div class="item_box_grid">
-            <span class="item_box_input_container">
-                <div>
-                    <input type="hidden" name="container_id" value="{{ item.id }}" />
-                </div>
-                <div>
-                    <input class="item_box_item_text_input_name" placeholder="Item Name" maxlength="25" type="text" name="add_item"/>
-                </div>
-                <span class="input_container">
-                    <input class="item_box_cta" type="submit" maxlength="20" value="Add Item">
-                </span>
-            </span>
-            <span class="item_box_input_container">
-                <div>
-                </div>
-                <div>
-                    <textarea class="item_box_item_text_input_info" placeholder="Info / Description" rows="3" cols="20" maxlength="200" name="add_item_info"></textarea>
-                </div>
-            </span>
-        </div>
-    </form>
-  </div>
+  <div class="container" style="width:auto;">   
+    <div>  
+         <a data-target="#myModal" role="button" class="btn btn-warning" data-toggle="modal"><span class="glyphicon glyphicon-hand-up"></span>Add Item</a>
+    </div>  
+</div>  
+<br />                    
+<div id="myModal" class="modal fade">  
+    <div class="modal-dialog">  
+        <div class="modal-content">  
+            <div class="modal-header">  
+                <button type="button" class="close" data-dismiss="modal">×</button>  
+                <h4 class="modal-title">Add Items infromation Below</h4>  
+            </div>  
+            <div class="modal-body"> 
+                <input type="hidden" name="container_id" value="{{ item.id }}" />
+                <label>Item Name</label>  
+                <input type="text" name="itemName" id="itemName" class="form-control" />  
+                <br />  
+                <label>Item Info</label>  
+                <input type="text-area" name="infoDetails" id="infoDetails" class="form-control" />  
+                <br />  
+                <button type="button" name="login_button" id="login_button" class="btn btn-warning">Add Item</button>  
+            </div>  
+        </div>  
+    </div>  
+</div>  
 </div>
 <ul>
   {% for item in item.contents %}

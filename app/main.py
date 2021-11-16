@@ -110,19 +110,19 @@ def party(slug, party_name):
             db_conn.commit()
             return redirect(f'/{url}', code=303)
 
-        # if request.method == 'POST':
-        #     app.logger.info('Post')
-        #     newItem = request.form['add_item']
-        #     itemInfo = request.form['add_item_info']
-        #     print('inside button')
-        #     print(newItem)
-        #     print(url)
-        #     print(pageId)
-        #     container_id = request.form.get("container_id")
-        #     db_cur.execute("INSERT into items (id, party_id, name, info, container_id) VALUES (%s, %s, %s, %s, %s)",(str(uniqid), pageId, str(newItem), str(itemInfo), container_id))
-        #     db_conn.commit()
-        #     db_cur.close()
-        #     return redirect(f'/{url}', code=303)
+        if request.method == 'POST':
+            app.logger.info('Post')
+            newItem = request.form['add_item']
+            itemInfo = request.form['add_item_info']
+            print('inside button')
+            print(newItem)
+            print(url)
+            print(pageId)
+            container_id = request.form.get("container_id")
+            db_cur.execute("INSERT into items (id, party_id, name, info, container_id) VALUES (%s, %s, %s, %s, %s)",(str(uniqid), pageId, str(newItem), str(itemInfo), container_id))
+            db_conn.commit()
+            db_cur.close()
+            return redirect(f'/{url}', code=303)
 
         db_cur.execute("SELECT * FROM items where party_id = %s", (pageId,))
         page_items = db_cur.fetchall()
@@ -180,7 +180,7 @@ def action():
 
         print("container_id")
         print(container)
-        db_cur.execute("INSERT into items (id, party_id, name, info, container_id) VALUES (%s, %s, %s, %s, %s)",(str(uniqid), session['group_id'], str(name), str(info), container_id))
+        db_cur.execute("INSERT into items (id, party_id, name, info, container_id) VALUES (%s, %s, %s, %s, %s)",(str(uniqid), session['group_id'], str(name), str(info), container))
         db_conn.commit()
         db_cur.close()
         
