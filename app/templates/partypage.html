@@ -1,31 +1,45 @@
 {% extends "base.html" %}
 {% block title %} Bag of Party {% endblock %}
-{% block scripts %}
+<!-- {% block scripts %}
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script>  
         $(document).ready(function(){  
-            $('#login_button').click(function(){  
+            $('#add_item').click(function(){ 
+                container = null;
+                itemName = null;
+                infoDetails = null;
+                console.log("CLICKED");
+                console.log(itemName);
+                console.log(infoDetails);
+                console.log(container);
                 var itemName = $('#itemName').val();  
                 var infoDetails = $('#infoDetails').val();
-                var container_id = $('input[type=hidden]').val();
+                var container = $('input[type=hidden]').val();
+                console.log("POST INFO CLICKED");
+                console.log(itemName);
+                console.log(infoDetails);
+                console.log(container);
                 if(itemName != '' && infoDetails != '')  
                 {  
                     $.ajax({  
                             url:"/action",  
                             method:"POST",  
-                            data: {itemName:itemName, infoDetails:infoDetails, container_id:container_id},  
+                            data: {itemName:itemName, infoDetails:infoDetails, container:container},  
                             success:function(data)  
                             {  
-                                alert(data);  
+                                // alert(data);  
                                 if(data == 'No-data')  
                                 {  
-                                    alert("Invalid Email Or Password!");  
+                                    alert("Invalid Input");  
                                 }   
                                 else
                                 {  
-                                    $('#loginModal').hide();  
+                                    $('#loginModal').hide();
+                                    itemName = null;
+                                    infoDetails = null;
+                                    container = null;
                                     location.reload();  
                                 }  
                             }  
@@ -38,7 +52,7 @@
             });    
         });  
     </script> 
-{% endblock %}
+{% endblock %} -->
 {% block content %}
     <div class="party_page_header">
         <div>
@@ -74,33 +88,6 @@
             </form>
         </div>
     </div>
-    <!-- <div class="container" style="width:700px;">   
-        <div>  
-             <a data-target="#myModal" role="button" class="btn btn-warning" data-toggle="modal"><span class="glyphicon glyphicon-hand-up"></span>Login</a>
-        </div>  
-   </div>  
-   <br />  
-      
-    <div id="myModal" class="modal fade">  
-    <div class="modal-dialog">  
-    <!-- Modal content-->  
-    <!-- <div class="modal-content">  
-            <div class="modal-header">  
-                <button type="button" class="close" data-dismiss="modal">×</button>  
-                <h4 class="modal-title">Login Form Using Bootstrap Modal using Python Flask jquery Ajax password hash and session</h4>  
-            </div>  
-            <div class="modal-body">  
-                <label>Username</label>  
-                <input type="text" name="username" id="username" class="form-control" />  
-                <br />  
-                <label>Password</label>  
-                <input type="password" name="password" id="password" class="form-control" />  
-                <br />  
-                <button type="button" name="login_button" id="login_button" class="btn btn-warning">Login</button>  
-            </div>  
-    </div>  
-    </div>  
-    </div>   --> 
     <div class="items_container">
         <div class="items_grid">
             {% for item in root_items %}

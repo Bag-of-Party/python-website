@@ -157,16 +157,24 @@ def party(slug, party_name):
         return render_template('partypage.html', data=data, page_items=page_items, root_items=sorted_list )
     return render_template('login.html')
 
-@app.route("/action",methods=["POST","GET"])
+@app.route("/action",methods=["POST"])
 def action():
+    name = None
+    info = None
+    container = None
     uniqid = uuid.uuid4()
+    print("START OF ACTION")
+    print(uniqid)
+    print(name)
+    print(info)
+    print(container)
     db_conn = get_db()
     db_cur = db_conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     if request.method == 'POST':
         app.logger.info('Post')
         name = request.form['itemName']
         info = request.form['infoDetails']
-        container = request.form.get('container_id')
+        container = request.form['container']
         print(name)
         print(info)
         print(session['group_id'])
@@ -184,8 +192,6 @@ def action():
         db_conn.commit()
         db_cur.close()
         
-        # name = None
-        # info = None
 
         return redirect(f'/{url}', code=303)
 

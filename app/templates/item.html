@@ -1,3 +1,56 @@
+{% block scripts %}
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script>  
+        $(document).ready(function(){  
+            $('#add_item').click(function(){ 
+                container = null;
+                itemName = null;
+                infoDetails = null;
+                console.log("CLICKED");
+                console.log(itemName);
+                console.log(infoDetails);
+                console.log(container);
+                var itemName = $('#itemName').val();  
+                var infoDetails = $('#infoDetails').val();
+                var container = $('input[type=hidden]').val();
+                console.log("POST INFO CLICKED");
+                console.log(itemName);
+                console.log(infoDetails);
+                console.log(container);
+                if(itemName != '' && infoDetails != '')  
+                {  
+                    $.ajax({  
+                            url:"/action",  
+                            method:"POST",  
+                            data: {itemName:itemName, infoDetails:infoDetails, container:container},  
+                            success:function(data)  
+                            {  
+                                // alert(data);  
+                                if(data == 'No-data')  
+                                {  
+                                    alert("Invalid Input");  
+                                }   
+                                else
+                                {  
+                                    $('#loginModal').hide();
+                                    itemName = null;
+                                    infoDetails = null;
+                                    container = null;
+                                    location.reload();  
+                                }  
+                            }  
+                    });  
+                }  
+                else
+                {  
+                    alert("Both Fields are required");  
+                }  
+            });    
+        });  
+    </script> 
+{% endblock %}
 <div class="item_box">
     <ul class="tree">
             <div class="item_box_name">
@@ -8,10 +61,12 @@
                         </div>
                         <div>
                             <a href="?delete={{ item.id }}" class="deleteImg"><img alt="bin" src="/static/images/icons/bin.png" /></a>
+                            <input type="hidden" name="container_id" value="{{ item.id }}" />
+                            <span>{{ item.id }}</span>
                         </div>
                         <div class="container" style="width:auto;">   
                             <div>  
-                                 <a data-target="#myModal" role="button" class="btn btn-warning" data-toggle="modal"><span class="glyphicon glyphicon-hand-up"></span>Add Item</a>
+                                 <a data-target="#myModal" role="button" class="btn btn-warning" data-toggle="modal"><span><input type="hidden" name="container_id" value="{{ item.id }}" /></span>Add Item</a>
                             </div>  
                        </div>  
                        <br />                    
@@ -19,18 +74,19 @@
                             <div class="modal-dialog">  
                                 <div class="modal-content">  
                                     <div class="modal-header">  
+                                        <span>{{ item.name }} {{ item.id }}</span>
                                         <button type="button" class="close" data-dismiss="modal">×</button>  
                                         <h4 class="modal-title">Add Items infromation Below</h4>  
                                     </div>  
                                     <div class="modal-body"> 
-                                        <input type="hidden" name="container_id" value="{{ item.id }}" />
                                         <label>Item Name</label>  
+                                        <span>{{ item.name }} {{ item.id }}</span>
                                         <input type="text" name="itemName" id="itemName" class="form-control" />  
                                         <br />  
                                         <label>Item Info</label>  
                                         <input type="text-area" name="infoDetails" id="infoDetails" class="form-control" />  
                                         <br />  
-                                        <button type="button" name="login_button" id="login_button" class="btn btn-warning">Add Item</button>  
+                                        <button type="button" name="add_item" id="add_item" class="btn btn-warning">Add Item</button>  
                                     </div>  
                                 </div>  
                             </div>  
