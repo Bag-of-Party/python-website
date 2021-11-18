@@ -182,8 +182,6 @@ def action():
         print(session['group_password'])
         url = session['group_url']
 
-        # container_id = request.form.get("container_id")
-
         print("container_id")
         print(container)
         db_cur.execute("INSERT into items (id, party_id, name, info, container_id) VALUES (%s, %s, %s, %s, %s)",(str(uniqid), session['group_id'], str(name), str(info), container))

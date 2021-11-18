@@ -88,6 +88,7 @@ input {
     justify-content: center;
 }
 
+
 .footer p {
     justify-content: center;
 }
@@ -155,6 +156,16 @@ input {
     filter: drop-shadow(4px 4px 4px rebeccapurple);
 }
 
+.cta_item {
+    font-size: small;
+    width: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    background: rebeccapurple;
+    border: rebeccapurple;
+    color: white;
+    border-radius: 5px;
+}
 
 .cta {
     text-align: center;
@@ -236,6 +247,11 @@ input {
     padding-top: 6rem;
 }
 
+.item_form_input {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .item_input {
     border-style: solid;
     border-color: rebeccapurple;
@@ -252,10 +268,13 @@ input {
 }
 
 .item_text {
+    width: auto;
     padding-top: 0.3rem;
     color: rebeccapurple;
     font-weight: bold;
     display: flex;
+    justify-content: space-between;
+    text-transform: capitalize;
 }
 
 .item_text {
@@ -395,6 +414,9 @@ input {
     padding-top: 0.3rem;
     padding-right: 0.2rem;
     padding-left: 0.2rem;
+}
+.deleteImg img {
+    height: 1.5rem;
 }
 
 .padding {
@@ -625,11 +647,27 @@ ul > li:last-child {
     
     
     .cta {
-        text-align: center;
-        width: 10rem;
+        /* text-align: center; */
+        width: auto;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        filter: drop-shadow(4px 4px 4px gray);
+        background: rebeccapurple;
+    }
+
+    .cta_item {
+        font-size: small;
+        width: auto;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        background: rebeccapurple;
+        border: rebeccapurple;
+        color: white;
+        border-radius: 5px;
+
     }
     
-    .cta, a.cta:visited {
+    /* .cta, a.cta:visited {
         border: 2px solid black;
         border-radius: 7px;
         padding: .3rem;
@@ -638,7 +676,7 @@ ul > li:last-child {
         background: rebeccapurple;
         color: white;
         font-size: 22px;
-    }
+    } */
     
     .cta:hover {
         filter: drop-shadow(4px 4px 4px rebeccapurple);
@@ -706,6 +744,7 @@ ul > li:last-child {
         border-color: rebeccapurple;
         border-radius: 5px;
         padding: 1rem;
+        margin: 0;
     }
     
     .item_text_input {
@@ -740,6 +779,7 @@ ul > li:last-child {
     }
     
     .item_box {
+        width: auto;
         height: auto;
         padding-right: 1rem;
         border-style: solid;
@@ -748,6 +788,7 @@ ul > li:last-child {
         border-radius: 5px;
         padding: 0.5rem;
         margin-bottom: 1rem;
+        margin: 0 0 0.5rem 0;
     }
     
     .item_box_form {
