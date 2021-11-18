@@ -1,5 +1,5 @@
 * {
-    transform-origin: 0 0;
+    transform-origin: 1 1;
 }
 
 html {
@@ -60,16 +60,7 @@ input {
     text-align: center;
     display: grid;
     grid-template-columns: auto auto;
-}
-
-.party_page_header h1{
-    color: rebeccapurple;
-    font-weight: bold;
-}
-.party_page_header h3{
-    width: 100%;
-    color: rebeccapurple;
-    font-size: x-large;
+    margin-bottom: 2rem;
 }
 
 .terms_list li {
@@ -97,6 +88,16 @@ input {
     width: 3rem;
 }
 
+.title_logo_box {
+    border: rebeccapurple solid 2px;
+    border-radius: 7px;
+    padding: 1rem;
+}
+.title_logo_box p {
+    color: rebeccapurple;
+    font-size: large;
+}
+
 .items_container {
     display: flex;
     justify-content: center;
@@ -104,7 +105,7 @@ input {
 }
 
 .items_grid {
-    columns: 2 40rem;
+    columns: 3 40rem;
     overflow-x: unset;
     column-gap: 3rem;
 }
@@ -243,8 +244,9 @@ input {
 
 .input_outer_container {
     width: 30rem;
-    margin-bottom: 2rem;
-    padding-top: 6rem;
+    /* margin-bottom: 2rem; */
+    padding-top: 0rem;
+    /* height: auto; */
 }
 
 .item_form_input {
@@ -258,6 +260,21 @@ input {
     border-radius: 5px;
     padding: 1rem;
     margin-left: 1rem;
+    padding-top: 10rem;
+    padding-bottom: 12rem;
+}
+
+.form-group textarea {
+    height: 4rem;
+}
+
+.modal-body {
+    color: rebeccapurple;
+    font-size: x-large;
+}
+.modal-header h5 {
+    color: rebeccapurple;
+    font-size: x-large;
 }
 
 .item_text_input {
@@ -282,7 +299,7 @@ input {
 }
 
 .input_container div {
-    padding-bottom: 0.5rem;
+    padding-bottom: 1rem;
     font-weight: bold;
     font-size: large;
     text-decoration-line: underline;

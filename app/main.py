@@ -80,15 +80,11 @@ def login():
         session['group_email'] = data[3]
         session['group_password'] = data[4] 
 
-
         if bcrypt.check_password_hash(hash_password, password_input):
             return redirect(f'/{data[2]}', code=303) 
         return render_template('login.html')
 
-
     return render_template('login.html')
-
-
 
 @app.route("/<slug>/<party_name>", methods=['GET', 'POST'])
 def party(slug, party_name):
@@ -187,12 +183,8 @@ def action():
         db_cur.execute("INSERT into items (id, party_id, name, info, container_id) VALUES (%s, %s, %s, %s, %s)",(str(uniqid), session['group_id'], str(name), str(info), container))
         db_conn.commit()
         db_cur.close()
-        
-        # name = None
-        # info = None
 
         return redirect(f'/{url}', code=303)
-
 
 @app.route("/contact")
 def contact():
@@ -201,8 +193,7 @@ def contact():
 @app.route("/terms")
 def terms():
     return render_template('terms.html', page_class="terms")
-
-
+ 
 if __name__ == "__main__":
     app.config['TEMPLATES_AUTO_RELOAD'] = True
     app.run(debug=True)

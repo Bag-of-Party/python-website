@@ -4,12 +4,13 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script>
     $('#exampleModal').on('show.bs.modal', function (event) {
+      recipient = null
       var button = $(event.relatedTarget)
       var recipient = button.data('whatever')
       var modal = $(this)
       modal.find('.modal-body input').val(recipient)
       console.log(recipient);
-      $('#login_button').click(function(){ 
+      $('#login_button2').click(function(){ 
                 container = null;
                 itemName = null;
                 infoDetails = null;
@@ -96,7 +97,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" name="login_button" id="login_button">Add</button>
+                  <button type="button" class="btn btn-primary" name="login_button" id="login_button2">Add</button>
                 </div>
               </div>
             </div>
