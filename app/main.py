@@ -40,14 +40,16 @@ def signup():
         print("test")
         print(hash_password)
 
+        session['group_id'] = uniqid
+        print(session['group_id'])
+
         conn = psycopg2.connect(DATABASE_URL)
         cur = conn.cursor()
-        cur.execute("INSERT into parties (id, name, url, email, password) VALUES (%s, %s, %s, %s, %s)", (str(uniqid), str(party_name), str(generated_url), str(user_email), str(hash_password)))
+        cur.execute("INSERT into parties (id, name, url, email, password) VALUES (%s, %s, %s, %s, %s)", (str(session['group_id']), str(party_name), str(generated_url), str(user_email), str(hash_password)))
         conn.commit()
         cur.close()
         conn.close()
 
-        session['group_id'] = uniqid
 
         return redirect(f'/{generated_url}', code=303) 
 
@@ -96,12 +98,13 @@ def party(slug, party_name):
         url_request = request.args
         url = slug + "/" + party_name
         print(url)
+        print(session['group_id'])
 
         db_conn = psycopg2.connect(DATABASE_URL)
         db_cur = db_conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        db_cur.execute("SELECT * FROM parties where id = %s", (session['group_id'],))
+        db_cur.execute("SELECT * FROM parties where id = %s", (str(session['group_id']),))
         data = db_cur.fetchone()
-        pageId = data["id"]
+        pageId = session['group_id']
 
         if "delete" in request.args:
             item_id = url_request["delete"]
@@ -118,13 +121,13 @@ def party(slug, party_name):
             print(url)
             print(pageId)
             container_id = request.form.get("container_id")
-            db_cur.execute("INSERT into items (id, party_id, name, info, container_id) VALUES (%s, %s, %s, %s, %s)",(str(uniqid), pageId, str(newItem), str(itemInfo), container_id))
+            db_cur.execute("INSERT into items (id, party_id, name, info, container_id) VALUES (%s, %s, %s, %s, %s)",(str(uniqid), str(pageId), str(newItem), str(itemInfo), container_id))
             db_conn.commit()
             db_cur.close()
             db_conn.close()
             return redirect(f'/{url}', code=303)
 
-        db_cur.execute("SELECT * FROM items where party_id = %s", (pageId,))
+        db_cur.execute("SELECT * FROM items where party_id = %s", (str(pageId),))
         page_items = db_cur.fetchall()
 
         items_without_container_id = []
@@ -157,6 +160,40 @@ def party(slug, party_name):
 
         return render_template('partypage.html', data=data, page_items=page_items, root_items=sorted_list )
     return render_template('login.html')
+
+@app.route("/action",methods=["POST","GET"])
+def action():
+    print("INN AACCTTIIOONN")
+    uniqid = uuid.uuid4()
+    db_conn = psycopg2.connect(DATABASE_URL)
+    db_cur = db_conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    # db_conn = get_db()
+    if request.method == 'POST':
+        app.logger.info('Post')
+        name = request.form['itemName']
+        info = request.form['infoDetails']
+        container = request.form.get('container')
+        print(name)
+        print(info)
+        print(session['group_id'])
+        print(session['group_name'])
+        print(session['group_url'] )
+        print(session['group_email'])
+        print(session['group_password'])
+        url = session['group_url']
+
+        # container_id = request.form.get("container_id")
+
+        print("container_id")
+        print(container)
+        db_cur.execute("INSERT into items (id, party_id, name, info, container_id) VALUES (%s, %s, %s, %s, %s)",(str(uniqid), session['group_id'], str(name), str(info), container))
+        db_conn.commit()
+        db_cur.close()
+        
+        # name = None
+        # info = None
+
+        return redirect(f'/{url}', code=303)
 
 
 @app.route("/contact")

@@ -1,35 +1,161 @@
+{% block scripts %}
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script>
+    $('#exampleModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) // Button that triggered the modal
+      var recipient = button.data('whatever') // Extract info from data-* attributes
+      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+      var modal = $(this)
+      // modal.find('.modal-title').text('New message to ' + recipient)
+      modal.find('.modal-body input').val(recipient)
+      console.log(recipient);
+      $('#login_button').click(function(){ 
+                container = null;
+                itemName = null;
+                infoDetails = null;
+                console.log("CLICKED");
+                console.log(itemName);
+                console.log(infoDetails);
+                console.log(container);
+                var itemName = $('#itemName').val();  
+                var infoDetails = $('#infoDetails').val();
+                var container = $('input[type=hidden]').val();
+                console.log("POST INFO CLICKED");
+                console.log(itemName);
+                console.log(infoDetails);
+                console.log(container);
+                if(itemName != '' && infoDetails != '')  
+                {  
+                    $.ajax({  
+                            url:"/action",  
+                            method:"POST",  
+                            data: {itemName:itemName, infoDetails:infoDetails, container:container},  
+                            success:function(data)  
+                            {  
+                                // alert(data);  
+                                if(data == 'No-data')  
+                                {  
+                                    alert("Invalid Input");  
+                                }   
+                                else
+                                {  
+                                    $('#loginModal').hide();
+                                    itemName = null;
+                                    infoDetails = null;
+                                    container = null;
+                                    location.reload();  
+                                }  
+                            }  
+                    });  
+                }  
+                else
+                {  
+                    alert("Both Fields are required");  
+                }  
+            });    
+    })
+  </script>
+    <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script>  
+        $(document).ready(function(){  
+            $('#add_item').click(function(){ 
+                container = null;
+                itemName = null;
+                infoDetails = null;
+                console.log("CLICKED");
+                console.log(itemName);
+                console.log(infoDetails);
+                console.log(container);
+                var itemName = $('#itemName').val();  
+                var infoDetails = $('#infoDetails').val();
+                var container = $('input[type=hidden]').val();
+                console.log("POST INFO CLICKED");
+                console.log(itemName);
+                console.log(infoDetails);
+                console.log(container);
+                if(itemName != '' && infoDetails != '')  
+                {  
+                    $.ajax({  
+                            url:"/action",  
+                            method:"POST",  
+                            data: {itemName:itemName, infoDetails:infoDetails, container:container},  
+                            success:function(data)  
+                            {  
+                                // alert(data);  
+                                if(data == 'No-data')  
+                                {  
+                                    alert("Invalid Input");  
+                                }   
+                                else
+                                {  
+                                    $('#loginModal').hide();
+                                    itemName = null;
+                                    infoDetails = null;
+                                    container = null;
+                                    location.reload();  
+                                }  
+                            }  
+                    });  
+                }  
+                else
+                {  
+                    alert("Both Fields are required");  
+                }  
+            });    
+        });  
+    </script>  -->
+{% endblock %}
+
 <div class="item_box">
     <ul class="tree">
             <div class="item_box_name">
                 <div>
                     <div class="item_text">
                         <div class="item_text_title">
-                            {{ item.name }}
+                            {{ item.name }} {{ item.id }}
                         </div>
                         <div>
                             <a href="?delete={{ item.id }}" class="deleteImg"><img alt="bin" src="/static/images/icons/bin.png" /></a>
                         </div>
                         <div class="item_form_input">
-                            <form class="item_box_input" method="POST">
-                                <div class="item_box_grid">
-                                    <span class="item_box_input_container">
-                                        <div>
-                                            <input type="hidden" name="container_id" value="{{ item.id }}" />
-                                        </div>
-                                        <div>
-                                            <input class="item_box_item_text_input_name" placeholder="Item Name" maxlength="25" type="text" name="add_item"/>
-                                        </div>
-                                    </span>
-                                    <span class="item_box_input_container">
-                                        <div>
-                                            <textarea class="item_box_item_text_input_info" placeholder="Info / Description" rows="1" cols="20" maxlength="200" name="add_item_info"></textarea>
-                                        </div>
-                                    </span>
-                                    <span class="input_container">
-                                        <input class="item_box_cta" type="submit" maxlength="20" value="Add Item">
-                                    </span>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="{{ item.id }}">Add</button>
+
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Add Item Name and Info Below </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <form>
+                                      <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">name:</label>
+                                        <input class="item_box_item_text_input_name" placeholder="Item Name" maxlength="25" type="text" name="add_item" id="itemName" />
+                                        <!-- <input type="text" class="form-control" id="recipient-name"> -->
+                                        <input type="hidden" class="form-control" id="recipient-name">
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Info:</label>
+                                        <textarea class="item_box_item_text_input_info" placeholder="Info / Description" rows="3" cols="20" maxlength="200" name="add_item_info" id="infoDetails" ></textarea>
+                                        <!-- <textarea class="form-control" id="message-text"></textarea> -->
+                                      </div>
+                                    </form>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" name="login_button" id="login_button">Add</button>
+                                  </div>
                                 </div>
-                            </form>
+                              </div>
+                            </div>
                         </div>
                     </div>
                 </div>
