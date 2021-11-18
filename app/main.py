@@ -19,12 +19,12 @@ DATABASE_URL = os.environ.get("DATABASE_URL", "dbname=postgres user=postgres pas
 
 app.secret_key = "hello"
 
-@app.teardown_appcontext
-def teardown_db(exception):
-    db = g.pop('db', None)
+def get_db():
+    if 'db' not in g:
+        g.db = psycopg2.connect(DATABASE_URL)
 
-    if db is not None:
-        db.close()
+    return g.db
+
 
 @app.route("/")
 def home():

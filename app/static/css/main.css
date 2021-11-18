@@ -123,11 +123,25 @@ input {
     max-width: 50rem;
 }
 
+.second_cta {
+    margin-left: 8rem;
+}
+
+.second_cta  a {
+    margin-left: 7rem;
+    overflow: visible;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    color: white;
+    margin: 2rem;
+    text-decoration: none;
+    font-size: large;
+}
+
 .button {
     overflow: visible;
     margin-top: 1rem;
     margin-bottom: 1rem;
-
 }
 .button div {
     display: inline;
@@ -155,7 +169,7 @@ input {
     filter: drop-shadow(4px 4px 4px gray);
     background: rebeccapurple;
     color: white;
-    font-size: 14px;
+    font-size: 10px;
 }
 
 
@@ -225,8 +239,9 @@ input {
 .signup_form span {
     width: 100%;
     border: 2px solid rebeccapurple;
-    padding: 0.9rem;
+    /* padding: 0.9rem; */
     border-radius: 7px;
+    padding: 1;
 }
 
 #generated_url {
@@ -497,9 +512,9 @@ input {
     padding: 0.5rem 1rem 0.5rem 0.5rem; 
     color: rebeccapurple;
 }
-.signup_form_container span {
-    margin-left: 2rem;
-}
+/* .signup_form_container span {
+    margin-left: 7rem;
+} */
 
 .password_form {
     margin-top: 5rem;
@@ -670,6 +685,7 @@ ul > li:last-child {
     }
     
     .signup_form_container {
+        width: auto;
         margin-left: 0rem;
         height: 29rem;
         display: flex;
@@ -706,7 +722,7 @@ ul > li:last-child {
     .signup_form span {
         width: 100%;
         border: 2px solid rebeccapurple;
-        padding: 0.9rem;
+        /* padding: 0.9rem; */
         border-radius: 7px;
     }
     
