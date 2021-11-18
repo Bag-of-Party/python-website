@@ -1,3 +1,7 @@
+* {
+    transform-origin: 1 1;
+}
+
 html {
     font-family: sans-serif; 
 }
@@ -6,6 +10,9 @@ a, a:visited{
     color: rebeccapurple;
 }
 
+.modal-content {
+    color: black;
+}
 
 .item_text_title {
     width: 10rem;
@@ -61,16 +68,7 @@ input {
     text-align: center;
     display: grid;
     grid-template-columns: auto auto;
-}
-
-.party_page_header h1{
-    color: rebeccapurple;
-    font-weight: bold;
-}
-.party_page_header h3{
-    width: 100%;
-    color: rebeccapurple;
-    font-size: x-large;
+    margin-bottom: 2rem;
 }
 
 .terms_list li {
@@ -89,12 +87,23 @@ input {
     justify-content: center;
 }
 
+
 .footer p {
     justify-content: center;
 }
 
 .footer img {
     width: 3rem;
+}
+
+.title_logo_box {
+    border: rebeccapurple solid 2px;
+    border-radius: 7px;
+    padding: 1rem;
+}
+.title_logo_box p {
+    color: rebeccapurple;
+    font-size: large;
 }
 
 .items_container {
@@ -105,7 +114,7 @@ input {
 }
 
 .items_grid {
-    columns: 2 20rem;
+    columns: 3 40rem;
     overflow-x: unset;
     column-gap: 3rem;
 }
@@ -161,6 +170,17 @@ input {
 
 .item_box_cta_login:hover {
     filter: drop-shadow(4px 4px 4px rebeccapurple);
+}
+
+.cta_item {
+    font-size: small;
+    width: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    background: rebeccapurple;
+    border: rebeccapurple;
+    color: white;
+    border-radius: 5px;
 }
 
 .cta {
@@ -239,8 +259,12 @@ input {
 
 .input_outer_container {
     width: 30rem;
-    margin-bottom: 2rem;
-    padding-top: 6rem;
+    padding-top: 0rem;
+}
+
+.item_form_input {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .item_input {
@@ -249,6 +273,21 @@ input {
     border-radius: 5px;
     padding: 1rem;
     margin-left: 1rem;
+    padding-top: 10rem;
+    padding-bottom: 12rem;
+}
+
+.form-group textarea {
+    height: 4rem;
+}
+
+.modal-body {
+    color: rebeccapurple;
+    font-size: x-large;
+}
+.modal-header h5 {
+    color: rebeccapurple;
+    font-size: x-large;
 }
 
 .item_text_input {
@@ -259,10 +298,13 @@ input {
 }
 
 .item_text {
+    width: auto;
     padding-top: 0.3rem;
     color: rebeccapurple;
     font-weight: bold;
     display: flex;
+    justify-content: space-between;
+    text-transform: capitalize;
 }
 
 .item_text {
@@ -270,7 +312,7 @@ input {
 }
 
 .input_container div {
-    padding-bottom: 0.5rem;
+    padding-bottom: 1rem;
     font-weight: bold;
     font-size: large;
     text-decoration-line: underline;
@@ -404,6 +446,9 @@ input {
     padding-top: 0.3rem;
     padding-right: 0.2rem;
     padding-left: 0.2rem;
+}
+.deleteImg img {
+    height: 1.5rem;
 }
 
 .padding {
@@ -644,11 +689,27 @@ ul > li:last-child {
     
     
     .cta {
-        text-align: center;
-        width: 10rem;
+        /* text-align: center; */
+        width: auto;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        filter: drop-shadow(4px 4px 4px gray);
+        background: rebeccapurple;
+    }
+
+    .cta_item {
+        font-size: small;
+        width: auto;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        background: rebeccapurple;
+        border: rebeccapurple;
+        color: white;
+        border-radius: 5px;
+
     }
     
-    .cta, a.cta:visited {
+    /* .cta, a.cta:visited {
         border: 2px solid black;
         border-radius: 7px;
         padding: .3rem;
@@ -657,7 +718,7 @@ ul > li:last-child {
         background: rebeccapurple;
         color: white;
         font-size: 22px;
-    }
+    } */
     
     .cta:hover {
         filter: drop-shadow(4px 4px 4px rebeccapurple);
@@ -727,6 +788,7 @@ ul > li:last-child {
         border-color: rebeccapurple;
         border-radius: 5px;
         padding: 1rem;
+        margin: 0;
     }
     
     .item_text_input {
@@ -761,6 +823,7 @@ ul > li:last-child {
     }
     
     .item_box {
+        width: auto;
         height: auto;
         padding-right: 1rem;
         border-style: solid;
@@ -768,7 +831,8 @@ ul > li:last-child {
         border-color: rebeccapurple;
         border-radius: 5px;
         padding: 0.5rem;
-        margin: 0rem;
+        margin-bottom: 1rem;
+        margin: 0 0 0.5rem 0;
     }
     
     .item_box_form {
