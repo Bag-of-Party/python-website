@@ -244,9 +244,7 @@ input {
 
 .input_outer_container {
     width: 30rem;
-    /* margin-bottom: 2rem; */
     padding-top: 0rem;
-    /* height: auto; */
 }
 
 .item_form_input {
