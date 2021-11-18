@@ -1,4 +1,6 @@
-from flask import Flask, render_template, request, redirect, session, g
+
+from flask import Flask, render_template, request, redirect, session
+from flask_bcrypt import Bcrypt
 import psycopg2 
 import psycopg2.extras
 from psycopg2 import Error
@@ -8,16 +10,12 @@ import random
 import string
 import uuid
 import json
+import hashlib
 
 app = Flask(__name__)
+bcrypt = Bcrypt(app)
 
 DATABASE_URL = os.environ.get("DATABASE_URL", "dbname=postgres user=postgres password=mysecretpassword port=2345 host=127.0.0.1")
-
-def get_db():
-    if 'db' not in g:
-        g.db = psycopg2.connect(DATABASE_URL)
-
-    return g.db
 
 app.secret_key = "hello"
 
@@ -43,15 +41,20 @@ def signup():
         generated_url = request.form['generated_url']
         user_email = request.form['user_email']
         user_password = request.form['party_password']
-        print(generated_url, party_name, user_email, user_password)
-        conn = get_db()
+
+        hash_password = bcrypt.generate_password_hash(user_password).decode()
+
+        conn = psycopg2.connect(DATABASE_URL)
         cur = conn.cursor()
-        cur.execute("INSERT into parties (id, name, url, email, password) VALUES (%s, %s, %s, %s, %s)", (str(uniqid), str(party_name), str(generated_url), str(user_email), str(user_password)))
+        cur.execute("INSERT into parties (id, name, url, email, password) VALUES (%s, %s, %s, %s, %s)", (str(uniqid), str(party_name), str(generated_url), str(user_email), str(hash_password)))
         conn.commit()
         cur.close()
 
-        # return redirect(f'/{generated_url}', code=303)
-        return redirect(f'/login', code=303)
+        session['group_id'] = uniqid
+        print("session['group_id']")
+        print(session['group_id'])
+
+        return redirect(f'/{generated_url}', code=303) 
 
     return render_template('signup.html', page_class="signup") 
 
@@ -64,47 +67,41 @@ def login():
 
     if request.method == 'POST':
         app.logger.info('Post')
-        group_name_input = request.form['login_group_name']
+        group_name_input = request.form['login_group_email']
         password_input = request.form['login_password']
-        print(password_input, group_name_input)
 
         db_conn = get_db()
         cur = db_conn.cursor()
-        cur.execute("SELECT * from parties where name = %s", (group_name_input,)) 
+        cur.execute("SELECT * from parties where email = %s", (group_name_input,)) 
         data = cur.fetchone()
-        print(data)       
-        password = data[4]
+        hash_password = data[4]
         session['group_id'] = data[0]
         session['group_name'] = data[1]
         session['group_url'] = data[2]
         session['group_email'] = data[3]
-        session['group_password'] = data[4]
-        if password_input == password:
+        session['group_password'] = data[4] 
+
+        if bcrypt.check_password_hash(hash_password, password_input):
             return redirect(f'/{data[2]}', code=303) 
         return render_template('login.html')
 
-
     return render_template('login.html')
-
-
 
 @app.route("/<slug>/<party_name>", methods=['GET', 'POST'])
 def party(slug, party_name):
-    if 'group_password' in session:
+    if 'group_id' in session:
+        print("session['group_id'] in PARTY PAGE")
+        print(session['group_id'])
         uniqid = uuid.uuid4()
         uniqid2 = uuid.uuid4()
         url_request = request.args
         url = slug + "/" + party_name
-        print(url)
 
         db_conn = get_db()
         db_cur = db_conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        db_cur.execute("SELECT * FROM parties where url = %s", (url,))
-        print("Selecting all rows from parties row where the url given matches the url in selected the row")
+        db_cur.execute("SELECT * FROM parties where id = %s", (str(session['group_id']),))
         data = db_cur.fetchone()
         pageId = data["id"]
-        # print('***********')
-        # print(data)
 
         if "delete" in request.args:
             item_id = url_request["delete"]
