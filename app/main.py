@@ -66,13 +66,12 @@ def login():
         app.logger.info('Post')
         group_name_input = request.form['login_group_email']
         password_input = request.form['login_password']
-        print(password_input, group_name_input)
 
         db_conn = psycopg2.connect(DATABASE_URL)
         cur = db_conn.cursor()
         cur.execute("SELECT * from parties where email = %s", (group_name_input,)) 
         data = cur.fetchone()
-        print(data)       
+
         hash_password = data[4]
         session['group_id'] = data[0]
         session['group_name'] = data[1]
@@ -89,18 +88,20 @@ def login():
 @app.route("/<slug>/<party_name>", methods=['GET', 'POST'])
 def party(slug, party_name):
     if 'group_id' in session:
+
         uniqid = uuid.uuid4()
         uniqid2 = uuid.uuid4()
         url_request = request.args
         url = slug + "/" + party_name
-        print(url)
-        print(session['group_id'])
+
 
         db_conn = psycopg2.connect(DATABASE_URL)
         db_cur = db_conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
         db_cur.execute("SELECT * FROM parties where id = %s", (str(session['group_id']),))
         data = db_cur.fetchone()
+
         pageId = session['group_id']
+
 
         if "delete" in request.args:
             item_id = url_request["delete"]
