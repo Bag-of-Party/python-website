@@ -61,14 +61,11 @@
             <div class="item_box_name">
                 <div>
                     <div class="item_text">
-                      <div class="item_text_title">
+                      <span class="item_text_title">
                         <span>
-                          {{ item.name }}
+                          {{ item.name }}<a href="?delete={{ item.id }}" class="deleteImg"><img alt="bin" src="/static/images/icons/bin.png" /></a>
                         </span>
-                        <span>
-                          <a href="?delete={{ item.id }}" class="deleteImg"><img alt="bin" src="/static/images/icons/bin.png" /></a>
-                        </span>
-                    </div>
+                      </span>
                         <div class="item_form_input">
                             <button type="button" class="cta_item" data-toggle="modal" data-target="#exampleModal" data-whatever="{{ item.id }}">Add</button>
 

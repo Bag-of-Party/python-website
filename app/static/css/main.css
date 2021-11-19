@@ -1,5 +1,5 @@
 * {
-    transform-origin: 1 1;
+    transform: none;
 }
 
 html {
@@ -15,7 +15,7 @@ a, a:visited{
 }
 
 .item_text_title {
-    width: 10rem;
+    width: auto;
 }
 
 .image_banner {
@@ -167,16 +167,43 @@ input {
     font-size: large;
 }
 
-.item_box_cta_login {
-    border: 2px solid black;
-    border-radius: 7px;
+.inline {
+    justify-content: center;
+}
+
+.form_submit {
+    margin-left: 4rem;
+}
+
+.form_submit a {
     padding: .6rem;
-    padding-top: .8rem;
+    padding-top: .6rem;
     text-decoration: none;
     filter: drop-shadow(4px 4px 4px gray);
     background: rebeccapurple;
     color: white;
     font-size: large;
+    overflow: visible;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    /* margin-left: rem; */
+    width: auto;
+    border: 2px solid rebeccapurple;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    border-radius: 7px;
+    text-align: center;
+}
+
+.item_box_cta_login {
+    padding: .6rem;
+    padding-top: .8rem;
+    text-decoration: none;
+    border-radius: 5px;
+    filter: drop-shadow(4px 4px 4px gray);
+    background: rebeccapurple;
+    color: white;
+    font-size: small;
 }
 
 
@@ -195,9 +222,41 @@ input {
     border-radius: 5px;
 }
 
+.cta_add {
+    text-align: center;
+    width: 10rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    background-color: rebeccapurple;
+    color: white;
+    border-radius: 5px;
+    border-color: rebeccapurple;
+    margin-bottom: 2.2rem;
+    filter: drop-shadow(4px 4px 4px gray);
+}
+.cta_add a {
+    text-align: center;
+    /* padding: 0 1rem 1rem 0;
+    /* padding-right: 1rem;
+    padding-left: 1rem; */ 
+    width: auto;
+    background-color: rebeccapurple;
+    color: white;
+    border-radius: 5px;
+    border-color: rebeccapurple;
+    margin-bottom: 2.2rem;
+    filter: drop-shadow(4px 4px 4px gray);
+    text-decoration: none;
+}
+.cta_add:hover {
+    filter: drop-shadow(4px 4px 4px rebeccapurple);
+}
+
 .cta {
     text-align: center;
     width: 10rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
 }
 
 .cta, a.cta:visited {
@@ -254,7 +313,7 @@ input {
     padding: 0.5rem;
     border-radius: 7px;
 }
-.signup_form span {
+.signup_form p {
     width: 100%;
     border: 2px solid rebeccapurple;
     padding: 0.9rem;
@@ -267,6 +326,7 @@ input {
     height: 1rem;
     padding: 0.5rem;
     text-align: left;
+    margin: 0;
 }
 
 .input_outer_container {
@@ -280,6 +340,8 @@ input {
 }
 
 .item_input {
+    width: 50rem;
+    height: 100%;
     border-style: solid;
     border-color: rebeccapurple;
     border-radius: 5px;
@@ -307,6 +369,16 @@ input {
     width: 98%;
     height: 2rem;
     font-size: 1rem;
+}
+.item_text_input_textarea {
+    border-radius: 5px;
+    width: 98%;
+    height: 20rem;
+    font-size: 1rem;
+}
+
+.input_container textarea {
+    height: 15rem;
 }
 
 .item_text {
@@ -455,12 +527,15 @@ input {
 }
 
 .deleteImg {
-    padding-top: 0.3rem;
+    /* height: 2rem; */
+    margin-left: 1rem;
+    /* padding-top: 0.3rem; */
     padding-right: 0.2rem;
     padding-left: 0.2rem;
 }
 .deleteImg img {
-    height: 1.5rem;
+    height: 2rem;
+    padding-bottom: 0.2rem;
 }
 
 .padding {
@@ -545,6 +620,7 @@ input {
 }
 
 .signup_form_container {
+    /* padding-top: 2rem; */
     margin-top: 2rem;
     margin-left: 1rem;
     display: flex;
@@ -637,6 +713,40 @@ ul > li:last-child {
 }    
 
 @media only screen and (max-width: 600px) {
+    .items_container {
+        width: 100vw;
+        margin-left: 0;
+        margin-right: 0;
+        overflow-x: unset;
+    }
+
+    .inline {
+        justify-content: center;
+    }
+    
+    .form_submit {
+        margin-left: 4rem;
+    }
+    
+    .form_submit a {
+        padding: .6rem;
+        padding-top: .6rem;
+        text-decoration: none;
+        filter: drop-shadow(4px 4px 4px gray);
+        background: rebeccapurple;
+        color: white;
+        font-size: large;
+        overflow: visible;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        /* margin-left: rem; */
+        width: auto;
+        border: 2px solid rebeccapurple;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        border-radius: 7px;
+        text-align: center;
+    }
     .image_banner {
         margin-right: 0;
     }
@@ -694,7 +804,7 @@ ul > li:last-child {
         filter: drop-shadow(4px 4px 4px gray);
         background: rebeccapurple;
         color: white;
-        font-size: 14px;
+        font-size: 8px;
     }
     
     .item_box_cta_login:hover {
@@ -781,7 +891,7 @@ ul > li:last-child {
     }
     .signup_form span {
         width: 100%;
-        border: 2px solid rebeccapurple;
+        /* border: 2px solid rebeccapurple; */
         padding: 0.9rem;
         border-radius: 7px;
     }
@@ -804,12 +914,19 @@ ul > li:last-child {
         border-radius: 5px;
         padding: 1rem;
         margin: 0;
+        width: auto;
     }
     
     .item_text_input {
         border-radius: 5px;
         width: 98%;
         height: 2rem;
+        font-size: 1rem;
+    }
+    .item_text_input_textarea {
+        border-radius: 5px;
+        width: 98%;
+        height: 8rem;
         font-size: 1rem;
     }
     
@@ -842,7 +959,7 @@ ul > li:last-child {
         height: auto;
         padding-right: 1rem;
         border-style: solid;
-        border-width: 7px;
+        border-width: 2px;
         border-color: rebeccapurple;
         border-radius: 5px;
         padding: 0.5rem;
