@@ -1,35 +1,32 @@
 {% extends "base.html" %}
 {% block title %} Bag of Party {% endblock %}
 {% block content %}
-    <div class="party_page_header center">
+    <div class="party_page_header ">
         <div class="image_banner">
             <img src="/static/images/bag_of_party_logo.png" />
-                <h1>Welcome </h1>
-            <br />
-            <h3>Please Log-in Below</h3>
+                <h1>Welcome</h1>
+                <h1>Sign Up Below</h1>
             <br />
         </div>
-        <div>
-            <div class="signup_form_container">
-                <form class="signup_form" method="POST">
-                  <div id="login_title">Please Log-In With Your Password Below</div>
-                  <div>
-                      <label>Party Email: </label>
-                      <input type="text" name="login_group_email" id="user_input" oninput="showInput()" />
-                  </div>
-                  <div>
-                      <label>Party Password: </label>
-                      <input type="text" name="login_password" />
-                  </div>
-                  <div>
-                      <input class="cta" type="submit" value="Log in?">
-                  </div>
-                  <p class="">
-                    Dont have an account?
-                    <span class="item_box_cta_login button"><a href="/signup">Sign-Up?</a></span>
-                    </p>
-              </form>
-            </div>
+        <div class="signup_form_container">
+            <form class="signup_form" method="POST">
+                <div id="login_title">Please Log-In</div>
+                <div>
+                    <label>Party Email: </label>
+                    <input type="text" name="login_group_email" id="user_input" oninput="showInput()" />
+                </div>
+                <div>
+                    <label>Party Password: </label>
+                    <input type="text" name="login_password" />
+                </div>
+                <div>
+                    <input class="cta" type="submit" value="Log in?">
+                </div>
+                <p class="">
+                    Already have an account?
+                    <span class="item_box_cta_login form_button"><a href="/signup">Sign-Up?</a></span>
+                </p>
+            </form>
         </div>
     </div>
 {% endblock %}

@@ -132,6 +132,18 @@ input {
     max-width: 50rem;
 }
 
+.form_button {
+    overflow: visible;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+    text-decoration: none;
+    color: white;
+    margin: 2rem;
+    text-decoration: none;
+    font-size: x-large;
+}
+
 .button {
     overflow: visible;
     margin-top: 1rem;
@@ -164,7 +176,7 @@ input {
     filter: drop-shadow(4px 4px 4px gray);
     background: rebeccapurple;
     color: white;
-    font-size: 14px;
+    font-size: large;
 }
 
 
@@ -542,9 +554,9 @@ input {
     padding: 0.5rem 1rem 0.5rem 0.5rem; 
     color: rebeccapurple;
 }
-.signup_form_container span {
+/* .signup_form_container span {
     margin-left: 2rem;
-}
+} */
 
 .password_form {
     margin-top: 5rem;
@@ -625,6 +637,9 @@ ul > li:last-child {
 }    
 
 @media only screen and (max-width: 600px) {
+    .image_banner {
+        margin-right: 0;
+    }
     .party_page_header {
         text-align: center;
         display: grid;
@@ -732,7 +747,7 @@ ul > li:last-child {
     
     .signup_form_container {
         margin-left: 0rem;
-        height: 29rem;
+        height: auto;
         display: flex;
         border-style: solid;
         border-color: rebeccapurple;
