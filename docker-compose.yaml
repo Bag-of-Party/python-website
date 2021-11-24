@@ -1,0 +1,8 @@
+version: "3.4"
+services:
+  postgres:
+    image: "postgres:latest"
+    environment:
+      POSTGRES_PASSWORD: mysecretpassword
+    ports:
+      - "2345:5432"
