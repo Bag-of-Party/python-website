@@ -1,5 +1,5 @@
 * {
-    transform: none;
+    
 }
 
 html {
@@ -20,6 +20,7 @@ a, a:visited{
 
 .image_banner {
     margin-right: 4rem;
+    margin-top: 4rem;
 }
 
 body {
@@ -60,15 +61,63 @@ body {
     font-size: x-large;
 }
 
-input {
+.lable {
+    font-weight: bold;
+    font-size: large;
+}
+
+.large_font {
+    font-size: large;
+}
+
+.text_center {
+    text-align: center;
+}
+
+.r_colour {
+    color: rebeccapurple;
+}
+
+.image_center {
+    align-items: center;
+}
+
+.input {
     font-family: sans-serif;
 }
 
 .party_page_header {
-    text-align: center;
+    /* zoom: 2;
+    -moz-transform: scale(2);
+    -moz-transform-origin: 0 0;
+    -o-transform: scale(2);
+    -o-transform-origin: 0 0;
+    -webkit-transform: scale(2);
+    -webkit-transform-origin: 0 0;
+    transform: scale(2); 
+    transform-origin: 0 0;  */
+
+    /* width: 100% !important;
+    height: 100% !important; */
+    
+    /* text-align: center; */
+    display: grid;
+    grid-template-columns: auto auto auto;
+    margin-bottom: 2rem;
+}
+
+.items_list_grid {
+    width: 30rem;
     display: grid;
     grid-template-columns: auto auto;
-    margin-bottom: 2rem;
+}
+
+.item_list_container {
+    color: rebeccapurple;
+    border: rebeccapurple solid 3px;
+    border-radius: 7px;
+    margin-left: 4.5rem;
+    padding: 1rem;
 }
 
 .terms_list li {
@@ -97,7 +146,7 @@ input {
 }
 
 .title_logo_box {
-    border: rebeccapurple solid 2px;
+    border: rebeccapurple solid 3px;
     border-radius: 7px;
     padding: 1rem;
 }
@@ -160,7 +209,7 @@ input {
     color: white;
     margin: 2rem;
     text-decoration: none;
-    font-size: x-large;
+    /* font-size: x-large; */
 }
 .button span {
     color: white;
@@ -193,12 +242,14 @@ input {
     padding-left: 2rem;
     padding-right: 2rem;
     border-radius: 7px;
-    text-align: center;
+    /* text-align: center; */
 }
 
 .item_box_cta_login {
-    padding: .6rem;
-    padding-top: .8rem;
+    /* padding: .6rem; */
+    /* padding-top: .8rem; */
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
     text-decoration: none;
     border-radius: 5px;
     filter: drop-shadow(4px 4px 4px gray);
@@ -224,10 +275,12 @@ input {
 }
 
 .cta_add {
-    text-align: center;
+    /* text-align: center; */
     width: 10rem;
     padding-right: 1rem;
     padding-left: 1rem;
+    padding-top: 0.1rem;
+    padding-bottom: 0.2rem;
     background-color: rebeccapurple;
     color: white;
     border-radius: 5px;
@@ -236,7 +289,7 @@ input {
     filter: drop-shadow(4px 4px 4px gray);
 }
 .cta_add a {
-    text-align: center;
+    /* text-align: center; */
     /* padding: 0 1rem 1rem 0;
     /* padding-right: 1rem;
     padding-left: 1rem; */ 
@@ -254,7 +307,7 @@ input {
 }
 
 .cta {
-    text-align: center;
+    /* text-align: center; */
     width: 10rem;
     padding-right: 1rem;
     padding-left: 1rem;
@@ -341,14 +394,14 @@ input {
 }
 
 .item_input {
-    width: 35rem;
+    width: 30rem;
     height: 100%;
     border-style: solid;
     border-color: rebeccapurple;
     border-radius: 5px;
     padding: 1rem;
     margin-left: 1rem;
-    padding-top: 10rem;
+    /* padding-top: 10rem; */
     padding-bottom: 12rem;
 }
 
@@ -585,7 +638,7 @@ input {
 }
 
 .password_button {
-    text-align: center;
+    /* text-align: center; */
     width: 10rem;
 }
 
@@ -621,8 +674,9 @@ input {
 }
 
 .signup_form_container {
-    /* padding-top: 2rem; */
-    margin-top: 2rem;
+    /* height: 20rem; */
+    /* padding-top: 8rem; */
+    margin-top: 6rem;
     margin-left: 1rem;
     display: flex;
     border-style: solid;
@@ -659,7 +713,7 @@ input {
 }
 
 .password_button {
-    text-align: center;
+    /* text-align: center; */
     width: 10rem;
 }
 
@@ -746,13 +800,13 @@ ul > li:last-child {
         padding-left: 2rem;
         padding-right: 2rem;
         border-radius: 7px;
-        text-align: center;
+        /* text-align: center; */
     }
     .image_banner {
         margin-right: 0;
     }
     .party_page_header {
-        text-align: center;
+        /* text-align: center; */
         display: grid;
         grid-template-columns: auto;
     }
