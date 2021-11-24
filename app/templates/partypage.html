@@ -61,28 +61,44 @@
     </div>
 {% endblock %}
 {% block content %}
-    <div class="items_container">
+    <!-- <div class="items_container">
         <div class="items_grid">
-            <div class="container">
-                <a href="#modal-opened" class="link-1" id="modal-closed">Open Modal</a>
+            <div class="container"> -->
+            {% for item in root_items %}
+                {% include 'item.html' %}
+            {% endfor %}
 
-                <div class="modal-container" id="modal-opened">
-                <div class="modal">
-
-                    <div class="modal__details">
-                    <h1 class="modal__title">Modal Title</h1>
-                    <p class="modal__description">Sentence that will tell user what this modal is for or something.</p>
+                <!-- <div class="email" onclick="this.classList.add('expand')">
+                  <div class="from">
+                    <div class="from-contents">
+                      <div class="avatar me"></div>
+                      <div class="name">Mikael Ainalem</div>
                     </div>
+                  </div>
+                  <div class="to">
+                    <div class="to-contents">
+                      <div class="top">
+                        <div class="avatar-large me"></div>
+                        <div class="name-large">Mikael Ainalem</div>
+                        <div class="x-touch" onclick="document.querySelector('.email').classList.remove('expand');event.stopPropagation();">
+                          <div class="x">
+                            <div class="line1"></div>
+                            <div class="line2"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="bottom">
+                        <div class="row">
+                            hello
+                        </div>
+                        <div class="row">
 
-                    <p class="modal__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis ex dicta maiores libero minus obcaecati iste optio, eius labore repellendus.</p>
-
-                    <button class="modal__btn">Button &rarr;</button>
-
-                    <a href="#modal-closed" class="link-2"></a>
-
-                </div>
-                </div>
-            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+            <!-- </div>
         </div>
-    </div>
+    </div> -->
 {% endblock %}

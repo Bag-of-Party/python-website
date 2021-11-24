@@ -9,9 +9,6 @@
                           {{ item.name }}<a href="?delete={{ item.id }}" class="deleteImg"><img alt="bin" src="/static/images/icons/bin.png" /></a>
                         </span>
                       </span>
-                        <div class="item_form_input">
-                            <button type="button" class="cta_item" data-toggle="modal" data-target="#exampleModal" data-whatever="{{ item.id }}">Add</button>
-                        </div>
                         {% include 'modal.html' %}
                     </div>
                 </div>
