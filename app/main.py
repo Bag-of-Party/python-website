@@ -20,7 +20,7 @@ app.secret_key = "hello"
 
 @app.route("/")
 def home():
-    return render_template('home.html', page_class="home") 
+    return render_template('home.html', page_class="home")
         
 
 @app.route("/signup", methods=['GET', 'POST'])
@@ -33,15 +33,9 @@ def signup():
         generated_url = request.form['generated_url']
         user_email = request.form['user_email']
         user_password = request.form['party_password']
-        print(generated_url, party_name, user_email, user_password)
-
+        
         hash_password = bcrypt.generate_password_hash(user_password).decode()
-
-        print("test")
-        print(hash_password)
-
         session['group_id'] = uniqid
-        print(session['group_id'])
 
         conn = psycopg2.connect(DATABASE_URL)
         cur = conn.cursor()
@@ -78,6 +72,8 @@ def login():
         session['group_url'] = data[2]
         session['group_email'] = data[3]
         session['group_password'] = data[4] 
+
+        print(hash_password)
 
         if bcrypt.check_password_hash(hash_password, password_input):
             return redirect(f'/{data[2]}', code=303) 
@@ -127,8 +123,12 @@ def party(slug, party_name):
         db_cur.execute("SELECT * FROM items where party_id = %s", (str(pageId),))
         page_items = db_cur.fetchall()
 
+        print("page_items")
+        print(page_items)
+
         items_without_container_id = []
         items_by_id = {}
+        items_names = []
 
         for item in page_items:
             items_by_id[item['id']] = {
@@ -139,6 +139,26 @@ def party(slug, party_name):
                 'container_id': item['container_id'],
                 'contents': []
             }
+        
+        for item in page_items:
+            print(item['name'])
+            items_names.append(item['name'])
+        
+        # print("page_items2222")
+        # print(items_by_id)
+
+        # for i in items_by_id:
+        #     print("**********")
+        #     print(i)
+        # print("items_names")
+        # print(items_names)
+        # print("page_items")
+        # print(page_items)
+
+        # names_group = []
+
+        # print("names_group")
+        # print(names_group)
 
         for item in page_items:
             if item['container_id']:
@@ -155,7 +175,7 @@ def party(slug, party_name):
         db_cur.close()
         db_conn.close()
 
-        return render_template('partypage.html', data=data, page_items=page_items, root_items=sorted_list )
+        return render_template('partypage.html', data=data, page_items=page_items, root_items=sorted_list, names=items_names )
     return render_template('login.html')
 
 @app.route("/action",methods=["POST","GET"])
