@@ -1,9 +1,25 @@
 {% block scripts %}
 
   <script>
-    $('#exampleModal').on('show.bs.modal', function (event) {
-      var button = $(event.relatedTarget)
+    // var btn = document.querySelector('#exampleModal');
+    // btn.addEventListener('click', function () {
+    //   console.log("CLICKED");
+    //   var recipient = button.data('whatever')
+    //   // var modal = $(this)
+    //   // modal.find('.modal-body input').val(recipient)
+    //   console.log(recipient);
+    // });
+    // function method1(){
+    //   console.log("Method 1");
+    // }
+    // $('#exampleModal').on('show.bs.modal', function (event) {
+    var btn = document.getElementById('exampleModal');
+    btn.addEventListener('click', function () {
+      console.log("CLICKED")
+      var button = (event.relatedTarget)
+      console.log("CLICKED2")
       var recipient = button.data('whatever')
+      console.log("CLICKED3")
       var modal = $(this)
       // modal.find('.modal-body input').val(recipient)
       console.log(recipient);
@@ -53,10 +69,9 @@
     })
   </script>
 {% endblock %}
-<div class="email" onclick="this.classList.add('expand')">
+<div class="email" id="exampleModal" onclick="this.classList.add('expand'); ">
   <div class="from">
     <div class="from-contents">
-      <div class="avatar me"></div>
       <div class="name">Add Item</div>
     </div>
   </div>
