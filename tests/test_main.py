@@ -60,8 +60,6 @@ def test_signup_post_database_insertion(monkeypatch):
     cur.close()
     db_conn.close()
 
-    # hash_password = bcrypt.generate_password_hash(user_password).decode()
-
     test_password = bcrypt.check_password_hash(data[4], user_password)
 
     print(data)
