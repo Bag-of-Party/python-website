@@ -22,6 +22,14 @@ app.secret_key = "hello"
 def home():
     return render_template('home.html', page_class="home")
         
+def create_party(group_id, party_name, generated_url, user_email, hash_password):
+        conn = psycopg2.connect(DATABASE_URL)
+        cur = conn.cursor()
+        cur.execute("INSERT into parties (id, name, url, email, password) VALUES (%s, %s, %s, %s, %s)", (str(group_id), str(party_name), str(generated_url), str(user_email), str(hash_password)))
+        conn.commit()
+        cur.close()
+        conn.close()
+
 
 @app.route("/signup", methods=['GET', 'POST'])
 def signup():
@@ -29,6 +37,8 @@ def signup():
     uniqid2 = uuid.uuid4()
     if request.method == 'POST':
         app.logger.info('Post')
+        # FIXME : handle empty pathways 
+        # TODO : add ability to not add password
         party_name = request.form['party_name']
         generated_url = request.form['generated_url']
         user_email = request.form['user_email']
@@ -37,13 +47,7 @@ def signup():
         hash_password = bcrypt.generate_password_hash(user_password).decode()
         session['group_id'] = uniqid
 
-        conn = psycopg2.connect(DATABASE_URL)
-        cur = conn.cursor()
-        cur.execute("INSERT into parties (id, name, url, email, password) VALUES (%s, %s, %s, %s, %s)", (str(session['group_id']), str(party_name), str(generated_url), str(user_email), str(hash_password)))
-        conn.commit()
-        cur.close()
-        conn.close()
-
+        create_party(session['group_id'], party_name, generated_url, user_email, hash_password)
 
         return redirect(f'/{generated_url}', code=303) 
 

@@ -1,7 +1,7 @@
 import psycopg2 
 import psycopg2.extras
 from psycopg2 import Error
-from app.main import home, signup, app, DATABASE_URL, bcrypt, uuid
+from app.main import home, signup, create_party, app, DATABASE_URL, bcrypt, uuid
 from unittest.mock import Mock
 
 def test_home(monkeypatch):
@@ -30,43 +30,46 @@ def test_signup_post_redirect(monkeypatch):
     assert response.status_code == 303
     assert response.headers["location"] == "/4u3u/test"
 
-    
-def test_signup_post_database_insertion(monkeypatch):
-  with app.test_request_context('/signup', method = "POST", data = {
-    "party_name": "test",
-    "generated_url": "2u3u/test",
-    "user_email": "test",
-    "party_password": "test"
-  }):
 
-    party_name = "test"
-    generated_url = "2u3u/test"
-    user_email = "test"
-    user_password = "test"
-
+def test_create_party_database_insertion():
     uniqid = uuid.uuid4()
-
-    testuniqid = Mock(return_value=uniqid)
-
-    monkeypatch.setattr("uuid.uuid4", testuniqid)
 
     db_conn = psycopg2.connect(DATABASE_URL)
     cur = db_conn.cursor()
     cur.execute("TRUNCATE TABLE parties")
     db_conn.commit()
-    signup()
+    create_party(uniqid, "test_name", "2u3u/test", "test_email", "test_password")
     cur.execute("SELECT * from parties where url = '2u3u/test'")
     data = cur.fetchone()
     cur.close()
     db_conn.close()
 
-    test_password = bcrypt.check_password_hash(data[4], user_password)
+    assert data == (str(uniqid), 'test_name', '2u3u/test', 'test_email', "test_password")
 
-    print(data)
+    
+def test_signup_POSTreq_creates_party_input(monkeypatch):
+  with app.test_request_context('/signup', method = "POST", data = {
+    "party_name": "test_name",
+    "generated_url": "2u3u/test",
+    "user_email": "test_email",
+    "party_password": "test"
+  }):
 
-    assert data[0:4] == (str(uniqid), 'test', '2u3u/test', 'test')
+    create_party = Mock()
+    monkeypatch.setattr("app.main.create_party", create_party)
 
+    uniqid = uuid.uuid4()
+    testuniqid = Mock(return_value = uniqid)
+    monkeypatch.setattr("uuid.uuid4", testuniqid)
 
+    
+    hash_password = b"1234"
+    test_password = Mock(return_value = hash_password)
+    monkeypatch.setattr("app.main.bcrypt.generate_password_hash", test_password)
+
+    signup()
+
+    create_party.assert_called_with(uniqid, "test_name", "2u3u/test", "test_email", "1234")
 
 
 # def test_signup_post_redirect(monkeypatch):
