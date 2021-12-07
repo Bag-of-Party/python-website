@@ -53,34 +53,42 @@ def signup():
 
     return render_template('signup.html', page_class="signup") 
 
-@app.route("/login", methods=['GET', 'POST'])
-def login():
+def session_pop():
     session.pop('group_id', None)
     session.pop('group_name', None)
     session.pop('group_url', None)
     session.pop('group_password', None)
 
+
+def login_data_check(group_name_input):
+    db_conn = psycopg2.connect(DATABASE_URL)
+    cur = db_conn.cursor()
+    cur.execute("SELECT * from parties where email = %s", (group_name_input,)) 
+    data = cur.fetchone()
+    return data
+
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    session_pop()
     if request.method == 'POST':
         app.logger.info('Post')
+
         group_name_input = request.form['login_group_email']
+        
         password_input = request.form['login_password']
 
-        db_conn = psycopg2.connect(DATABASE_URL)
-        cur = db_conn.cursor()
-        cur.execute("SELECT * from parties where email = %s", (group_name_input,)) 
-        data = cur.fetchone()
+        data = login_data_check(group_name_input)
 
-        hash_password = data[4]
         session['group_id'] = data[0]
         session['group_name'] = data[1]
         session['group_url'] = data[2]
         session['group_email'] = data[3]
-        session['group_password'] = data[4] 
+        session['group_password'] = data[4]
 
-        print(hash_password)
+        url = session['group_url']
 
-        if bcrypt.check_password_hash(hash_password, password_input):
-            return redirect(f'/{data[2]}', code=303) 
+        if bcrypt.check_password_hash(session['group_password'], password_input):
+            return redirect(f'/{url}', code=303) 
         return render_template('login.html')
 
     return render_template('login.html')

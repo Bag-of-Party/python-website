@@ -1,8 +1,10 @@
 import psycopg2 
 import psycopg2.extras
 from psycopg2 import Error
-from app.main import home, signup, create_party, app, DATABASE_URL, bcrypt, uuid
+from app.main import home, signup, login, create_party, login_data_check, app, DATABASE_URL, bcrypt, uuid
 from unittest.mock import Mock
+
+uniqid = uuid.uuid4()
 
 def test_home(monkeypatch):
   with app.test_request_context('/'):
@@ -32,7 +34,6 @@ def test_signup_post_redirect(monkeypatch):
 
 
 def test_create_party_database_insertion():
-    uniqid = uuid.uuid4()
 
     db_conn = psycopg2.connect(DATABASE_URL)
     cur = db_conn.cursor()
@@ -72,13 +73,63 @@ def test_signup_POSTreq_creates_party_input(monkeypatch):
     create_party.assert_called_with(uniqid, "test_name", "2u3u/test", "test_email", "1234")
 
 
+
+# def test_login_data_check(monkeypatch):
+
+#     group_email = "test_email"
+#     group_name_input = Mock(return_value = group_email)
+#     monkeypatch.setattr("app.main.group_name_input", group_name_input)
+
+#     login_data_check()
+
+#     assert data == (str(uniqid), "test_name", "2u3u/test", "test_email", "1234")
+
+
+# def test_login_routing(monkeypatch):
+#   with app.test_request_context('/login', method = "POST", data = {
+#     "login_group_email": "test_email",
+#     "login_password": "test_password"
+#   }):
+
+#     # group_name_input = Mock()
+#     # monkeypatch.setattr("app.main.group_name_input", group_name_input)
+#     # group_name_input.assert_called_with("test_email")
+
+#     response = login()
+#     assert response.status_code == 303
+#     assert response.header["location"] == "/2u3u/test"
+    # render_template = Mock()
+    # monkeypatch.setattr("app.main.render_template", render_template)
+    # response = login()
+    # render_template.assert_called_with('login.html', page_class="login")
+
+
+
+def test_login_data_check():
+    db_conn = psycopg2.connect(DATABASE_URL)
+    cur = db_conn.cursor()
+    login_data_check("test_email")
+    cur.execute("SELECT * from parties where email = %s", ("test_email",)) 
+    test_data = cur.fetchone()
+    # print(data)
+
+    assert test_data == (str(uniqid), "test_name", '2u3u/test', 'test_email', 'test_password')
+
+    # How come when i remove the test_password it removes the commas
+    # assert data == (str(uniqid), "test_name", '2u3u/test', 'test_email')
+    
+
+
 # def test_signup_post_redirect(monkeypatch):
-#   with app.test_request_context('signup'):
-#     render_template = Mock()
-    # monkeypatch.setattr("app.main.render")
-
-  
-
+#   with app.test_request_context('/signup', method = "POST", data = {
+#     "party_name": "test",
+#     "generated_url": "4u3u/test",
+#     "user_email": "test",
+#     "party_password": "test"
+#   }):
+#     response = signup()
+#     assert response.status_code == 303
+#     assert response.headers["location"] == "/4u3u/test"
 
 
 
