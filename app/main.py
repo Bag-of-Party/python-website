@@ -59,11 +59,18 @@ def session_pop():
     session.pop('group_url', None)
     session.pop('group_password', None)
 
+def session_create(data):
+    session['group_id'] = data[0]
+    session['group_name'] = data[1]
+    session['group_url'] = data[2]
+    session['group_email'] = data[3]
+    session['group_password'] = data[4]
 
-def login_data_check(group_name_input):
+
+def login_data_check(group_email_input):
     db_conn = psycopg2.connect(DATABASE_URL)
     cur = db_conn.cursor()
-    cur.execute("SELECT * from parties where email = %s", (group_name_input,)) 
+    cur.execute("SELECT * from parties where email = %s", (group_email_input,)) 
     data = cur.fetchone()
     return data
 
@@ -73,35 +80,42 @@ def login():
     if request.method == 'POST':
         app.logger.info('Post')
 
-        group_name_input = request.form['login_group_email']
+        group_email_input = request.form['login_group_email']
         
         password_input = request.form['login_password']
 
-        data = login_data_check(group_name_input)
+        data = login_data_check(group_email_input)
 
-        session['group_id'] = data[0]
-        session['group_name'] = data[1]
-        session['group_url'] = data[2]
-        session['group_email'] = data[3]
-        session['group_password'] = data[4]
+        print(data)
+
+        session_create(data)
 
         url = session['group_url']
 
-        if bcrypt.check_password_hash(session['group_password'], password_input):
+        if bcrypt.check_password_hash(data[4], password_input):
             return redirect(f'/{url}', code=303) 
         return render_template('login.html')
 
     return render_template('login.html')
+
+
+
+# def party_check(group_id):
+#         db_conn = psycopg2.connect(DATABASE_URL)
+#         db_cur = db_conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+#         db_cur.execute("SELECT * FROM parties where id = %s", (str(session['group_id']),))
+#         data = db_cur.fetchone()
 
 @app.route("/<slug>/<party_name>", methods=['GET', 'POST'])
 def party(slug, party_name):
     if 'group_id' in session:
 
         uniqid = uuid.uuid4()
-        uniqid2 = uuid.uuid4()
+
         url_request = request.args
         url = slug + "/" + party_name
 
+        group_id = session['group_id']
 
         db_conn = psycopg2.connect(DATABASE_URL)
         db_cur = db_conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
@@ -109,7 +123,6 @@ def party(slug, party_name):
         data = db_cur.fetchone()
 
         pageId = session['group_id']
-
 
         if "delete" in request.args:
             item_id = url_request["delete"]
@@ -155,22 +168,6 @@ def party(slug, party_name):
         for item in page_items:
             print(item['name'])
             items_names.append(item['name'])
-        
-        # print("page_items2222")
-        # print(items_by_id)
-
-        # for i in items_by_id:
-        #     print("**********")
-        #     print(i)
-        # print("items_names")
-        # print(items_names)
-        # print("page_items")
-        # print(page_items)
-
-        # names_group = []
-
-        # print("names_group")
-        # print(names_group)
 
         for item in page_items:
             if item['container_id']:
