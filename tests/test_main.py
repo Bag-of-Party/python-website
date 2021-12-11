@@ -1,8 +1,10 @@
+from flask import session
 import psycopg2 
 import psycopg2.extras
 import pytest
+import uuid
 from psycopg2 import Error
-from app.main import home, signup, login, create_party, party, login_data_check, app, DATABASE_URL, bcrypt, uuid
+from app.main import home, signup, login, create_party, party, login_data_check, app, DATABASE_URL, bcrypt
 from unittest.mock import Mock
 
 uniqid = uuid.uuid4()
@@ -130,6 +132,24 @@ def test_login_data_check(db_conn):
     data =  login_data_check("test_email")
 
     assert data == (str(uniqid), "test_name", '2u3u/test', 'test_email', test_password)
+
+
+def test_login_fail_session_empty(monkeypatch, db_conn):
+    with app.test_request_context('/login', method = "POST", data = {
+        "login_group_email": "test_email",
+        "login_password": "fail_password"
+    }):
+
+        test_password = bcrypt.generate_password_hash("test_password").decode()
+
+        create_party(uniqid, "test_name", "2u3u/test", "test_email", test_password)
+
+        render_template = Mock()
+        monkeypatch.setattr("app.main.render_template", render_template)
+
+        response = login()
+        
+        assert 'group_id' not in session
 
     # How come when i remove the test_password it removes the commas
     # assert data == (str(uniqid), "test_name", '2u3u/test', 'test_email')

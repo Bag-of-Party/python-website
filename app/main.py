@@ -55,16 +55,9 @@ def signup():
 
 def session_pop():
     session.pop('group_id', None)
-    session.pop('group_name', None)
-    session.pop('group_url', None)
-    session.pop('group_password', None)
 
 def session_create(data):
     session['group_id'] = data[0]
-    session['group_name'] = data[1]
-    session['group_url'] = data[2]
-    session['group_email'] = data[3]
-    session['group_password'] = data[4]
 
 
 def login_data_check(group_email_input):
@@ -86,18 +79,14 @@ def login():
 
         data = login_data_check(group_email_input)
 
-        print(data)
-
-        session_create(data)
-
-        url = session['group_url']
+        url = data[2]
 
         if bcrypt.check_password_hash(data[4], password_input):
+            session_create(data)
             return redirect(f'/{url}', code=303) 
         return render_template('login.html')
 
     return render_template('login.html')
-
 
 
 # def party_check(group_id):
@@ -108,6 +97,7 @@ def login():
 
 @app.route("/<slug>/<party_name>", methods=['GET', 'POST'])
 def party(slug, party_name):
+    print(session)
     if 'group_id' in session:
 
         uniqid = uuid.uuid4()
