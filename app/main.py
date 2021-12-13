@@ -95,6 +95,14 @@ def login():
 #         db_cur.execute("SELECT * FROM parties where id = %s", (str(session['group_id']),))
 #         data = db_cur.fetchone()
 
+def add_items(uniqid, pageId, newItem, itemInfo, container_id):
+    db_conn = psycopg2.connect(DATABASE_URL)
+    db_cur = db_conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    db_cur.execute("INSERT into items (id, party_id, name, info, container_id) VALUES (%s, %s, %s, %s, %s)",(str(uniqid), str(pageId), str(newItem), str(itemInfo), container_id))
+    db_conn.commit()
+    db_cur.close()
+    db_conn.close()
+
 @app.route("/<slug>/<party_name>", methods=['GET', 'POST'])
 def party(slug, party_name):
     print(session)
@@ -112,6 +120,8 @@ def party(slug, party_name):
         db_cur.execute("SELECT * FROM parties where id = %s", (str(session['group_id']),))
         data = db_cur.fetchone()
 
+        group_data = data
+
         pageId = session['group_id']
 
         if "delete" in request.args:
@@ -120,19 +130,13 @@ def party(slug, party_name):
             db_conn.commit()
             return redirect(f'/{url}', code=303)
 
+        # FIXME after adding item on page refresh items added again
         if request.method == 'POST':
             app.logger.info('Post')
             newItem = request.form['add_item']
             itemInfo = request.form['add_item_info']
-            print('inside button')
-            print(newItem)
-            print(url)
-            print(pageId)
             container_id = request.form.get("container_id")
-            db_cur.execute("INSERT into items (id, party_id, name, info, container_id) VALUES (%s, %s, %s, %s, %s)",(str(uniqid), str(pageId), str(newItem), str(itemInfo), container_id))
-            db_conn.commit()
-            db_cur.close()
-            db_conn.close()
+            add_items(uniqid, pageId, newItem, itemInfo, container_id)
             return redirect(f'/{url}', code=303)
 
         db_cur.execute("SELECT * FROM items where party_id = %s", (str(pageId),))
