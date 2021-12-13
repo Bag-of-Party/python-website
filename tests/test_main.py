@@ -19,6 +19,7 @@ def db_conn():
     yield db_conn
     db_conn.close()
 
+
 def test_home(monkeypatch):
     with app.test_request_context('/'):
         render_template = Mock()
@@ -114,7 +115,6 @@ def test_login_fail_routing(monkeypatch, db_conn):
         render_template.assert_called_with('login.html')
 
 
-
 def test_login_bypass_routing(monkeypatch):
     with app.test_request_context('/login'):
         render_template = Mock()
@@ -150,25 +150,17 @@ def test_login_fail_session_empty(monkeypatch, db_conn):
         response = login()
         
         assert 'group_id' not in session
-
-    # How come when i remove the test_password it removes the commas
-    # assert data == (str(uniqid), "test_name", '2u3u/test', 'test_email')
     
 
-# def test_party_page_routing_outof_session(slug, party_name):
-#   with app.test_request_context('2u3u','test'):
+def test_party_page_routing_out_of_session(db_conn, monkeypatch):
+    with app.test_request_context("/1j5p/party_name"):
+        render_template = Mock()
+        monkeypatch.setattr("app.main.render_template", render_template)
 
-#     # session['group_id'] = "wrong"
-#     value = "wrong"
-#     session = Mock(return_value = value)
-#     monkeypatch.setattr("app.main.session", session)
+        response = party("1j5p", "party_name")
 
-#     render_template = Mock()
-#     monkeypatch.setattr("app.main.render_template", render_template)
+        render_template.assert_called_with('login.html')
 
-#     response = party()
-
-#     render_template.assert_called_with('login.html', page_class="login")
 
 
 
