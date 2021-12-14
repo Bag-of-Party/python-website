@@ -83,6 +83,8 @@ def login():
 
         if bcrypt.check_password_hash(data[4], password_input):
             session_create(data)
+            print("session")
+            print(session)
             return redirect(f'/{url}', code=303) 
         return render_template('login.html')
 
@@ -105,13 +107,16 @@ def add_items(uniqid, pageId, newItem, itemInfo, container_id):
 
 @app.route("/<slug>/<party_name>", methods=['GET', 'POST'])
 def party(slug, party_name):
-    print(session)
     if 'group_id' in session:
+        print("I AM HERE INDISE MEEEEE")
 
         uniqid = uuid.uuid4()
 
         url_request = request.args
         url = slug + "/" + party_name
+
+        print("request.args")
+        print(request.args)
 
         group_id = session['group_id']
 
@@ -128,6 +133,7 @@ def party(slug, party_name):
             item_id = url_request["delete"]
             db_cur.execute("DELETE from items where id = %s", (item_id,))
             db_conn.commit()
+            print("IM IN DELETE")
             return redirect(f'/{url}', code=303)
 
         # FIXME after adding item on page refresh items added again
