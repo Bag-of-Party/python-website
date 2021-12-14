@@ -131,10 +131,14 @@ def party(slug, party_name):
 
         if "delete" in request.args:
             item_id = url_request["delete"]
+            print("item_id")
+            print(item_id)
             db_cur.execute("DELETE from items where id = %s", (item_id,))
             db_conn.commit()
-            print("IM IN DELETE")
+            print("IM AT THE END DELETE")
             return redirect(f'/{url}', code=303)
+        
+        print("IM AFTER AT THE END DELETE")
 
         # FIXME after adding item on page refresh items added again
         if request.method == 'POST':
@@ -183,6 +187,14 @@ def party(slug, party_name):
         
         db_cur.close()
         db_conn.close()
+        print("data")
+        print(data)
+        print("page_items")
+        print(page_items)
+        print("root_items")
+        print(sorted_list)
+        print("names")
+        print(items_names)
 
         return render_template('partypage.html', data=data, page_items=page_items, root_items=sorted_list, names=items_names )
     return render_template('login.html')

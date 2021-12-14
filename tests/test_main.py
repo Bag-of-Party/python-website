@@ -177,7 +177,73 @@ def test_party_page_routing_out_of_session(db_conn_parties, monkeypatch):
 
         render_template.assert_called_with('login.html')
 
-# def test_party_page_routing_in_session(db_conn_items, db_conn_parties, monkeypatch):
+def test_party_page_routing_in_session_no_items(db_conn_items, db_conn_parties, monkeypatch):
+    uniqid = uuid.uuid4()
+    test_password = bcrypt.generate_password_hash("test_password").decode()
+    create_party(uniqid, "test_name", "2u3u/test", "test_email", test_password)
+    
+    with app.test_request_context("/2u3u/test"):
+
+        render_template = Mock()
+        monkeypatch.setattr("app.main.render_template", render_template)
+
+        session['group_id'] = str(uniqid)
+
+        party("2u3u", "test")
+
+        render_template.assert_called_with('partypage.html', data= [str(uniqid), 'test_name', '2u3u/test', 'test_email', test_password], page_items=[], root_items=[], names=[])
+
+
+def test_party_page_routing_in_session_with_items_no_contents(db_conn_items, db_conn_parties, monkeypatch):
+    uniqid = uuid.uuid4()
+    test_password = bcrypt.generate_password_hash("test_password").decode()
+    create_party(uniqid, "test_name", "2u3u/test", "test_email", test_password)
+
+    uniqid_container = uuid.uuid4()
+    string_id = str(uniqid)
+    add_items(str(uniqid_container), str(uniqid), "test_item", "test_info", None)
+    
+    with app.test_request_context("/2u3u/test"):
+
+        render_template = Mock()
+        monkeypatch.setattr("app.main.render_template", render_template)
+
+        session['group_id'] = str(uniqid)
+
+        party("2u3u", "test")
+
+        render_template.assert_called_with('partypage.html', data= [str(uniqid), 'test_name', '2u3u/test', 'test_email', test_password], page_items=[[str(uniqid_container), str(uniqid), "test_item", "test_info", None]], root_items=[{'id': str(uniqid_container), 'party_id': str(uniqid), 'name': 'test_item', 'info': 'test_info', 'container_id': None, 'contents': [], 'length': 0}], names=['test_item'])
+
+
+def test_party_page_routing_in_session_with_items_with_contents(db_conn_items, db_conn_parties, monkeypatch):
+    uniqid = uuid.uuid4()
+    test_password = bcrypt.generate_password_hash("test_password").decode()
+    create_party(uniqid, "test_name", "2u3u/test", "test_email", test_password)
+
+    uniqid_container = uuid.uuid4()
+    uniqid_container_inside = uuid.uuid4()
+    uniqid_group = uuid.uuid4()
+    uniqid_item_inside = uuid.uuid4()
+
+    add_items(str(uniqid_container), str(uniqid), "test_item", "test_info", None)
+
+    add_items(str(uniqid_container_inside), str(uniqid), "test_item_2", "test_info_2", str(uniqid_container))
+    cur = db_conn_items.cursor()
+    cur.execute("SELECT * from items where party_id = %s",(str(uniqid_group),))
+    item_data = cur.fetchone()
+    
+    with app.test_request_context("/2u3u/test"):
+
+        render_template = Mock()
+        monkeypatch.setattr("app.main.render_template", render_template)
+
+        session['group_id'] = str(uniqid)
+
+        party("2u3u", "test")
+
+        render_template.assert_called_with('partypage.html', data=[str(uniqid), 'test_name', '2u3u/test', 'test_email', test_password], page_items=[[str(uniqid_container), str(uniqid), 'test_item', 'test_info', None], [str(uniqid_container_inside), str(uniqid), 'test_item_2', 'test_info_2', str(uniqid_container)]], root_items=[{'id': str(uniqid_container), 'party_id': str(uniqid), 'name': 'test_item', 'info': 'test_info', 'container_id': None, 'contents': [{'id': str(uniqid_container_inside), 'party_id': str(uniqid), 'name': 'test_item_2', 'info': 'test_info_2', 'container_id': str(uniqid_container), 'contents': []}], 'length': 1}], names=['test_item', 'test_item_2'])
+
+# def test_party_page_routing_in_session_with_items(db_conn_items, db_conn_parties, monkeypatch):
 #     uniqid = uuid.uuid4()
 #     test_password = bcrypt.generate_password_hash("test_password").decode()
 #     create_party(uniqid, "test_name", "2u3u/test", "test_email", test_password)
@@ -187,11 +253,11 @@ def test_party_page_routing_out_of_session(db_conn_parties, monkeypatch):
 #         render_template = Mock()
 #         monkeypatch.setattr("app.main.render_template", render_template)
 
+#         session['group_id'] = str(uniqid)
+
 #         party("2u3u", "test")
 
-#         print(request.args)
-
-#         render_template.assert_called_with('partypage.html')
+#         render_template.assert_called_with('partypage.html', data= [str(uniqid), 'test_name', '2u3u/test', 'test_email', test_password], page_items=[], root_items=[], names=[])
 
 
 
@@ -236,6 +302,25 @@ def test_add_items_no_contents(db_conn_parties, db_conn_items):
     assert item_data == (str(uniqid_container), str(uniqid), "test_item", "test_info", None)
 
 
+def test_delete_item_no_contents_delete_redirect(db_conn_parties, db_conn_items):
+    uniqid = uuid.uuid4()
+
+    test_password = bcrypt.generate_password_hash("test_password").decode()
+    create_party(uniqid, "test_name", "2u3u/test", "test_email", test_password)
+
+    # uniqid_item = uuid.uuid4()
+    uniqid_container = uuid.uuid4()
+    string_id = str(uniqid)
+    add_items(str(uniqid_container), str(uniqid), "test_item", "test_info", None)
+
+    with app.test_request_context(f'/2u3u/test/?delete={uniqid}'):
+        session['group_id'] = str(uniqid)
+        response = party("2u3u", "test")
+        print("response")
+        print(response)
+        assert response.status_code == 303
+        assert response.headers["location"] == "/2u3u/test"
+
 def test_delete_item_no_contents(db_conn_parties, db_conn_items):
     uniqid = uuid.uuid4()
 
@@ -257,52 +342,18 @@ def test_delete_item_no_contents(db_conn_parties, db_conn_items):
 
     with app.test_request_context(f'/2u3u/test/?delete={uniqid}'):
         session['group_id'] = str(uniqid)
-        response = party("2u3u", "test")
-        print("response")
-        print(response)
-        assert response.status_code == 303
-        assert response.headers["location"] == "/2u3u/test"
+        # party("2u3u", "test")
 
-        # assert item_data != (str(uniqid_container), str(uniqid), 'test_item', 'test_info', None)
+        party("2u3u", "test")
 
+        cur = db_conn_items.cursor()
+        cur.execute("SELECT * from items where party_id = %s",(str(uniqid),))
+        item_data = cur.fetchone()
 
-# def test_delete_item_no_contents(db_conn_parties, db_conn_items):
-#     uniqid = uuid.uuid4()
+        print("item_data")
+        print(item_data)
 
-#     test_password = bcrypt.generate_password_hash("test_password").decode()
-#     create_party(uniqid, "test_name", "2u3u/test", "test_email", test_password)
-
-#     # uniqid_item = uuid.uuid4()
-#     uniqid_container = uuid.uuid4()
-#     string_id = str(uniqid)
-#     add_items(str(uniqid_container), str(uniqid), "test_item", "test_info", None)
-
-#     # with app.test_request_context('/login', method = "POST", data = {
-#     #     "login_group_email": "test_email",
-#     #     "login_password": "test_password"
-#     # }):
-#     #     login()
-
-#     # session data being lost so session need to be created before party call
-
-#     with app.test_request_context(f'/2u3u/test/?delete={uniqid}'):
-#         session['group_id'] = str(uniqid)
-#         party("2u3u", "test")
-
-#         cur = db_conn_items.cursor()
-#         cur.execute("SELECT * from items where party_id = %s",(str(uniqid),))
-#         item_data = cur.fetchone()
-
-#         print("item_data")
-#         print(item_data)
-
-
-#         print("response")
-#         print(response)
-#         assert response.status_code == 303
-#         assert response.headers["location"] == "/2u3u/test"
-
-#         # assert item_data != (str(uniqid_container), str(uniqid), 'test_item', 'test_info', None)
+        assert item_data != (str(uniqid_container), str(uniqid), 'test_item', 'test_info', None)
 
 
 # FIXME this is not testing all the data, only paretnt level bing pulled 
