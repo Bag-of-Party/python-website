@@ -36,7 +36,8 @@
     cursor: pointer;
   }
   .email:not(.expand):hover {
-    background: #C2C0C2;
+    background: rebeccapurple;
+    color: white;
   }
   .from {
     position: absolute;
@@ -76,9 +77,9 @@
     background: rebeccapurple;
     display: flex;
     flex-direction: row;
-    height: 70px;
+    height: 60px;
     transition: height 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
-    width: 30rem;
+    width: 27rem;
   }
   .avatar-large {
     border-radius: 21px;
@@ -133,7 +134,7 @@
     color:  #444247;
     font-size: 14px;
     height: 200px;
-    padding-top: 2rem;
+    /* padding-top: 2rem; */
     width: auto;
     padding-left: 1rem;
   }
@@ -170,8 +171,8 @@
   .email.expand {
     border-radius: 6px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.10), 0 6px 6px rgba(0,0,0,0.16);
-    height: 19rem;
-    width: 30rem;
+    height: 10rem;
+    width: 27rem;
   }
   .expand .from {
     opacity: 0;
@@ -193,6 +194,10 @@
     margin-bottom: 0.5rem;
 } */
 
+
+.item_box_inputContainer {
+    padding-right: 2rem;
+}
 
 html {
     font-family: sans-serif; 
@@ -439,7 +444,7 @@ body {
 
 .item_box_cta_login {
     /* padding: .6rem; */
-    /* padding-top: .8rem; */
+    /* margin-top: 1rem; */
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     text-decoration: none;
