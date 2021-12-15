@@ -4,7 +4,7 @@ import psycopg2.extras
 import pytest
 import uuid
 from psycopg2 import Error
-from app.main import home, signup, login, create_party, party, add_items, login_data_check, app, DATABASE_URL, bcrypt
+from app.main import home, signup, login, create_party, party, add_items, terms, action, contact, login_data_check, app, DATABASE_URL, bcrypt
 from unittest.mock import Mock
 
 
@@ -35,6 +35,20 @@ def test_home(monkeypatch):
         monkeypatch.setattr("app.main.render_template", render_template)
         response = home()
         render_template.assert_called_with('home.html', page_class="home")
+
+def test_contacts_page(monkeypatch):
+    with app.test_request_context('/contact'):
+        render_template = Mock()
+        monkeypatch.setattr("app.main.render_template", render_template)
+        response = contact()
+        render_template.assert_called_with('contact.html', page_class="contact")
+
+def test_terms_page(monkeypatch):
+    with app.test_request_context('/terms'):
+        render_template = Mock()
+        monkeypatch.setattr("app.main.render_template", render_template)
+        response = terms()
+        render_template.assert_called_with('terms.html', page_class="terms")
 
 def test_signup_get(monkeypatch):
     with app.test_request_context('/signup'):
@@ -301,6 +315,25 @@ def test_add_items_no_contents(db_conn_parties, db_conn_items):
 
     assert item_data == (str(uniqid_container), str(uniqid), "test_item", "test_info", None)
 
+# FIXME this is not testing all the data, only paretnt level bing pulled 
+def test_add_items_with_contents(db_conn_parties, db_conn_items):
+    uniqid_container = uuid.uuid4()
+    uniqid_container_inside = uuid.uuid4()
+    uniqid_group = uuid.uuid4()
+    uniqid_item_inside = uuid.uuid4()
+
+    add_items(str(uniqid_container), str(uniqid_group), "test_item", "test_info", None)
+
+    add_items(str(uniqid_container_inside), str(uniqid_group), "test_item_2", "test_info_2", str(uniqid_container))
+    cur = db_conn_items.cursor()
+    cur.execute("SELECT * from items where party_id = %s",(str(uniqid_group),))
+    item_data = cur.fetchone()
+
+    # print("item_data")
+    # print(item_data)
+
+    assert item_data == (str(uniqid_container), str(uniqid_group), "test_item", "test_info", None)
+
 
 def test_delete_item_no_contents_delete_redirect(db_conn_parties, db_conn_items):
     uniqid = uuid.uuid4()
@@ -320,6 +353,7 @@ def test_delete_item_no_contents_delete_redirect(db_conn_parties, db_conn_items)
         print(response)
         assert response.status_code == 303
         assert response.headers["location"] == "/2u3u/test"
+
 
 def test_delete_item_no_contents(db_conn_parties, db_conn_items):
     uniqid = uuid.uuid4()
@@ -356,40 +390,46 @@ def test_delete_item_no_contents(db_conn_parties, db_conn_items):
         assert item_data != (str(uniqid_container), str(uniqid), 'test_item', 'test_info', None)
 
 
-# FIXME this is not testing all the data, only paretnt level bing pulled 
-def test_add_items_with_contents(db_conn_parties, db_conn_items):
-    uniqid_container = uuid.uuid4()
-    uniqid_container_inside = uuid.uuid4()
-    uniqid_group = uuid.uuid4()
-    uniqid_item_inside = uuid.uuid4()
 
-    add_items(str(uniqid_container), str(uniqid_group), "test_item", "test_info", None)
+def test_partpage_item_added_page_redirect(db_conn_parties, db_conn_items, monkeypatch):
+    uniqid = uuid.uuid4()
+    test_password = bcrypt.generate_password_hash("test_password").decode()
+    create_party(uniqid, "test_name", "2u3u/test", "test_email", test_password)
 
-    add_items(str(uniqid_container_inside), str(uniqid_group), "test_item_2", "test_info_2", str(uniqid_container))
-    cur = db_conn_items.cursor()
-    cur.execute("SELECT * from items where party_id = %s",(str(uniqid_group),))
-    item_data = cur.fetchone()
+    with app.test_request_context("/2u3u/test", method = "POST", data = {
+        "add_item": "test_item",
+        "add_item_info": "test_info",
+        "container_id": None
+    }):
+        session['group_id'] = str(uniqid)
+        response = party("2u3u", "test")
+        # print("response")        
+        # print(response)  RETURNIUNG PAGE HTML      
+        assert response.status_code == 303
+        assert response.headers["location"] == "/2u3u/test"
 
-    print("item_data")
-    print(item_data)
 
-    assert item_data == (str(uniqid_container), str(uniqid_group), "test_item", "test_info", None)
 
-# def test_partpage_item_added_page_redirect(db_conn_parties, db_conn_items, monkeypatch):
-#     uniqid = uuid.uuid4()
-#     test_password = bcrypt.generate_password_hash("test_password").decode()
-#     create_party(uniqid, "test_name", "2u3u/test", "test_email", test_password)
+# def test_add_items_no_contents_action_modal(db_conn_items, db_conn_parties):
+#     uniqid_container = uuid.uuid4()
+#     uniqid_container_inside = uuid.uuid4()
+#     uniqid_group = uuid.uuid4()
+#     uniqid_item_inside = uuid.uuid4()
 
-#     with app.test_request_context("/2u3u/test", method = "POST", data = {
-#         "add_item": "test_item",
-#         "add_item_info": "test_info",
-#         "container_id": None
+#     with app.test_request_context('/action', method = 'POST', data = {
+#         "itemName": "item_name",
+#         "infoDetails": "item_info",
+#         "container": uniqid_container,
 #     }):
-#         response = party("2u3u", "test")
-#         # print("response")        
-#         # print(response)  RETURNIUNG PAGE HTML      
-#         assert response.status_code == 303
-#         assert response.headers["location"] == "/2u3u/test"
+#         session['group_url'] = str(uniqid_group)
+
+#         action()
+
+#         cur = db_conn_items.cursor()
+#         cur.execute("SELECT * from items where party_id = %s",(str(uniqid_group),))
+#         item_data = cur.fetchone()
+
+#         assert item_data == (str(uniqid_container), str(uniqid_group), "item_name", "item_info", None)
 
 
 

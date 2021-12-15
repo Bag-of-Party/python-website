@@ -187,20 +187,21 @@ def party(slug, party_name):
         
         db_cur.close()
         db_conn.close()
-        print("data")
-        print(data)
-        print("page_items")
-        print(page_items)
-        print("root_items")
-        print(sorted_list)
-        print("names")
-        print(items_names)
+        # print("data")
+        # print(data)
+        # print("page_items")
+        # print(page_items)
+        # print("root_items")
+        # print(sorted_list)
+        # print("names")
+        # print(items_names)
 
         return render_template('partypage.html', data=data, page_items=page_items, root_items=sorted_list, names=items_names )
     return render_template('login.html')
 
 @app.route("/action",methods=["POST","GET"])
 def action():
+    print("INN AACCTTIIOONN")
     uniqid = uuid.uuid4()
     db_conn = psycopg2.connect(DATABASE_URL)
     db_cur = db_conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
@@ -210,8 +211,17 @@ def action():
         name = request.form['itemName']
         info = request.form['infoDetails']
         container = request.form.get('container')
+        print(name)
+        print(info)
+        print(session['group_id'])
+        print(session['group_name'])
+        print(session['group_url'] )
+        print(session['group_email'])
+        print(session['group_password'])
         url = session['group_url']
 
+        print("container_id")
+        print(container)
         db_cur.execute("INSERT into items (id, party_id, name, info, container_id) VALUES (%s, %s, %s, %s, %s)",(str(uniqid), session['group_id'], str(name), str(info), container))
         db_conn.commit()
         db_cur.close()

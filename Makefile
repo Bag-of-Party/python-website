@@ -7,3 +7,6 @@ rundocker:
 
 test-cov:
 	python -m pytest tests --cov app
+
+show-cov:
+	coverage html
