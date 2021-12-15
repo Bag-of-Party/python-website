@@ -47,6 +47,16 @@ def signup():
         hash_password = bcrypt.generate_password_hash(user_password).decode()
         session['group_id'] = uniqid
 
+        print("session['group_id']")
+        print(session['group_id'])
+
+        conn = psycopg2.connect(DATABASE_URL)
+        cur = conn.cursor()
+        cur.execute("INSERT into parties (id, name, url, email, password) VALUES (%s, %s, %s, %s, %s)", (str(session['group_id']), str(party_name), str(generated_url), str(user_email), str(hash_password)))
+        conn.commit()
+        cur.close()
+        conn.close()
+
         create_party(session['group_id'], party_name, generated_url, user_email, hash_password)
 
         return redirect(f'/{generated_url}', code=303) 
@@ -187,14 +197,6 @@ def party(slug, party_name):
         
         db_cur.close()
         db_conn.close()
-        # print("data")
-        # print(data)
-        # print("page_items")
-        # print(page_items)
-        # print("root_items")
-        # print(sorted_list)
-        # print("names")
-        # print(items_names)
 
         return render_template('partypage.html', data=data, page_items=page_items, root_items=sorted_list, names=items_names )
     return render_template('login.html')

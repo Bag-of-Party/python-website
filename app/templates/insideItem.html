@@ -1,7 +1,4 @@
 {% block scripts %}
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script>
     $('#exampleModal').on('show.bs.modal', function (event) {
       recipient = null
@@ -69,7 +66,7 @@
       <div class="item_form_input">
           <button type="button" class="cta_item" data-toggle="modal" data-target="#exampleModal" data-whatever="{{ item.id }}">Add</button>
 
-          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -83,13 +80,11 @@
                     <div class="form-group">
                       <label for="recipient-name" class="col-form-label">name:</label>
                       <input class="item_box_item_text_input_name" placeholder="Item Name" maxlength="25" type="text" name="add_item" id="itemName" />
-                      <!-- <input type="text" class="form-control" id="recipient-name"> -->
                       <input type="hidden" class="form-control" id="recipient-name">
                     </div>
                     <div class="form-group">
                       <label for="message-text" class="col-form-label">Info:</label>
                       <textarea class="item_box_item_text_input_info" placeholder="Info / Description" rows="3" cols="20" maxlength="200" name="add_item_info" id="infoDetails" ></textarea>
-                      <!-- <textarea class="form-control" id="message-text"></textarea> -->
                     </div>
                   </form>
                 </div>
@@ -99,7 +94,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
       </div>
   </div>
   </div>
