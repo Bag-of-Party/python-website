@@ -1,19 +1,19 @@
 {% extends "base.html" %}
 {% block title %} Bag of Party {% endblock %}
-{% block content %}
+{% block content_header %}
     <div class="party_page_header">
-        <div class="title_logo_box">
-            <img src="/static/images/bag_of_party_logo.png" />
+        <div class="title_logo_box text_center">
+            <div class="image_center">
+                <img src="/static/images/bag_of_party_logo.png" />
+            </div>
+            <br />
             <p>Welcome back {{data.name}}</p>
             <p>Add You Important Imaginary Itmes Here!!</p>
-            <p>Group Details:</p>
-            <p>Name: ({{ data.name }}) Email: ({{ data.email }})</p>
-            <p class="">
-                <span class="item_box_cta_login button"><a href="/login">Log-Out?</a></span>
-            </p>
-            <!-- <p>Email: {{ data.email }}</p> -->
-            <!-- <p>{{ data.name }}</p> -->
             <br />
+            <br />
+            <p class="text_center">
+                <span class="item_box_cta_login button"><a class="large_font" href="/login">Log-Out?</a></span>
+            </p>
         </div>
         <div class="input_outer_container">
             <form class="add_item" method="POST">
@@ -34,19 +34,71 @@
                             <textarea class="item_text_input_textarea" placeholder="Enter Description" rows="20" cols="20" maxlength="250" name="add_item_info"></textarea>
                         </div>
                     </span>
-                    <span class="input_container">
-                        <input class="cta_add " type="submit" maxlength="20" value="Add Item">
+                    <span class="input_container large_font">
+                        <input class="cta_add large_font" type="submit" maxlength="20" value="Add Item">
                     </span>
                 </div>
             </form>
         </div>
+        <div class="item_list_container">
+            <!-- <form class="add_item" method="POST"> -->
+            <div class="">
+                <span>
+                    <u class="lable">Group Details</u>
+                    <p>Group Name: {{ data.name }}</p>
+                    <p>Group Email: {{ data.email }}</p>
+                </span>
+                <u class="lable">List of items:</u>
+                <div class="items_list_grid">
+                    {% for item in names %}
+                        <ul>{{ item }}</ul>
+                    {% endfor %} 
+                </div>  
+            </div>
+            <!-- </form> -->
+        </div>
+        
     </div>
-    <div class="items_container">
+{% endblock %}
+{% block content %}
+    <!-- <div class="items_container">
         <div class="items_grid">
+            <div class="container"> -->
             {% for item in root_items %}
                 {% include 'item.html' %}
             {% endfor %}
-        </div>
-    </div>
 
+                <!-- <div class="email" onclick="this.classList.add('expand')">
+                  <div class="from">
+                    <div class="from-contents">
+                      <div class="avatar me"></div>
+                      <div class="name">Mikael Ainalem</div>
+                    </div>
+                  </div>
+                  <div class="to">
+                    <div class="to-contents">
+                      <div class="top">
+                        <div class="avatar-large me"></div>
+                        <div class="name-large">Mikael Ainalem</div>
+                        <div class="x-touch" onclick="document.querySelector('.email').classList.remove('expand');event.stopPropagation();">
+                          <div class="x">
+                            <div class="line1"></div>
+                            <div class="line2"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="bottom">
+                        <div class="row">
+                            hello
+                        </div>
+                        <div class="row">
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+            <!-- </div>
+        </div>
+    </div> -->
 {% endblock %}
