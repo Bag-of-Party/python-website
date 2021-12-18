@@ -429,5 +429,3 @@ def test_add_items_no_contents_action_modal(db_conn_items, db_conn_parties, monk
 
         assert item_data == (str(uniqid), str(uniqid_group), "item_name", "item_info", None)
 
-
-

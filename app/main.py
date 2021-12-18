@@ -94,12 +94,6 @@ def login():
     return render_template('login.html')
 
 
-# def party_check(group_id):
-#         db_conn = psycopg2.connect(DATABASE_URL)
-#         db_cur = db_conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-#         db_cur.execute("SELECT * FROM parties where id = %s", (str(session['group_id']),))
-#         data = db_cur.fetchone()
-
 def add_items(uniqid, pageId, newItem, itemInfo, container_id):
     db_conn = psycopg2.connect(DATABASE_URL)
     db_cur = db_conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
@@ -200,19 +194,11 @@ def action():
     uniqid = uuid.uuid4()
     db_conn = psycopg2.connect(DATABASE_URL)
     db_cur = db_conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    # db_conn = get_db()
     if request.method == 'POST':
         app.logger.info('Post')
         name = request.form['itemName']
         info = request.form['infoDetails']
         container = request.form.get('container')
-        # print(name)
-        # print(info)
-        # print(session['group_id'])
-        # print(session['group_name'])
-        # print(session['group_url'] )
-        # print(session['group_email'])
-        # print(session['group_password'])
         url = session['group_url']
 
         print("container_id")
