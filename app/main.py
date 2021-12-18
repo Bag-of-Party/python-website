@@ -50,14 +50,7 @@ def signup():
         print("session['group_id']")
         print(session['group_id'])
 
-        conn = psycopg2.connect(DATABASE_URL)
-        cur = conn.cursor()
-        cur.execute("INSERT into parties (id, name, url, email, password) VALUES (%s, %s, %s, %s, %s)", (str(session['group_id']), str(party_name), str(generated_url), str(user_email), str(hash_password)))
-        conn.commit()
-        cur.close()
-        conn.close()
-
-        create_party(session['group_id'], party_name, generated_url, user_email, hash_password)
+        create_party(uniqid, party_name, generated_url, user_email, hash_password)
 
         return redirect(f'/{generated_url}', code=303) 
 
@@ -213,13 +206,13 @@ def action():
         name = request.form['itemName']
         info = request.form['infoDetails']
         container = request.form.get('container')
-        print(name)
-        print(info)
-        print(session['group_id'])
-        print(session['group_name'])
-        print(session['group_url'] )
-        print(session['group_email'])
-        print(session['group_password'])
+        # print(name)
+        # print(info)
+        # print(session['group_id'])
+        # print(session['group_name'])
+        # print(session['group_url'] )
+        # print(session['group_email'])
+        # print(session['group_password'])
         url = session['group_url']
 
         print("container_id")

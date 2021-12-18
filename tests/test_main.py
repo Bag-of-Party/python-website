@@ -65,9 +65,6 @@ def test_signup_post_redirect(db_conn_items, db_conn_parties, monkeypatch):
         "user_email": "test",
         "party_password": "test"
     }):
-        uniqid = uuid.uuid4()
-        testuniqid = Mock(return_value = uniqid)
-        monkeypatch.setattr("uuid.uuid4", testuniqid)
 
         response = signup()
         assert response.status_code == 303
@@ -370,15 +367,7 @@ def test_delete_item_no_contents(db_conn_parties, db_conn_items):
     string_id = str(uniqid)
     add_items(str(uniqid_container), str(uniqid), "test_item", "test_info", None)
 
-    # with app.test_request_context('/login', method = "POST", data = {
-    #     "login_group_email": "test_email",
-    #     "login_password": "test_password"
-    # }):
-    #     login()
-
-    # session data being lost so session need to be created before party call
-
-    with app.test_request_context(f'/2u3u/test/?delete={uniqid}'):
+    with app.test_request_context(f'/2u3u/test/?delete={uniqid_container}'):
         session['group_id'] = str(uniqid)
         # party("2u3u", "test")
 
@@ -414,7 +403,7 @@ def test_partpage_item_added_page_redirect(db_conn_parties, db_conn_items, monke
 
 
 
-def test_add_items_no_contents_action_modal(db_conn_items, db_conn_parties):
+def test_add_items_no_contents_action_modal(db_conn_items, db_conn_parties, monkeypatch):
     uniqid_container = uuid.uuid4()
     uniqid_container_inside = uuid.uuid4()
     uniqid_group = uuid.uuid4()
@@ -423,9 +412,14 @@ def test_add_items_no_contents_action_modal(db_conn_items, db_conn_parties):
     with app.test_request_context('/action', method = 'POST', data = {
         "itemName": "item_name",
         "infoDetails": "item_info",
-        "container": uniqid_container,
+        "container": None,
     }):
-        session['group_url'] = str(uniqid_group)
+        session['group_url'] = '2u3u/test'
+        session['group_id'] = str(uniqid_group)
+
+        uniqid = uuid.uuid4()
+        testuniqid = Mock(return_value = uniqid)
+        monkeypatch.setattr("uuid.uuid4", testuniqid)
 
         action()
 
@@ -433,7 +427,7 @@ def test_add_items_no_contents_action_modal(db_conn_items, db_conn_parties):
         cur.execute("SELECT * from items where party_id = %s",(str(uniqid_group),))
         item_data = cur.fetchone()
 
-        assert item_data == (str(uniqid_container), str(uniqid_group), "item_name", "item_info", None)
+        assert item_data == (str(uniqid), str(uniqid_group), "item_name", "item_info", None)
 
 
 
