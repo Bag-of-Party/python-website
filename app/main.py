@@ -11,6 +11,8 @@ import uuid
 import json
 import hashlib
 
+
+
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
 
@@ -216,6 +218,18 @@ def contact():
 @app.route("/terms")
 def terms():
     return render_template('terms.html', page_class="terms")
+
+
+@app.route("/api/parties")
+def parties():
+    db_conn = psycopg2.connect(DATABASE_URL)
+    db_cur = db_conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    db_cur.execute('SELECT * from parties')
+    data = db_cur.fetchall()
+    parties = []
+    for party in data:
+        parties.append(dict(party))
+    return {"results" : parties}
  
 if __name__ == "__main__":
     app.config['TEMPLATES_AUTO_RELOAD'] = True
