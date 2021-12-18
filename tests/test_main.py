@@ -58,13 +58,17 @@ def test_signup_get(monkeypatch):
         render_template.assert_called_with('signup.html', page_class="signup")
 
 
-def test_signup_post_redirect(monkeypatch):
+def test_signup_post_redirect(db_conn_items, db_conn_parties, monkeypatch):
     with app.test_request_context('/signup', method = "POST", data = {
         "party_name": "test",
         "generated_url": "4u3u/test",
         "user_email": "test",
         "party_password": "test"
     }):
+        uniqid = uuid.uuid4()
+        testuniqid = Mock(return_value = uniqid)
+        monkeypatch.setattr("uuid.uuid4", testuniqid)
+
         response = signup()
         assert response.status_code == 303
         assert response.headers["location"] == "/4u3u/test"
@@ -410,26 +414,26 @@ def test_partpage_item_added_page_redirect(db_conn_parties, db_conn_items, monke
 
 
 
-# def test_add_items_no_contents_action_modal(db_conn_items, db_conn_parties):
-#     uniqid_container = uuid.uuid4()
-#     uniqid_container_inside = uuid.uuid4()
-#     uniqid_group = uuid.uuid4()
-#     uniqid_item_inside = uuid.uuid4()
+def test_add_items_no_contents_action_modal(db_conn_items, db_conn_parties):
+    uniqid_container = uuid.uuid4()
+    uniqid_container_inside = uuid.uuid4()
+    uniqid_group = uuid.uuid4()
+    uniqid_item_inside = uuid.uuid4()
 
-#     with app.test_request_context('/action', method = 'POST', data = {
-#         "itemName": "item_name",
-#         "infoDetails": "item_info",
-#         "container": uniqid_container,
-#     }):
-#         session['group_url'] = str(uniqid_group)
+    with app.test_request_context('/action', method = 'POST', data = {
+        "itemName": "item_name",
+        "infoDetails": "item_info",
+        "container": uniqid_container,
+    }):
+        session['group_url'] = str(uniqid_group)
 
-#         action()
+        action()
 
-#         cur = db_conn_items.cursor()
-#         cur.execute("SELECT * from items where party_id = %s",(str(uniqid_group),))
-#         item_data = cur.fetchone()
+        cur = db_conn_items.cursor()
+        cur.execute("SELECT * from items where party_id = %s",(str(uniqid_group),))
+        item_data = cur.fetchone()
 
-#         assert item_data == (str(uniqid_container), str(uniqid_group), "item_name", "item_info", None)
+        assert item_data == (str(uniqid_container), str(uniqid_group), "item_name", "item_info", None)
 
 
 
