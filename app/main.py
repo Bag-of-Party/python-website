@@ -107,15 +107,11 @@ def add_items(uniqid, pageId, newItem, itemInfo, container_id):
 @app.route("/<slug>/<party_name>", methods=['GET', 'POST'])
 def party(slug, party_name):
     if 'group_id' in session:
-        print("I AM HERE INDISE MEEEEE")
 
         uniqid = uuid.uuid4()
 
         url_request = request.args
         url = slug + "/" + party_name
-
-        print("request.args")
-        print(request.args)
 
         group_id = session['group_id']
 
@@ -130,14 +126,9 @@ def party(slug, party_name):
 
         if "delete" in request.args:
             item_id = url_request["delete"]
-            print("item_id")
-            print(item_id)
             db_cur.execute("DELETE from items where id = %s", (item_id,))
             db_conn.commit()
-            print("IM AT THE END DELETE")
             return redirect(f'/{url}', code=303)
-        
-        print("IM AFTER AT THE END DELETE")
 
         # FIXME after adding item on page refresh items added again
         if request.method == 'POST':
@@ -192,7 +183,6 @@ def party(slug, party_name):
 
 @app.route("/action",methods=["POST","GET"])
 def action():
-    print("INN AACCTTIIOONN")
     uniqid = uuid.uuid4()
     db_conn = psycopg2.connect(DATABASE_URL)
     db_cur = db_conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
@@ -203,8 +193,6 @@ def action():
         container = request.form.get('container')
         url = session['group_url']
 
-        print("container_id")
-        print(container)
         db_cur.execute("INSERT into items (id, party_id, name, info, container_id) VALUES (%s, %s, %s, %s, %s)",(str(uniqid), session['group_id'], str(name), str(info), container))
         db_conn.commit()
         db_cur.close()
@@ -242,6 +230,14 @@ def items_api():
     for item in data:
         items.append(dict(item))
     return {"results" : items}
+
+@app.route('/api/item_delete/<item_id>')
+def items_delete_api(item_id):
+    db_conn = psycopg2.connect(DATABASE_URL)
+    db_cur = db_conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    id_test = str(item_id)
+    db_cur.execute('DELETE from ITEMS where id = %s', (str(id_test),))
+    db_conn.commit()
  
 if __name__ == "__main__":
     app.config['TEMPLATES_AUTO_RELOAD'] = True

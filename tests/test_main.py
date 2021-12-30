@@ -5,7 +5,7 @@ import pytest
 import uuid
 from psycopg2 import Error
 from app.main import home, signup, login, create_party, party, add_items, terms, action, contact, login_data_check, app, DATABASE_URL, bcrypt
-from app.main import parties_api, items_api
+from app.main import parties_api, items_api, items_delete_api
 from unittest.mock import Mock
 
 
@@ -487,11 +487,34 @@ def test_Items_api_returns_all_items(db_conn_items):
         {'container_id' : None, 'id': str(id_1), 'info': "item 1 info", 'name': "item 1", 'party_id': str(pageId_1) },
         {'container_id' : None, 'id': str(id_2), 'info': "item 2 info", 'name': "item 2", 'party_id': str(pageId_2) },
         {'container_id' : None, 'id': str(id_3), 'info': "item 3 info", 'name': "item 3", 'party_id': str(pageId_3) }
-        # {'id': id_1, 'party_id': pageId_1, 'name': "item 1", 'info': "item 1 info", 'container_id' : None},
-        # {'id': id_2, 'party_id': pageId_2, 'name': "item 2", 'info': "item 2 info", 'container_id' : None},
-        # {'id': id_3, 'party_id': pageId_3, 'name': "item 3", 'info': "item 3 info", 'container_id' : None}
     ]}
 
-        # {str(id_1), str(pageId_1), "item 1", "item 1 info", str(container_id_1)},
-        # {str(id_2), str(pageId_2), "item 2", "item 2 info", str(container_id_2)},
-        # {str(id_3), str(pageId_3), "item 3", "item 3 info", str(container_id_3)}
+
+def test_delete_api_removes_items(db_conn_items):
+    id_1 = uuid.uuid4()
+    id_2 = uuid.uuid4()
+    id_3 = uuid.uuid4()
+
+    pageId_1 = uuid.uuid4()
+    pageId_2 = uuid.uuid4()
+    pageId_3 = uuid.uuid4()
+
+    container_id_1 = uuid.uuid4()
+    container_id_2 = uuid.uuid4()
+    container_id_3 = uuid.uuid4()
+
+    add_items(id_1, pageId_1, "item 1", "item 1 info", None)
+    add_items(id_2, pageId_2, "item 2", "item 2 info", None)
+    add_items(id_3, pageId_3, "item 3", "item 3 info", None)
+
+    items_delete_api(id_2)
+
+    cur = db_conn_items.cursor()
+    cur.execute("SELECT * from items")
+    item_data = cur.fetchall()
+    print(item_data)
+
+    assert item_data == [
+        (str(id_1), str(pageId_1), "item 1", "item 1 info", None),
+        (str(id_3), str(pageId_3), "item 3", "item 3 info", None)
+    ]
