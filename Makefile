@@ -1,5 +1,5 @@
 test: 
-	python -m pytest -vv tests 
+	python -m pytest -vv tests/test_main.py
 
 test-api: 
 	python -m pytest -vv tests/test_api.py

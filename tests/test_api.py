@@ -1,5 +1,5 @@
 from app.main import bcrypt, create_party, DATABASE_URL
-from app.api import parties
+from app.main import parties
 import uuid
 import psycopg2 
 import psycopg2.extras
