@@ -221,7 +221,7 @@ def terms():
 
 
 @app.route("/api/parties")
-def parties():
+def parties_api():
     db_conn = psycopg2.connect(DATABASE_URL)
     db_cur = db_conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     db_cur.execute('SELECT * from parties')
@@ -230,6 +230,18 @@ def parties():
     for party in data:
         parties.append(dict(party))
     return {"results" : parties}
+
+@app.route("/api/items")
+def items_api():
+    db_conn = psycopg2.connect(DATABASE_URL)
+    db_cur = db_conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    db_cur.execute('SELECT * from items')
+    data = db_cur.fetchall()
+    items = []
+    print(items)
+    for item in data:
+        items.append(dict(item))
+    return {"results" : items}
  
 if __name__ == "__main__":
     app.config['TEMPLATES_AUTO_RELOAD'] = True
