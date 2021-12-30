@@ -13,14 +13,14 @@
                 <div id="login_title">Please Log-In With Your Details Below</div>
                 <div>
                     <label>Party Email: </label>
-                    <input type="text" name="login_group_email" id="user_input" oninput="showInput()" />
+                    <input type="text" name="login_group_email" id="user_input" oninput="showInput()" required aria-required="true" />
                 </div>
                 <div>
                     <label>Party Password: </label>
-                    <input type="text" name="login_password" />
+                    <input type="text" name="login_password" required aria-required="true" />
                 </div>
                 <div>
-                    <input class="cta" type="submit" value="Log in?">
+                    <input class="cta" type="submit" value="Log in?" >
                 </div>
                 <div class="inline">
                     Already have an account?
