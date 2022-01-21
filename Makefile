@@ -1,5 +1,5 @@
 test: 
-	python -m pytest -vv tests 
+	python -m pytest -vv tests make test
 
 test-one: 
 	python -m pytest -vv tests -k test_delete_item_no_contents
