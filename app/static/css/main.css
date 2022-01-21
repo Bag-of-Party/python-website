@@ -21,12 +21,14 @@
   width: 360px;
 }
 .email {
+  margin-right: 0.5rem;
   background: #dedbdf;
+  /* margin-bottom: 1rem; */
   border-radius: 16px;
   height: 32px;
   overflow: hidden;
   position: relative;
-  width: 162px;
+  width: 5rem;
   -webkit-tap-highlight-color: transparent;
   transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1), height 300ms cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1), border-radius 300ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -76,23 +78,23 @@
   background: rebeccapurple;
   display: flex;
   flex-direction: row;
-  height: 60px;
+  height: 40px;
   transition: height 300ms cubic-bezier(0.4, 0, 0.2, 1);
   width: 27rem;
 }
 .avatar-large {
   border-radius: 21px;
   height: 42px;
-  margin-left: 12px;
+  /* margin-left: 12px; */
   position: relative;
   top: 14px;
-  width: 42px;
+  width: 16px;
 }
 .name-large {
   color: #efd8ef;
   font-size: 16px;
-  line-height: 70px;
-  margin-left: 20px;
+  line-height: 45px;
+  margin-left: 17px;
 }
 .x-touch {
   align-items: center;
@@ -138,11 +140,11 @@
   padding-left: 1rem;
 }
 .row {
-  margin-top: 2rem;
-  align-items: center;
+  padding-top: 1rem;
+  /* align-items: center;
   display: flex;
   flex-direction: row;
-  height: 60px;
+  height: 60px; */
 }
 .twitter {
   margin-left: 16px;
@@ -212,6 +214,7 @@ a:visited {
 
 .item_text_title {
   width: auto;
+  padding-top: 0.5rem;
 }
 
 .image_banner {
@@ -300,12 +303,13 @@ body {
   display: grid;
   grid-template-columns: auto auto auto;
   margin-bottom: 2rem;
+  margin-left: auto;
 }
 
 .items_list_grid {
   width: 30rem;
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto auto auto;
 }
 
 .item_list_container {
@@ -637,7 +641,7 @@ a.cta:visited {
 
 .item_text {
   width: auto;
-  padding-top: 0.3rem;
+  /* padding-top: 0.3rem; */
   color: rebeccapurple;
   font-weight: bold;
   display: flex;
@@ -664,7 +668,7 @@ a.cta:visited {
 
 .item_box {
   width: auto;
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 7px;
   border: rebeccapurple solid 2px;
   color: white;
@@ -738,14 +742,15 @@ a.cta:visited {
 
 .item_box_cta {
   border: 1px solid rebeccapurple;
-  border-radius: 5px 0px 0px 5px;
+  border-radius: 5px 5px 5px 5px;
   padding: 0.1rem;
   padding-right: 1rem;
   padding-left: 1rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   text-decoration: none;
-  margin-left: 0.8rem;
+  margin-top: 0.2rem;
+  /* margin-left: 0.8rem; */
   /* filter: drop-shadow(2px 2px 2px gray); */
   background: rebeccapurple;
   color: white;
@@ -780,13 +785,14 @@ a.cta:visited {
 
 .deleteImg {
   /* height: 2rem; */
-  margin-left: 1rem;
+  margin-left: 0.2rem;
   /* padding-top: 0.3rem; */
   padding-right: 0.2rem;
   padding-left: 0.2rem;
 }
 .deleteImg img {
-  height: 2rem;
+  vertical-align: middle;
+  height: 1.5rem;
   padding-bottom: 0.2rem;
 }
 
@@ -932,22 +938,29 @@ a.password_button:visited {
   filter: drop-shadow(4px 4px 4px rebeccapurple);
 }
 
+.list_items {
+  list-style-type: circle;
+  margin-top: 0.2rem;
+}
+
 ul {
   padding: 0;
-  margin: 0;
+  /* margin: 0; */
   list-style-type: none;
   position: relative;
   overflow-x: unset;
 }
 
 li {
-  list-style-type: none;
+  /* list-style-type: circle; */
+  /* list-style-type: none; */
   border-left: 2px solid #000;
   overflow-x: unset;
   margin-top: 1rem;
 }
 
 li section {
+  /* list-style-type: circle; */
   padding-left: 1em;
   position: relative;
   top: -0.5rem;
@@ -983,6 +996,10 @@ ul > li:last-child {
     margin-left: 4rem;
   }
 
+  .title_logo_box {
+    margin-right: auto;
+  }
+
   .form_submit a {
     padding: 0.6rem;
     padding-top: 0.6rem;
@@ -1007,12 +1024,18 @@ ul > li:last-child {
   }
   .party_page_header {
     /* text-align: center; */
+    width: auto;
     display: grid;
     grid-template-columns: auto;
   }
+  .item_list_container {
+    margin-left: 0;
+    width: 10rem;
+  }
   .input_outer_container {
     padding-top: 0rem;
-    width: auto;
+    /* width: auto; */
+    margin-bottom: 0rem;
   }
   .items_grid {
     height: auto;
@@ -1156,7 +1179,7 @@ ul > li:last-child {
   }
 
   .input_outer_container {
-    margin-bottom: 2rem;
+    /* margin-bottom: 2rem; */
   }
 
   .item_input {
@@ -1166,6 +1189,7 @@ ul > li:last-child {
     padding: 1rem;
     margin: 0;
     width: auto;
+    margin-right: auto;
   }
 
   .item_text_input {
