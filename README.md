@@ -43,6 +43,11 @@ $ python app/main.py
 
 After this you can open a broswer and go to http://localhost:5000/
 
+## Heroku deployment
+
+- Sign into Heroku - $ heroku login
+- Then run - $ git push heroku main
+
 ### docker setup
 
 docker run -p 2345:5432 -e POSTGRES_PASSWORD=mysecretpassword -d postgres
@@ -58,7 +63,7 @@ user_email text,
 party_password text
 )
 
-Gottchas
+## Gottchas
 
 - error psycopg2.errors.UndefinedTable: relation "parties" does not exist
   = relations means table so this means not parties table exsists. venv/bin/activate
