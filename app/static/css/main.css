@@ -1507,5 +1507,529 @@ ul > li:last-child {
 
   ul > li:last-child {
     border-left: 2px solid transparent;
-  }
+}    
+
+@media only screen and (max-width: 600px) {
+    .items_container {
+        width: 100vw;
+        margin-left: 0;
+        margin-right: 0;
+        overflow-x: unset;
+    }
+
+    .inline {
+        justify-content: center;
+    }
+    
+    .form_submit {
+        margin-left: 4rem;
+    }
+    
+    .form_submit a {
+        padding: .6rem;
+        padding-top: .6rem;
+        text-decoration: none;
+        filter: drop-shadow(4px 4px 4px gray);
+        background: rebeccapurple;
+        color: white;
+        font-size: large;
+        overflow: visible;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        /* margin-left: rem; */
+        width: auto;
+        border: 2px solid rebeccapurple;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        border-radius: 7px;
+        /* text-align: center; */
+    }
+    .image_banner {
+        margin-right: 0;
+    }
+    .party_page_header {
+        /* text-align: center; */
+        display: grid;
+        grid-template-columns: auto;
+    }
+    .input_outer_container {
+        padding-top: 0rem;
+        width: auto;
+    }
+    .items_grid {
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+    .contents {
+        padding-bottom: auto;
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .contents p {
+        max-width: 50rem;
+    }
+    
+    .button {
+        overflow: visible;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    
+    }
+    .button div {
+        display: inline;
+    }
+    
+    .button a {
+        color: white;
+        margin: 2rem;
+        text-decoration: none;
+        font-size: x-large;
+    }
+    
+    .item_box_cta_login {
+        border: 2px solid black;
+        border-radius: 7px;
+        padding: .6rem;
+        padding-top: .8rem;
+        text-decoration: none;
+        filter: drop-shadow(4px 4px 4px gray);
+        background: rebeccapurple;
+        color: white;
+        font-size: 8px;
+    }
+    
+    .item_box_cta_login:hover {
+        filter: drop-shadow(4px 4px 4px rebeccapurple);
+    }
+    
+    
+    
+    .cta {
+        /* text-align: center; */
+        width: auto;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        filter: drop-shadow(4px 4px 4px gray);
+        background: rebeccapurple;
+    }
+
+    .cta_item {
+        font-size: small;
+        width: auto;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        background: rebeccapurple;
+        border: rebeccapurple;
+        color: white;
+        border-radius: 5px;
+
+    }
+    
+    /* .cta, a.cta:visited {
+        border: 2px solid black;
+        border-radius: 7px;
+        padding: .3rem;
+        text-decoration: none;
+        filter: drop-shadow(4px 4px 4px gray);
+        background: rebeccapurple;
+        color: white;
+        font-size: 22px;
+    } */
+    
+    .cta:hover {
+        filter: drop-shadow(4px 4px 4px rebeccapurple);
+    }
+    
+    .signup_banner {
+        color: rebeccapurple;
+        font-size: x-large;
+        font-weight: bold;
+    }
+    
+    .signup_form_container {
+        margin-left: 0rem;
+        height: auto;
+        display: flex;
+        border-style: solid;
+        border-color: rebeccapurple;
+        border-radius: 10px;
+        padding: 0.5rem 0.5rem 0.5rem 0.5rem; 
+    }
+    
+    .signup_form {
+        margin-top: 1rem;
+    }
+    
+    .signup_form div {
+        display: flex;
+        flex-direction: row;
+        margin: 0.3rem
+    }
+    
+    .signup_form label {
+        color: rebeccapurple;
+        width: 10rem;
+        display: block;
+        text-align: left;
+        padding: .3rem;
+    }
+    
+    .signup_form input {
+        width: 100%;
+        border: 2px solid rebeccapurple;
+        padding: 0.5rem;
+        border-radius: 7px;
+    }
+    .signup_form span {
+        width: 100%;
+        /* border: 2px solid rebeccapurple; */
+        padding: 0.9rem;
+        border-radius: 7px;
+    }
+    
+    #generated_url {
+        display: block;
+        width: 100%;
+        height: 1rem;
+        padding: 0.5rem;
+        text-align: left;
+    }
+    
+    .input_outer_container {
+        margin-bottom: 2rem;
+    }
+    
+    .item_input {
+        border-style: solid;
+        border-color: rebeccapurple;
+        border-radius: 5px;
+        padding: 1rem;
+        margin: 0;
+        width: auto;
+    }
+    
+    .item_text_input {
+        border-radius: 5px;
+        width: 98%;
+        height: 2rem;
+        font-size: 1rem;
+    }
+    .item_text_input_textarea {
+        border-radius: 5px;
+        width: 98%;
+        height: 8rem;
+        font-size: 1rem;
+    }
+    
+    .item_text {
+        padding-top: 0.1rem;
+        color: rebeccapurple;
+        font-weight: bold;
+        display: flex;
+    }
+    
+    .item_text {
+        text-transform: capitalize;
+    }
+    
+    .input_container div {
+        padding-bottom: 0.5rem;
+        font-weight: bold;
+        font-size: large;
+        text-decoration-line: underline;
+        color: rebeccapurple;
+    }
+    
+    .input_container textarea {
+        width: 98%;
+        height: 3rem;
+    }
+    
+    .item_box {
+        width: auto;
+        height: auto;
+        padding-right: 1rem;
+        border-style: solid;
+        border-width: 2px;
+        border-color: rebeccapurple;
+        border-radius: 5px;
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+        margin: 0 0 0.5rem 0;
+    }
+    
+    .item_box_form {
+        align-self: end;
+    }
+    
+    .item_box_name {
+        vertical-align: baseline;
+        display: grid;
+        grid-template-columns: auto auto minmax(2fr, 10%);
+        column-gap: 2rem;
+        justify-content:space-between; 
+        font-size: 1.5rem;
+        padding-bottom: 0.2rem;
+    }
+    
+    .item_box_name span {
+        color: rebeccapurple;
+        font-weight: bold;
+    }
+    .item_box_name span:first-child {
+        color: rebeccapurple;
+    }
+    
+    .item_box_name img {
+        height: 1.5rem;
+        cursor: pointer;
+    }
+    
+    .item_box_info {
+        font-size: 1.0rem;
+        padding-top: 0.2rem;
+    }
+    .item_box_info span {
+        border-top: solid 1px rebeccapurple;
+        padding-top: 0.2rem;
+        font-weight: bold;
+        color: rebeccapurple;
+    
+    }
+    
+    .item_box_input {
+        border-style: solid;
+        border-color: rebeccapurple;
+        border-radius: 5px;
+        padding-left: 0.1rem;
+        padding-right: 0.1rem;
+    }
+    
+    .item_box_grid {
+        display: grid;
+        grid-template-columns: 2fr 2fr;
+        font-size: 1rem;
+    }
+    
+    .item_box_item_text_input_name {
+        width: 90%;
+        margin-top: 0.2rem;
+        padding-top: 0.2rem;
+        padding-bottom: 0.2rem;
+    }
+    .item_box_item_text_input_info {
+        width: 96%;
+        margin-top: 0.2rem;
+        padding-top: 0.2rem;
+        height: 2rem;
+    }
+    
+    .item_box_cta {
+        border: 1px solid black;
+        border-radius: 7px;
+        padding: .1rem;
+        padding-right: 0.2rem;
+        padding-left: 0.2rem;
+        text-decoration: none;
+        filter: drop-shadow(2px 2px 2px gray);
+        background: rebeccapurple;
+        color: white;
+        font-size: 10px;
+        margin-top: 0.1rem;
+    }
+    
+    .item_box_cta:hover {
+        filter: drop-shadow(4px 4px 4px rebeccapurple);
+    }
+    
+    .item_box_inside_item {
+        padding-left: 5rem;
+    }
+    
+    .item_box_name_inside {
+        display: grid;
+        grid-template-columns: 1fr 2fr minmax(2fr, 10%);
+        font-size: 1rem;
+        margin-top: 0.4rem;
+        margin-bottom: 0.2rem;
+    }
+    
+    .delete_img_indide img {
+        vertical-align: top;
+        height: 1.2rem;
+        top: 10%;
+    }
+    
+    .deleteImg {
+        padding-top: 0.3rem;
+        padding-right: 0.2rem;
+        padding-left: 0.2rem;
+    }
+    
+    .padding {
+        margin-left: 2rem;
+        margin-bottom: 4rem;
+        color: rebeccapurple;
+    }
+    
+    #password_label {
+        font-size: large;
+        color: rebeccapurple;
+        width: auto;
+        text-align: left;
+        padding: .3rem;
+        vertical-align: text-bottom;
+    }
+    
+    .password_form {
+        height: 16rem;
+        display: flex;
+        border-style: solid;
+        border-color: rebeccapurple;
+        border-radius: 10px;
+        padding: 0.5rem 1rem 0.5rem 0.5rem;
+    }
+
+    .password_form div {
+        display: flex;
+        flex-direction: row;
+        margin: 0.2rem;
+        font-size: large;
+    }
+    
+    #login_title {
+        font-weight: bold;
+        color: rebeccapurple;
+        font-size: x-large;
+    }
+    
+    .password_form label {
+        width: 65%;
+        display: block;
+        text-align: left;
+        padding: .3rem;
+    }
+    
+    .password_form input {
+        width: 100%;
+        border: 2px solid rebeccapurple;
+        border-radius: 7px;
+        padding: 0.5rem;
+    }
+    .password_form div {
+        padding-bottom: 1rem;
+    }
+    
+    #password_button {
+        color: white;
+    }
+    
+    .password_button {
+        text-align: center;
+        width: 10rem;
+    }
+    
+    .password_button, a.password_button:visited {
+        border: 2px solid black;
+        border-radius: 7px;
+        padding: .3rem;
+        text-decoration: none;
+        filter: drop-shadow(4px 4px 4px gray);
+        background: rebeccapurple;
+        color: white;
+        font-size: 22px;
+    }
+    
+    .password_button:hover {
+        filter: drop-shadow(4px 4px 4px rebeccapurple);
+    }
+    
+    #password_label {
+        font-size: large;
+        color: rebeccapurple;
+        width: auto;
+        text-align: left;
+        padding: .3rem;
+        vertical-align: text-bottom;
+    }
+    
+    
+    .password_form {
+        display: flex;
+        border-style: solid;
+        border-color: rebeccapurple;
+        border-radius: 10px;
+        padding: 0.5rem 1rem 0.5rem 0.5rem;
+    }
+    
+    .password_check_form {
+        padding-bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    #password_button {
+        color: white;
+    }
+    
+    .password_button {
+        text-align: center;
+        width: 10rem;
+    }
+    
+    .password_button, a.password_button:visited {
+        border: 2px solid black;
+        border-radius: 7px;
+        padding: .3rem;
+        text-decoration: none;
+        filter: drop-shadow(4px 4px 4px gray);
+        background: rebeccapurple;
+        color: white;
+        font-size: 22px;
+    }
+    
+    .password_button:hover {
+        filter: drop-shadow(4px 4px 4px rebeccapurple);
+    }
+    
+    
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+        position: relative;
+        overflow-x: unset;
+    }
+    
+    li {
+        list-style-type: none;
+        border-left: 2px solid #000;
+        overflow-x: unset;
+    }
+    
+    li section {
+        padding-left: 1em;
+        position: relative;
+        top: -0.5rem;
+    }
+    
+    li section::before {
+        content: '';
+        position: absolute;
+        top: 0.5rem;
+        left: -2px;
+        width: 0.75em;
+        border: 4px solid #000;
+        border-right: 0 none transparent;
+    }
+    
+    ul > li:last-child {
+        border-left: 2px solid transparent;
+    }    
 }
