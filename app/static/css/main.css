@@ -303,7 +303,6 @@ body {
   display: grid;
   grid-template-columns: auto auto auto;
   margin-bottom: 2rem;
-  margin-left: auto;
 }
 
 .items_list_grid {
@@ -582,7 +581,7 @@ a.cta:visited {
 }
 
 .input_outer_container {
-  width: 30rem;
+  /* width: 30rem; */
   padding-top: 0rem;
 }
 
@@ -981,6 +980,9 @@ ul > li:last-child {
 }
 
 @media only screen and (max-width: 600px) {
+  .party_page_header {
+    width: 2rem;
+  }
   .items_container {
     width: 100vw;
     margin-left: 0;
@@ -994,10 +996,6 @@ ul > li:last-child {
 
   .form_submit {
     margin-left: 4rem;
-  }
-
-  .title_logo_box {
-    margin-right: auto;
   }
 
   .form_submit a {
@@ -1030,7 +1028,6 @@ ul > li:last-child {
   }
   .item_list_container {
     margin-left: 0;
-    width: 10rem;
   }
   .input_outer_container {
     padding-top: 0rem;
@@ -1180,6 +1177,7 @@ ul > li:last-child {
 
   .input_outer_container {
     /* margin-bottom: 2rem; */
+    /* width: 2rem; */
   }
 
   .item_input {
@@ -1189,7 +1187,6 @@ ul > li:last-child {
     padding: 1rem;
     margin: 0;
     width: auto;
-    margin-right: auto;
   }
 
   .item_text_input {
