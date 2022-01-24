@@ -1018,10 +1018,8 @@ ul > li:last-child {
         width: auto;
     }
     .items_grid {
-        height: auto;
         display: grid;
-        grid-template-columns: auto;
-        column-gap: 1rem;
+        grid-template-columns: auto auto auto;
     }
     .contents {
         padding-bottom: auto;
