@@ -34,7 +34,7 @@
                 <div id="login_title">Keep these details private between users</div>
                 <div>
                     <label>Party Name: </label>
-                    <input type="text" name="party_name" id="user_input" oninput="showInput()" />
+                    <input type="text" name="party_name" id="user_input" required aria-required="true" oninput="showInput()" />
                 </div>
                 <div>
                     <label>Generated URL: </label>
@@ -43,11 +43,11 @@
                 </div>
                 <div>
                     <label>User Email: </label>
-                    <input type="text" name="user_email" />
+                    <input type="text" name="user_email" required aria-required="true" />
                 </div>
                 <div>
                     <label>Party Password: </label>
-                    <input type="text" name="party_password" />
+                    <input type="text" name="party_password" required aria-required="true" />
                 </div>
                 <div>
                     <input class="cta" type="submit" value="Sign up?">

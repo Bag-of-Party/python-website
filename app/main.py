@@ -136,6 +136,7 @@ def party(slug, party_name):
             newItem = request.form['add_item']
             itemInfo = request.form['add_item_info']
             container_id = request.form.get("container_id")
+
             add_items(uniqid, pageId, newItem, itemInfo, container_id)
             return redirect(f'/{url}', code=303)
 

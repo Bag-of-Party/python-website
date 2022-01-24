@@ -41,7 +41,6 @@
             </form>
         </div>
         <div class="item_list_container">
-            <!-- <form class="add_item" method="POST"> -->
             <div class="">
                 <span>
                     <u class="lable">Group Details</u>
@@ -51,54 +50,16 @@
                 <u class="lable">List of items:</u>
                 <div class="items_list_grid">
                     {% for item in names %}
-                        <ul>{{ item }}</ul>
+                        <div class="list_items">{{ item }}</div>
                     {% endfor %} 
                 </div>  
             </div>
-            <!-- </form> -->
         </div>
         
     </div>
 {% endblock %}
 {% block content %}
-    <div class="items_container">
-        <div class="items_grid">
-            <!-- <div class="container"> -->
-            {% for item in root_items %}
-                {% include 'item.html' %}
-            {% endfor %}
-
-                <!-- <div class="email" onclick="this.classList.add('expand')">
-                  <div class="from">
-                    <div class="from-contents">
-                      <div class="avatar me"></div>
-                      <div class="name">Mikael Ainalem</div>
-                    </div>
-                  </div>
-                  <div class="to">
-                    <div class="to-contents">
-                      <div class="top">
-                        <div class="avatar-large me"></div>
-                        <div class="name-large">Mikael Ainalem</div>
-                        <div class="x-touch" onclick="document.querySelector('.email').classList.remove('expand');event.stopPropagation();">
-                          <div class="x">
-                            <div class="line1"></div>
-                            <div class="line2"></div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="bottom">
-                        <div class="row">
-                            hello
-                        </div>
-                        <div class="row">
-
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div> -->
-            <!-- </div> -->
-        </div>
-    </div>
+    {% for item in root_items %}
+        {% include 'item.html' %}
+    {% endfor %}
 {% endblock %}
