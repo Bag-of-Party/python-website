@@ -13,10 +13,9 @@ html - css - jquery: For rendering window
 
 ## Wireframe
 #### Current 
-![wireframe](../python-website/app/static/images/2022_shot.png)
-![wireframe](./app/static/images/screen_shot.png)
+![wireframe](./app/static/images/2022_shot.png)
 #### Previous
-![wireframe](../python-website/app/static/images/screen_shot.png)
+![wireframe](./app/static/images/screen_shot.png)
 <!-- <img src="../a" width="375" />  -->
 
 ## Set up below
