@@ -23,7 +23,7 @@
                             <label>Name or Type of Object</label>
                         </div>
                         <div>
-                            <input class="item_text_input" placeholder="Enter Item Name" maxlength="20" type="text" name="add_item"/>
+                            <input class="item_text_input" placeholder="Enter Item Name" maxlength="25" type="text" name="add_item"/>
                         </div>
                     </span>
                     <span class="input_container">
@@ -31,7 +31,7 @@
                             <label>Description or Info on Object</label>
                         </div>
                         <div>
-                            <textarea class="item_text_input_textarea" placeholder="Enter Description" rows="20" cols="20" maxlength="250" name="add_item_info"></textarea>
+                            <textarea class="item_text_input_textarea" placeholder="Enter Description" rows="30" cols="20" maxlength="250" name="add_item_info"></textarea>
                         </div>
                     </span>
                     <span class="input_container large_font">
@@ -44,13 +44,13 @@
             <div class="">
                 <span>
                     <u class="lable">Group Details</u>
-                    <p>Group Name: {{ data.name }}</p>
-                    <p>Group Email: {{ data.email }}</p>
+                    <p class="text">Group Name: {{ data.name }}</p>
+                    <p class="text">Group Email: {{ data.email }}</p>
                 </span>
                 <u class="lable">List of items:</u>
                 <div class="items_list_grid">
                     {% for item in names %}
-                        <div class="list_items">{{ item }}</div>
+                        <ul class="text">- {{ item }}</ul>
                     {% endfor %} 
                 </div>  
             </div>
@@ -59,7 +59,11 @@
     </div>
 {% endblock %}
 {% block content %}
-    {% for item in root_items %}
-        {% include 'item.html' %}
-    {% endfor %}
+    <div class="grid_item_main">
+        {% for item in root_items %}
+            {% include 'item.html' %}
+        {% endfor %}
+    </div>
 {% endblock %}
+
+

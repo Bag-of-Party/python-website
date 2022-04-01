@@ -56,7 +56,7 @@
 <div class="item_box_name_inside">
   <div>
     <div class="item_text">
-      <div class="item_text_title">
+      <div class="item_text_title_inside">
           <span>
             {{ item.name }}
             <a href="?delete={{ item.id }}" class="deleteImg"><img alt="bin" src="/static/images/icons/bin.png" /></a>
@@ -65,7 +65,7 @@
       {% include 'modal.html' %}
   </div>
   </div>
-  <div class="item_box_info"><span class="item_text">{{ item.info }}</span></div>
+  <div class="item_box_info_inside"><span class="item_text">{{ item.info }}</span></div>
 </div>
 <ul>
   {% for item in item.contents %}

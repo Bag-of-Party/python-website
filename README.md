@@ -13,7 +13,9 @@ html - css - jquery: For rendering window
 
 ## Wireframe
 
-![wireframe](images/ReadmeWireframe/Wireframe.pdf)
+![wireframe](images/2022_shot.png)
+![wireframe](images/screen_shot.png)
+<!-- <img src="../a" width="375" />  -->
 
 ## Set up below
 
@@ -42,6 +44,12 @@ Then to open the browser interface run
 $ python app/main.py
 
 After this you can open a broswer and go to http://localhost:5000/
+
+## Dont forget:
+
+- open up docker on desktop
+
+- open Tabel plus and run SQL lines for current DB
 
 ## Heroku deployment
 
