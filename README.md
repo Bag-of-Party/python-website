@@ -12,9 +12,10 @@ Flask: For managing MVC
 html - css - jquery: For rendering window
 
 ## Wireframe
-
-![wireframe](images/2022_shot.png)
-![wireframe](images/screen_shot.png)
+#### Current 
+![wireframe](../python-website/app/static/images/2022_shot.png)
+#### Previous
+![wireframe](../python-website/app/static/images/screen_shot.png)
 <!-- <img src="../a" width="375" />  -->
 
 ## Set up below
