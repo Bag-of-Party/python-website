@@ -11,13 +11,6 @@ Python: Front and back
 Flask: For managing MVC
 html - css - jquery: For rendering window
 
-## Wireframe
-#### Current 
-![wireframe](./app/static/images/2022_shot.png)
-#### Previous
-![wireframe](./app/static/images/screen_shot.png)
-<!-- <img src="../a" width="375" />  -->
-
 ## Set up below
 
 setup and notes below. How to run on a local server once cloned
@@ -76,3 +69,12 @@ party_password text
 
 - error psycopg2.errors.UndefinedTable: relation "parties" does not exist
   = relations means table so this means not parties table exsists. venv/bin/activate
+  
+## Wireframe
+#### Current 
+![wireframe](./app/static/images/2022_shot.png)
+#### Mobile
+![wireframe](./app/static/images/mobile_2.png)
+![wireframe](./app/static/images/mobile_1.png)
+
+<!-- <img src="../a" width="375" />  -->
