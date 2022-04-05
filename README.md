@@ -72,9 +72,9 @@ party_password text
   
 ## Wireframe
 #### Current 
-![wireframe](./app/static/images/2022_shot.png)
+![wireframe](./app/static/images/main_shot_1.png)
 #### Mobile
 ![wireframe](./app/static/images/mobile_1.png)
-![wireframe](./app/static/images/mobile_2.png)
+![wireframe](./app/static/images/mobile_3.png)
 
 <!-- <img src="../a" width="375" />  -->
