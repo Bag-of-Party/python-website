@@ -56,13 +56,14 @@
 <div class="item_box_name_inside">
   <div>
     <div class="item_text">
-      <div class="item_text_title_inside">
-          <span>
-            {{ item.name }}
-            <a href="?delete={{ item.id }}" class="deleteImg"><img alt="bin" src="/static/images/icons/bin.png" /></a>
-          </span>
-      </div>
-      {% include 'modal.html' %}
+      <span >
+        <div class="alignLeft">
+          {% include 'modal.html' %}
+        </div>
+          <div class="item_text_title alignRight">
+              {{ item.name }}<a href="?delete={{ item.id }}" class="deleteImg"><img alt="bin" src="/static/images/icons/bin.png" /></a>
+          </div>
+    </span>
   </div>
   </div>
   <div class="item_box_info_inside"><span class="item_text">{{ item.info }}</span></div>
