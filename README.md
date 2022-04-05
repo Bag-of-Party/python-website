@@ -25,7 +25,7 @@ setup and notes below. How to run on a local server once cloned
 
 3. Fire up local host server.
 
-- $ python nameofprogram.py
+- $ python nameofprogram.py (app/main.py)
 
 4. Go to browser and localhost:5000
 
