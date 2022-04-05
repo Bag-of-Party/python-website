@@ -74,14 +74,7 @@
   transform-origin: 0 0;
   transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-/* .avatar {
-    border-radius: 12px;
-    height: 24px;
-    left: 6px;
-    position: relative;
-    top: 4px;
-    width: 24px;
-  } */
+
 .name {
   /* background-image: url('../images/wax_1.png');
   background-repeat: no-repeat;
