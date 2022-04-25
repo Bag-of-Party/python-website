@@ -1,3 +1,5 @@
+Head to bagof.party to have a look!!
+
 # python-website
 
 Bag of party repo for Python build
